@@ -47,7 +47,7 @@ public abstract class EstoqueInterface {
 					}
 					break;
 				case 0:
-					break;
+					return;
 					
 				}
 				

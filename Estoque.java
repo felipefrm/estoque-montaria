@@ -1,6 +1,6 @@
 package tp1;
 
-public class Estoque extends EstoqueInterface{
+public class Estoque {
 	private int quantidade;
 	private float preco;
 	private Montaria montaria;

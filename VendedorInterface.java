@@ -35,8 +35,10 @@ public abstract class VendedorInterface  {
 				return;
 			case 1:
 				criaVendedor(sc);
+                                break;
 			case 2:
 				removeVendedor(vendedores, sc);
+                                break;
 		}
 		
 	}
