@@ -34,7 +34,7 @@ public abstract class VendedorInterface  {
 		}
 		
 		System.out.println("Qual operação deseja realizar?");
-		System.out.printf("[0] Voltar\n[1] Adicionar Vendedor\n[2] Remove Vendedor\n>>> ");
+		System.out.printf("[0] Voltar\n[1] Adicionar Vendedor\n[2] Remover Vendedor\n[3] Estoque Vendedor\n>>> ");
 		int op = sc.nextInt();
 		
 		switch(op) {
@@ -46,6 +46,11 @@ public abstract class VendedorInterface  {
 			case 2:
 				removeVendedor(vendedores, sc);
                                 break;
+                        case 3:
+                                break;
+                        default:
+                        System.out.println("Não existe esta opção, por favor digite novamente.");
+                                
 		}
             }
 	}
@@ -54,19 +59,19 @@ public abstract class VendedorInterface  {
 		
 		while (true) {
 			
-			System.out.printf("Qual vendedor deseja remover? [Digite 0 para voltar]");
+			System.out.printf("Qual vendedor deseja remover? [Digite 0 para voltar] ");
 			int vend = sc.nextInt();
 	
 			if (vend == 0)
 				break;
 			
 			for (Vendedor v : vendedores) {
-				if (v.getId() == vend)
+				if (v.getId() == vend) {
 					vendedores.remove(v);
                                         System.out.println("Vendedor removido. ");
-			}
-		
+                                        break;
+                                }
+                        }
 		}
 	}
-	
 }

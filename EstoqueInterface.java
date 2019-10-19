@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class EstoqueInterface {
+    
 	Scanner sc = new Scanner(System.in);
-	public void editaEstoque(ArrayList<Estoque> estoque) {
-		int opcao = 0;
+
+        public void editaEstoque(ArrayList<Estoque> estoque) {
+		
+            int opcao = 0;
 		String racaEscolha ="";	
 		while(true) {
+                    
 			System.out.printf("Edita Estoque");
 			System.out.printf("Deseja: \n 1-Editar um existente \n 2-Adicionar um novo? \n 0-Sair");
 			sc.nextInt(opcao);

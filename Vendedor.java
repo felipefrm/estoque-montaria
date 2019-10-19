@@ -1,15 +1,18 @@
 package tp1;
 
+import java.util.ArrayList;
+
 public class Vendedor extends Entidade {
 	private int idade;
 	private String raca;
 	private String nome;
 	private String descricao;
 	private int id;
-	static private int cont = 0;
+        private ArrayList<Estoque> estoque;
+        static private int cont = 1;
 	
 	public Vendedor(String nome, String raca, int idade, String descricao) {
-		this.id = ++cont;
+		this.id = cont++;
 		this.nome = nome;
 		this.raca = raca;
 		this.idade = idade;

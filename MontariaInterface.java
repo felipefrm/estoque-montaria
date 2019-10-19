@@ -31,12 +31,13 @@ public abstract class MontariaInterface {
     }
         
     public static void menu(ArrayList<Montaria> montarias, Scanner sc) {
-            
-            for (Montaria m : montarias) {
-			System.out.printf("%d %s, %s, %d, %s, %f, %s\n",  m.getId(), m.getNome(), m.getRaca(), m.getCapacidade(), m.getCombustivel(), m.getVelocidade(), m.getRaridade());
-		}
+ 
             while (true) {
 
+                for (Montaria m : montarias) {
+			System.out.printf("%d %s, %s, %d, %s, %f, %s\n",  m.getId(), m.getNome(), m.getRaca(), m.getCapacidade(), m.getCombustivel(), m.getVelocidade(), m.getRaridade());
+		}
+                
                 System.out.println("Qual operação deseja realizar?");
                 System.out.printf("[0] Voltar\n[1] Adicionar Montaria\n[2] Remove Montaria\n>>> ");
             
@@ -51,26 +52,28 @@ public abstract class MontariaInterface {
                 case 2:
                         removeMontaria(montarias, sc);
                         break;
+                default:
+                        System.out.println("Não existe esta opção, por favor digite novamente.");
                  }
             }
         }
 	public static void removeMontaria(ArrayList<Montaria> montarias, Scanner sc) {
             
-            while (true) {
+                while (true) {
 			
-			System.out.printf("Qual montaria deseja remover? [Digite 0 para voltar]");
+			System.out.printf("Qual montaria deseja remover? [Digite 0 para voltar] ");
 			int mont = sc.nextInt();
 	
 			if (mont == 0)
 				break;
 			
 			for (Montaria m : montarias) {
-				if (m.getId() == mont)
+				if (m.getId() == mont) {
 					montarias.remove(m);
-			}
-		
-		}
-	}
-            
+                                        System.out.println("Montaria removido. ");                        }
+                                        break;
+                                }
+                        }
+                }
+        }
 }
-
