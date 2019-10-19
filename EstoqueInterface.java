@@ -4,50 +4,76 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class EstoqueInterface {
-
-        public static void editaEstoque(ArrayList<Estoque> estoque, Scanner sc) {
 		
-            int opcao = 0;
-		String racaEscolha ="";	
+	public static void menuEstoque(ArrayList<Estoque> estoques,Scanner sc) {
+		for(Estoque e : estoques) {
+			System.out.printf("ID: "+e.getMontaria().getId()+"\nQuantidade: "+e.getQuantidade());
+			System.out.printf("Nome: "+e.getMontaria().getNome()+"\nPreço: "+e.getPreco()+"\n");
+		}
+		int opcao = 0,idEscolha = 0;
 		while(true) {
-                    
-			System.out.printf("Edita Estoque");
-			System.out.printf("Deseja: \n 1-Editar um existente \n 2-Adicionar um novo? \n 0-Sair");
+			System.out.println("Deseja Adicionar um Estoque novo(1), editar um existente(2),remover um(3) ou voltar(0)?");
 			sc.nextInt(opcao);
-			
 			if(opcao == 0)
 				break;
-			
-			if(opcao == 1) {
-				int j = 0,i = 0;
-				System.out.printf("Estoque de qual raça deseja editar?");
-				sc.next(racaEscolha);
+			switch(opcao) {
+			case 1:
+				adicionaEstoque(estoques,sc);
+				break;
+			case 2:
+				System.out.printf("Escolha um estoque pelo ID da Montaria ");
+				sc.nextInt(idEscolha);
+				for(Estoque e : estoques)
+					if(e.getMontaria().getId() == idEscolha)
+						editaEstoque(e,sc);
+				break;
+			case 3:
+				System.out.printf("Escolha um estoque pelo ID da Montaria ");
+				sc.nextInt(idEscolha);
+				for(Estoque e : estoques)
+					if(e.getMontaria().getId() == idEscolha)
+						removeEstoque(estoques,idEscolha);
+			}
 				
-				while(estoque.get(i).getMontaria().getRaca() != racaEscolha) {
-					i++;
-				}
+			}
+				
+			}
+			
+	public static void removeEstoque(ArrayList <Estoque> estoques,int idEscolha) {
+		estoques.remove(idEscolha);
+		System.out.println("Estoque removido com sucesso!");
+	}
+
+    public static void editaEstoque(Estoque estoque, Scanner sc) {
+        int j = 0;
+		while(true) {
 				System.out.println("O que deseja fazer com esse estoque?");
-				System.out.println("1:Remover estoque");
-				System.out.println("2:Editar quantidade");
+				System.out.println("1:Editar quantidade");
+				System.out.println("2:Editar preço");
 				System.out.println("0:Voltar");
 				sc.nextInt(j);
 				
 				switch(j) {
 				case 1:
-					estoque.remove(i);
-					break;
-				case 2:
 					int qtd = 0;
-					System.out.printf("Atual quantidade: "+estoque.get(i).getQuantidade());
+					System.out.printf("Atual quantidade: "+estoque.getQuantidade());
 					System.out.printf("Quer alterar para quanto?");
 					sc.nextInt(qtd);
 					if(qtd == 0)
 						System.out.println("Quantidade inválida, tente remover o estoque.");
 					else {
-						estoque.get(i).setQuantidade(qtd);
+						estoque.setQuantidade(qtd);
 						System.out.println("Quantidade alterada com sucesso!");
 					}
 					break;
+				case 2:
+					float precoNovo = (float) 0;
+					System.out.printf("Atual preço: "+estoque.getPreco());
+					System.out.printf("Quer alterar para quanto?");
+					sc.nextFloat(precoNovo);
+					estoque.setPreco(precoNovo);
+					System.out.println("Preço alterada com sucesso!");
+					
 				case 0:
 					return;
 					
@@ -56,26 +82,9 @@ public abstract class EstoqueInterface {
 			}
 			
 		}
-	}
-	public static void visualizaEstoque(ArrayList<Estoque> estoque, Scanner sc) {
-		int opcao = 0,i = 0;
-		String racaEscolha = "";
-		while(true) {
-			System.out.printf("O que deseja?\n 0 - Sair \n 1 - Vizualizar um estoque\n");
-			sc.nextInt(opcao);
-			if(opcao == 0)
-				break;
-			else
-				
-				System.out.printf("Estoque de qual raça deseja visualizar?");
-				sc.next(racaEscolha);
-				while(estoque.get(i).getMontaria().getRaca() != racaEscolha) {
-					i++;
-				}
-				System.out.println("Estoque da raça: "+estoque.get(i).getMontaria().getRaca());
-				System.out.println("Quantidade disponivel: "+estoque.get(i).getQuantidade());
-				System.out.println("Preço individual da montaria: "+estoque.get(i).getPreco());
-		}
-	}
+    public static void adicionaEstoque(ArrayList <Estoque> estoques, Scanner sc) {
+    	
+    }
+
 	
 }
