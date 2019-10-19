@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public abstract class VendedorInterface  {
 	
-	public Vendedor criaVendedor(Scanner sc) {
+	public static Vendedor criaVendedor(Scanner sc) {
 		
 		System.out.println("Criando vendedor...");
 		System.out.printf("Nome: ");
@@ -20,8 +20,15 @@ public abstract class VendedorInterface  {
 		return new Vendedor(nome, raca, idade, descricao);
 	}
 	
-	public void menu(ArrayList<Vendedor> vendedores, Scanner sc) {
+        public static void adicionaVendedor(ArrayList<Vendedor> vendedores, Scanner sc) {
+                Vendedor novo_vendedor = criaVendedor(sc);
+                vendedores.add(novo_vendedor);
+        }
+        
+	public static void menu(ArrayList<Vendedor> vendedores, Scanner sc) {
 		
+            while (true) {
+                
 		for (Vendedor v : vendedores) {
 			System.out.printf("%d %s, %s, %d\n",  v.getId(), v.getNome(), v.getRaca(), v.getIdade());
 		}
@@ -34,16 +41,16 @@ public abstract class VendedorInterface  {
 			case 0:
 				return;
 			case 1:
-				criaVendedor(sc);
+				adicionaVendedor(vendedores, sc);
                                 break;
 			case 2:
 				removeVendedor(vendedores, sc);
                                 break;
 		}
-		
+            }
 	}
 	
-	public void removeVendedor(ArrayList<Vendedor> vendedores, Scanner sc) {
+	public static void removeVendedor(ArrayList<Vendedor> vendedores, Scanner sc) {
 		
 		while (true) {
 			
@@ -56,6 +63,7 @@ public abstract class VendedorInterface  {
 			for (Vendedor v : vendedores) {
 				if (v.getId() == vend)
 					vendedores.remove(v);
+                                        System.out.println("Vendedor removido. ");
 			}
 		
 		}

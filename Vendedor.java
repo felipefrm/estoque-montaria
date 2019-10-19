@@ -9,7 +9,7 @@ public class Vendedor extends Entidade {
 	static private int cont = 0;
 	
 	public Vendedor(String nome, String raca, int idade, String descricao) {
-		this.id = cont++;
+		this.id = ++cont;
 		this.nome = nome;
 		this.raca = raca;
 		this.idade = idade;

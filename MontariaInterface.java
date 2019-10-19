@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public abstract class MontariaInterface {
     
-	public Montaria criaMontaria(Scanner sc) {
+	public static Montaria criaMontaria(Scanner sc) {
            
             System.out.println("Criando Montaria...");
             System.out.printf("Nome: ");
@@ -25,29 +25,36 @@ public abstract class MontariaInterface {
             return new Montaria(nome, raca, descricao, combustivel, raridade, capacidade, velocidade);
         }
         
-	public void menu(ArrayList<Montaria> montarias, Scanner sc) {
+    public static void adicionaMontaria(ArrayList<Montaria> montarias, Scanner sc) {
+                Montaria nova_montaria = criaMontaria(sc);
+                montarias.add(nova_montaria);
+    }
+        
+    public static void menu(ArrayList<Montaria> montarias, Scanner sc) {
             
             for (Montaria m : montarias) {
 			System.out.printf("%d %s, %s, %d, %s, %f, %s\n",  m.getId(), m.getNome(), m.getRaca(), m.getCapacidade(), m.getCombustivel(), m.getVelocidade(), m.getRaridade());
 		}
-		
-            System.out.println("Qual operação deseja realizar?");
-            System.out.printf("[0] Voltar\n[1] Adicionar Montaria\n[2] Remove Montaria\n>>> ");
-            int op = sc.nextInt();
-          
-            switch(op) {
-            case 0:
-                    return;
-            case 1:
-                    criaMontaria(sc);
-                    break;
-            case 2:
-                    removeMontaria(montarias, sc);
-                    break;
-             }
+            while (true) {
+
+                System.out.println("Qual operação deseja realizar?");
+                System.out.printf("[0] Voltar\n[1] Adicionar Montaria\n[2] Remove Montaria\n>>> ");
+            
+                int op = sc.nextInt();
+
+                switch(op) {
+                case 0:
+                        return;
+                case 1:
+                        adicionaMontaria(montarias, sc);
+                        break;
+                case 2:
+                        removeMontaria(montarias, sc);
+                        break;
+                 }
+            }
         }
-        
-	public void removeMontaria(ArrayList<Montaria> montarias, Scanner sc) {
+	public static void removeMontaria(ArrayList<Montaria> montarias, Scanner sc) {
             
             while (true) {
 			

@@ -13,7 +13,7 @@ public class Montaria extends Entidade {
         static private int cont = 0;
 	
         public Montaria (String nome, String raca, String descricao, String combustivel, String raridade, int capacidade, float velocidade) {
-            this.id = cont++;
+            this.id = ++cont;
             this.nome = nome;
             this.raca = raca;
             this.descricao = descricao;
