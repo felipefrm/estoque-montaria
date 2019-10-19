@@ -30,7 +30,7 @@ public abstract class VendedorInterface  {
             while (true) {
                 
 		for (Vendedor v : vendedores) {
-			System.out.printf("%d %s, %s, %d\n",  v.getId(), v.getNome(), v.getRaca(), v.getIdade());
+			System.out.printf("[%d] %s, %s, %d\n",  v.getId(), v.getNome(), v.getRaca(), v.getIdade());
 		}
 		
 		System.out.println("Qual operação deseja realizar?");
@@ -47,9 +47,10 @@ public abstract class VendedorInterface  {
 				removeVendedor(vendedores, sc);
                                 break;
                         case 3:
+                                Vendedor vend = selecionaVendedor(vendedores, sc);
                                 break;
                         default:
-                        System.out.println("Não existe esta opção, por favor digite novamente.");
+                                System.out.println("Não existe esta opção, por favor digite novamente.");
                                 
 		}
             }
@@ -74,4 +75,17 @@ public abstract class VendedorInterface  {
                         }
 		}
 	}
+        
+        public static Vendedor selecionaVendedor(ArrayList<Vendedor> vendedores, Scanner sc) {
+            
+            System.out.printf("Selecione um vendedor para visualizar o estoque: ");
+            int vend = sc.nextInt();
+           
+            for (Vendedor v : vendedores)		
+                    if (v.getId() == vend) 
+                            return v;
+            
+            System.out.println("Não existe vendedor com este ID.");
+            return null;
+        }
 }

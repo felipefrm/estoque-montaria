@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class EstoqueInterface {
-    
-	Scanner sc = new Scanner(System.in);
 
-        public void editaEstoque(ArrayList<Estoque> estoque) {
+        public static void editaEstoque(ArrayList<Estoque> estoque, Scanner sc) {
 		
             int opcao = 0;
 		String racaEscolha ="";	
@@ -59,7 +57,7 @@ public abstract class EstoqueInterface {
 			
 		}
 	}
-	public void visualizaEstoque(ArrayList<Estoque> estoque) {
+	public static void visualizaEstoque(ArrayList<Estoque> estoque, Scanner sc) {
 		int opcao = 0,i = 0;
 		String racaEscolha = "";
 		while(true) {

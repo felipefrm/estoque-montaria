@@ -35,7 +35,7 @@ public abstract class MontariaInterface {
             while (true) {
 
                 for (Montaria m : montarias) {
-			System.out.printf("%d %s, %s, %d, %s, %f, %s\n",  m.getId(), m.getNome(), m.getRaca(), m.getCapacidade(), m.getCombustivel(), m.getVelocidade(), m.getRaridade());
+			System.out.printf("[%d] %s, %s, %d, %s, %f, %s\n",  m.getId(), m.getNome(), m.getRaca(), m.getCapacidade(), m.getCombustivel(), m.getVelocidade(), m.getRaridade());
 		}
                 
                 System.out.println("Qual operação deseja realizar?");
