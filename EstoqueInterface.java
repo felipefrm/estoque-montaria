@@ -57,7 +57,7 @@ public abstract class EstoqueInterface {
     public static void editaEstoque(Estoque estoque, Scanner sc) {
 
 		while(true) {
-				System.out.println("O que deseja fazer com esse estoque?");
+
 				System.out.println("[0] Voltar");
                                 System.out.println("[1] Editar quantidade");
 				System.out.println("[2] Editar preço");
@@ -65,7 +65,6 @@ public abstract class EstoqueInterface {
 				
 				switch(op) {
 				case 1:
-
 					System.out.printf("Atual quantidade: "+estoque.getQuantidade());
 					System.out.printf("Quer alterar para quanto?");
 					int qtd = sc.nextInt();

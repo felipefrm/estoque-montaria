@@ -49,7 +49,6 @@ public abstract class VendedorInterface  {
                                 break;
                         case 3:
                                 Vendedor vend = selecionaVendedor(vendedores, sc);
-                                System.out.println("passie");
                                 menuEstoque(vend.getEstoque(), sc);
                                 break;
                         default:
