@@ -2,6 +2,7 @@ package tp1;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import static tp1.EstoqueInterface.menuEstoque;
 
 public abstract class VendedorInterface  {
 	
@@ -48,6 +49,8 @@ public abstract class VendedorInterface  {
                                 break;
                         case 3:
                                 Vendedor vend = selecionaVendedor(vendedores, sc);
+                                System.out.println("passie");
+                                menuEstoque(vend.getEstoque(), sc);
                                 break;
                         default:
                                 System.out.println("Não existe esta opção, por favor digite novamente.");
