@@ -98,6 +98,7 @@ public abstract class EstoqueInterface {
 		Montaria m = selecionaMontaria(montarias, sc)
 		System.out.printf("Preço: ");
 		float preco = sc.nextFloat();
+		System.out.printf("Quantidade: ");
 		int qtd = sc.nextInt();
 		estoques.add(new Estoque(m, qtd, preco));
 	}
