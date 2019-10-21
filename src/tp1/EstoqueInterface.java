@@ -94,8 +94,12 @@ public abstract class EstoqueInterface {
 
 	}
 
-	public static void adicionaEstoque(ArrayList<Estoque> estoques, Scanner sc) {
-		
+	public static void adicionaEstoque(ArrayList<Estoque> estoques, ArrayList<Montaria> montarias, Scanner sc) {
+		Montaria m = selecionaMontaria(montarias, sc)
+		System.out.printf("Preço: ");
+		float preco = sc.nextFloat();
+		int qtd = sc.nextInt();
+		estoques.add(new Estoque(m, qtd, preco));
 	}
 
 }
