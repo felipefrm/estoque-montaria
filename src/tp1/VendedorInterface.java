@@ -10,13 +10,14 @@ public abstract class VendedorInterface {
 
 		System.out.println("Criando vendedor...");
 		System.out.printf("Nome: ");
-		String nome = sc.next();
+		String nome = sc.nextLine();
 		System.out.printf("Raça: ");
-		String raca = sc.next();
+		String raca = sc.nextLine();
 		System.out.printf("Idade: ");
 		int idade = sc.nextInt();
 		System.out.printf("Descrição: ");
-		String descricao = sc.next();
+		sc.nextLine();
+		String descricao = sc.nextLine();
 
 		return new Vendedor(nome, raca, idade, descricao);
 	}
@@ -42,6 +43,7 @@ public abstract class VendedorInterface {
 			case 0:
 				return;
 			case 1:
+				sc.nextLine();
 				adicionaVendedor(vendedores, sc);
 				break;
 			case 2:

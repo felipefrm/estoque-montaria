@@ -17,6 +17,7 @@ public class Vendedor extends Entidade {
 		this.raca = raca;
 		this.idade = idade;
 		this.descricao = descricao;
+		this.estoque = new ArrayList<Estoque>();
 	}
 
 	public ArrayList<Estoque> getEstoque() {

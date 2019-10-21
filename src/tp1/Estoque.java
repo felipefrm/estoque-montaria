@@ -5,6 +5,9 @@ public class Estoque {
 	private float preco;
 	private Montaria montaria;
 
+	public Estoque(){
+		
+	}
 	public Montaria getMontaria() {
 		return montaria;
 	}

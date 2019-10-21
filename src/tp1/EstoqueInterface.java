@@ -95,7 +95,7 @@ public abstract class EstoqueInterface {
 	}
 
 	public static void adicionaEstoque(ArrayList<Estoque> estoques, Scanner sc) {
-
+		
 	}
 
 }

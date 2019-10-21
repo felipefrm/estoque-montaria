@@ -23,11 +23,11 @@ public class Main {
 				return;
 			case 1:
 
-				VendedorInterface.menu(vend, new Scanner(System.in));
+				VendedorInterface.menu(vend, sc);
 				break;
 			case 2:
 
-				MontariaInterface.menu(mont, new Scanner(System.in));
+				MontariaInterface.menu(mont, sc);
 				break;
 			default:
 				System.out.println("Não há esta opção, por favor digite novamente.");
