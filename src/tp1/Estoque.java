@@ -6,8 +6,11 @@ public class Estoque {
 	private Montaria montaria;
 
 	public Estoque(){
-		
+		this.quantidade = 0;
+		this.preco = 0;
+		this.montaria = null;
 	}
+	
 	public Montaria getMontaria() {
 		return montaria;
 	}
