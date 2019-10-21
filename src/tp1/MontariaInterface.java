@@ -79,4 +79,17 @@ public abstract class MontariaInterface {
 			}
 		}
 	}
+	
+	public static Montaria selecionaMontaria(ArrayList<Montaria> montarias, Scanner sc){
+		System.out.printf("Selecione uma montaria para adicionar ao estoque: ");
+		
+		int mont = sc.nextInt();
+
+		for (Montaria m : montarias)
+			if (v.getId() == mont)
+				return m;
+
+		System.out.println("Não existe montaria com este ID.");
+		return null;
+	
 }
