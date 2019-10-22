@@ -1,7 +1,5 @@
 package tp1;
 
-import java.util.ArrayList;
-
 public class Montaria extends Entidade {
 
 	private String nome;
@@ -24,6 +22,9 @@ public class Montaria extends Entidade {
 		this.raridade = raridade;
 		this.capacidade = capacidade;
 		this.velocidade = velocidade;
+	}
+	public Montaria() {
+		
 	}
 
 	public int getId() {

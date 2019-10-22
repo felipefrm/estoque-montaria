@@ -23,7 +23,7 @@ public class Main {
 				return;
 			case 1:
 
-				VendedorInterface.menu(vend, sc);
+				VendedorInterface.menu(vend,mont, sc);
 				break;
 			case 2:
 

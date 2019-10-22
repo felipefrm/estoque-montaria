@@ -27,7 +27,7 @@ public abstract class VendedorInterface {
 		vendedores.add(novo_vendedor);
 	}
 
-	public static void menu(ArrayList<Vendedor> vendedores, Scanner sc) {
+	public static void menu(ArrayList<Vendedor> vendedores,ArrayList<Montaria> montarias, Scanner sc) {
 
 		while (true) {
 
@@ -51,7 +51,7 @@ public abstract class VendedorInterface {
 				break;
 			case 3:
 				Vendedor vend = selecionaVendedor(vendedores, sc);
-				menuEstoque(vend.getEstoque(), sc);
+				menuEstoque(vend.getEstoque(),montarias, sc);
 				break;
 			default:
 				System.out.println("Não existe esta opção, por favor digite novamente.");
@@ -82,7 +82,7 @@ public abstract class VendedorInterface {
 
 	public static Vendedor selecionaVendedor(ArrayList<Vendedor> vendedores, Scanner sc) {
 
-		System.out.printf("Selecione um vendedor para visualizar o estoque: ");
+		System.out.printf("Selecione um vendedor para acessar o estoque: ");
 		int vend = sc.nextInt();
 
 		for (Vendedor v : vendedores)

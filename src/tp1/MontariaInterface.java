@@ -86,10 +86,11 @@ public abstract class MontariaInterface {
 		int mont = sc.nextInt();
 
 		for (Montaria m : montarias)
-			if (v.getId() == mont)
+			if (m.getId() == mont)
 				return m;
 
 		System.out.println("Não existe montaria com este ID.");
 		return null;
 	
+	}
 }
