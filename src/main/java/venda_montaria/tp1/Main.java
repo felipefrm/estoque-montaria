@@ -11,8 +11,15 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
-public class Main {
 
+public class Main {
+	// String to use repeat function
+	final String MENU_FR="═",
+			MENU_ROOF_RIGHT="╗",
+			MENU_ROOF_LEFT="╔",
+			MENU_FLOOR_LEFT="╚",
+			REQ_ENTRY="⟶";
+	
 	public static void main(String[] args) {
 
 		ArrayList<Vendedor> vend = new ArrayList<Vendedor>();
@@ -21,8 +28,8 @@ public class Main {
 		Gson gson = new Gson();
 		JsonReader reader;
 
-		System.out.println("Nome do arquivo com a base de dados de vendedor e montaria: ");
-		System.out.print("Arquivo vendedor:");
+		System.out.println("╔════Bases de dados════╗");
+		System.out.print("Nome do arquivo de vendedores ⟶ ");
 		String vendedorFileName = sc.next();
 
 		reader = null;
@@ -40,7 +47,7 @@ public class Main {
 			System.out.println("Arquivo não encontrado. Usando base vazia.");
 		}
 
-		System.out.print("\nArquivo montaria:");
+		System.out.print("\nNome do arquivo de montarias → ");
 		String montariaFileName = sc.next();
 		reader = null;
 
