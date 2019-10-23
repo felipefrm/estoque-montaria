@@ -1,4 +1,4 @@
-package tp1;
+package venda_montaria.tp1;
 
 public class Estoque {
 	private int quantidade;

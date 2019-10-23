@@ -1,4 +1,4 @@
-package tp1;
+package venda_montaria.tp1;
 
 import java.util.ArrayList;
 
@@ -7,12 +7,15 @@ public class Vendedor extends Entidade {
 	private String raca;
 	private String nome;
 	private String descricao;
-	private int id;
 	private ArrayList<Estoque> estoque;
 	static private int cont = 1;
 
+	public static void setCont(int cont) {
+		Vendedor.cont = cont;
+	}
+
 	public Vendedor(String nome, String raca, int idade, String descricao) {
-		this.id = cont++;
+		setId(cont++);
 		this.nome = nome;
 		this.raca = raca;
 		this.idade = idade;
@@ -40,9 +43,6 @@ public class Vendedor extends Entidade {
 		return raca;
 	}
 
-	public int getId() {
-		return id;
-	}
 
 	public void setRaca(String raca) {
 		this.raca = raca;

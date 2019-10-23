@@ -1,4 +1,4 @@
-package tp1;
+package venda_montaria.tp1;
 
 import java.util.ArrayList;
 import java.util.Scanner;

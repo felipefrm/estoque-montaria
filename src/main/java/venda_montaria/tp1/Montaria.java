@@ -1,4 +1,4 @@
-package tp1;
+package venda_montaria.tp1;
 
 public class Montaria extends Entidade {
 
@@ -9,12 +9,15 @@ public class Montaria extends Entidade {
 	private String raridade;
 	private int capacidade;
 	private float velocidade;
-	private int id;
 	static private int cont = 1;
 
+	public static void setCont(int cont) {
+		Montaria.cont = cont;
+	}
+	
 	public Montaria(String nome, String raca, String descricao, String combustivel, String raridade, int capacidade,
 			float velocidade) {
-		this.id = cont++;
+		setId(cont++);
 		this.nome = nome;
 		this.raca = raca;
 		this.descricao = descricao;
@@ -25,10 +28,6 @@ public class Montaria extends Entidade {
 	}
 	public Montaria() {
 		
-	}
-
-	public int getId() {
-		return id;
 	}
 
 	public String getNome() {

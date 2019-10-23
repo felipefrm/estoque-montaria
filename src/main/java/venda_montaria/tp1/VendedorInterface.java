@@ -1,8 +1,7 @@
-package tp1;
+package venda_montaria.tp1;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import static tp1.EstoqueInterface.menuEstoque;
 
 public abstract class VendedorInterface {
 
@@ -52,7 +51,7 @@ public abstract class VendedorInterface {
 				break;
 			case 4:
 				Vendedor vend = selecionaVendedor(vendedores, sc);
-				menuEstoque(vend.getEstoque(),montarias, sc);
+				EstoqueInterface.menuEstoque(vend.getEstoque(),montarias, sc);
 				break;
 			default:
 				System.out.println("Não existe esta opção, por favor digite novamente.");
