@@ -14,12 +14,12 @@ import com.google.gson.stream.JsonReader;
 
 public class Main {
 	// String to use repeat function
-	final String MENU_FR="═",
+	static final String MENU_FR="═",
 			MENU_ROOF_RIGHT="╗",
 			MENU_ROOF_LEFT="╔",
 			MENU_FLOOR_LEFT="╚",
-			REQ_ENTRY="⟶";
-	
+			REQ_ENTRY="⟶ ";
+	static final int MENU_FR_SIZE=8;
 	public static void main(String[] args) {
 
 		ArrayList<Vendedor> vend = new ArrayList<Vendedor>();
@@ -28,8 +28,8 @@ public class Main {
 		Gson gson = new Gson();
 		JsonReader reader;
 
-		System.out.println("╔════Bases de dados════╗");
-		System.out.print("Nome do arquivo de vendedores ⟶ ");
+		System.out.println(MENU_ROOF_LEFT+MENU_FR.repeat(MENU_FR_SIZE)+"Bases de dados"+MENU_FR.repeat(MENU_FR_SIZE)+MENU_ROOF_RIGHT);
+		System.out.print("Nome do arquivo de vendedores "+REQ_ENTRY);
 		String vendedorFileName = sc.next();
 
 		reader = null;
@@ -44,10 +44,10 @@ public class Main {
 			}
 			Vendedor.setCont(max_id);
 		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo não encontrado. Usando base vazia.");
+			System.out.print("Arquivo não encontrado. Usando base vazia.");
 		}
 
-		System.out.print("\nNome do arquivo de montarias → ");
+		System.out.print("\nNome do arquivo de montarias "+REQ_ENTRY);
 		String montariaFileName = sc.next();
 		reader = null;
 
@@ -61,7 +61,7 @@ public class Main {
 			}
 			Montaria.setCont(max_id);
 		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo não encontrado. Usando base vazia.");
+			System.out.print("Arquivo não encontrado. Usando base vazia.");
 		}
 
 		System.out.println();
