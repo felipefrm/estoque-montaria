@@ -26,14 +26,15 @@ public abstract class VendedorInterface {
 		vendedores.add(novo_vendedor);
 	}
 
-	public static void menu(ArrayList<Vendedor> vendedores,ArrayList<Montaria> montarias, Scanner sc) {
+	public static void menu(ArrayList<Vendedor> vendedores, ArrayList<Montaria> montarias, Scanner sc) {
 
 		while (true) {
 
 //			visualizaVendedores(vendedores);
 
 			System.out.println("Qual operação deseja realizar?");
-			System.out.printf("[0] Voltar\n[1] Adicionar Vendedor\n[2] Remover Vendedor\n[3] Visualizar Vendedores\n[4] Estoque Vendedor\n>>> ");
+			System.out.printf(
+					"[0] Voltar\n[1] Adicionar Vendedor\n[2] Remover Vendedor\n[3] Visualizar Vendedores\n[4] Estoque Vendedor\n>>> ");
 			int op = sc.nextInt();
 
 			switch (op) {
@@ -51,7 +52,7 @@ public abstract class VendedorInterface {
 				break;
 			case 4:
 				Vendedor vend = selecionaVendedor(vendedores, sc);
-				EstoqueInterface.menuEstoque(vend.getEstoque(),montarias, sc);
+				EstoqueInterface.menuEstoque(vend.getEstoque(), montarias, sc);
 				break;
 			default:
 				System.out.println("Não existe esta opção, por favor digite novamente.");
@@ -93,9 +94,8 @@ public abstract class VendedorInterface {
 		return null;
 	}
 
-
 	public static void visualizaVendedores(ArrayList<Vendedor> vendedores) {
-		for (Vendedor v : vendedores) 
+		for (Vendedor v : vendedores)
 			System.out.printf("[%d] %s, %s, %d\n", v.getId(), v.getNome(), v.getRaca(), v.getIdade());
 	}
 }

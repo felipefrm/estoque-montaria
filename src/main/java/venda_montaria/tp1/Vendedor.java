@@ -43,7 +43,6 @@ public class Vendedor extends Entidade {
 		return raca;
 	}
 
-
 	public void setRaca(String raca) {
 		this.raca = raca;
 	}

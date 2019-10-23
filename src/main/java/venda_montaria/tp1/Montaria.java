@@ -14,7 +14,7 @@ public class Montaria extends Entidade {
 	public static void setCont(int cont) {
 		Montaria.cont = cont;
 	}
-	
+
 	public Montaria(String nome, String raca, String descricao, String combustivel, String raridade, int capacidade,
 			float velocidade) {
 		setId(cont++);
@@ -26,8 +26,9 @@ public class Montaria extends Entidade {
 		this.capacidade = capacidade;
 		this.velocidade = velocidade;
 	}
+
 	public Montaria() {
-		
+
 	}
 
 	public String getNome() {

@@ -26,7 +26,6 @@ public abstract class MontariaInterface {
 		return new Montaria(nome, raca, descricao, combustivel, raridade, capacidade, velocidade);
 	}
 
-	
 	public static void menu(ArrayList<Montaria> montarias, Scanner sc) {
 
 		while (true) {
@@ -34,7 +33,8 @@ public abstract class MontariaInterface {
 //			visualizaMontarias(montarias);
 
 			System.out.println("Qual operação deseja realizar?");
-			System.out.printf("[0] Voltar\n[1] Adicionar Montaria\n[2] Remover Montaria\n[3] Visualizar Montarias\n>>> ");
+			System.out
+					.printf("[0] Voltar\n[1] Adicionar Montaria\n[2] Remover Montaria\n[3] Visualizar Montarias\n>>> ");
 
 			int op = sc.nextInt();
 
@@ -75,17 +75,16 @@ public abstract class MontariaInterface {
 			}
 		}
 	}
-	
 
 	public static void adicionaMontaria(ArrayList<Montaria> montarias, Scanner sc) {
 		Montaria nova_montaria = criaMontaria(sc);
 		montarias.add(nova_montaria);
 	}
-	
+
 	public static void visualizaMontarias(ArrayList<Montaria> montarias) {
-		for (Montaria m : montarias) 
-			System.out.printf("[%d] %s, %d, %s, %.2f, %s\n", m.getId(), m.getRaca(), 
-					m.getCapacidade(), m.getCombustivel(), m.getVelocidade(), m.getRaridade());
-		
+		for (Montaria m : montarias)
+			System.out.printf("[%d] %s, %d, %s, %.2f, %s\n", m.getId(), m.getRaca(), m.getCapacidade(),
+					m.getCombustivel(), m.getVelocidade(), m.getRaridade());
+
 	}
 }

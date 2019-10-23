@@ -5,11 +5,12 @@ import java.util.Scanner;
 
 public abstract class EstoqueInterface {
 
-	public static void menuEstoque(ArrayList<Estoque> estoques,ArrayList <Montaria> montarias, Scanner sc) {
+	public static void menuEstoque(ArrayList<Estoque> estoques, ArrayList<Montaria> montarias, Scanner sc) {
 
-		for(Estoque e :estoques)
-			System.out.printf("[%d] %s - QTD: %d - PREÇO: U$%.2f\n",e.getMontaria().getId(),e.getMontaria().getRaca(),e.getQuantidade(),e.getPreco());
-		
+		for (Estoque e : estoques)
+			System.out.printf("[%d] %s - QTD: %d - PREÇO: U$%.2f\n", e.getMontaria().getId(), e.getMontaria().getRaca(),
+					e.getQuantidade(), e.getPreco());
+
 		while (true) {
 
 			System.out.printf(
@@ -17,28 +18,28 @@ public abstract class EstoqueInterface {
 			int opcao = sc.nextInt();
 
 			switch (opcao) {
-				
-				case 0:
-					return;
-				
-				case 1:
-					adicionaEstoque(estoques, montarias, sc);
-					break;
-			
-				case 2:
-					editaEstoque(estoques, sc);
-					break;
-				
-				case 3:
-					removeEstoque(estoques, sc);
-					break;
-					
-				case 4:
-					visualizaEstoque(estoques);
-					break;
-				
-				default:
-					System.out.println("Não existe esta opção, por favor digite novamente.");
+
+			case 0:
+				return;
+
+			case 1:
+				adicionaEstoque(estoques, montarias, sc);
+				break;
+
+			case 2:
+				editaEstoque(estoques, sc);
+				break;
+
+			case 3:
+				removeEstoque(estoques, sc);
+				break;
+
+			case 4:
+				visualizaEstoque(estoques);
+				break;
+
+			default:
+				System.out.println("Não existe esta opção, por favor digite novamente.");
 			}
 
 		}
@@ -46,13 +47,13 @@ public abstract class EstoqueInterface {
 	}
 
 	public static void removeEstoque(ArrayList<Estoque> estoques, Scanner sc) {
-		
+
 		System.out.printf("Escolha uma montaria para remover do estoque (Digite 0 para voltar): ");
 		int idEscolha = sc.nextInt();
-		
+
 		if (idEscolha == 0)
 			return;
-		
+
 		for (Estoque e : estoques)
 			if (e.getMontaria().getId() == idEscolha) {
 				estoques.remove(e);
@@ -63,17 +64,16 @@ public abstract class EstoqueInterface {
 	}
 
 	public static void editaEstoque(ArrayList<Estoque> estoques, Scanner sc) {
-		
-		
+
 		System.out.printf("Escolha uma montaria para editar o estoque (Digite 0 para voltar): ");
 		int idEscolha = sc.nextInt();
-		
+
 		if (idEscolha == 0)
-				return;
-		
+			return;
+
 		for (Estoque e : estoques) {
 			if (e.getMontaria().getId() == idEscolha) {
-				
+
 				while (true) {
 
 					System.out.println("[0] Voltar");
@@ -82,7 +82,7 @@ public abstract class EstoqueInterface {
 					int op = sc.nextInt();
 
 					switch (op) {
-					
+
 					case 1:
 						System.out.printf("Atual quantidade: " + e.getQuantidade());
 						System.out.printf("\nQuer alterar para quanto? ");
@@ -90,7 +90,7 @@ public abstract class EstoqueInterface {
 						e.setQuantidade(qtd);
 						System.out.println("Quantidade alterada com sucesso!");
 						break;
-						
+
 					case 2:
 						float precoNovo = 0;
 						System.out.printf("Atual preço: U$" + e.getPreco());
@@ -102,27 +102,26 @@ public abstract class EstoqueInterface {
 
 					case 0:
 						return;
-					
+
 					}
 				}
 			}
-		}	
+		}
 	}
 
 	public static void adicionaEstoque(ArrayList<Estoque> estoques, ArrayList<Montaria> montarias, Scanner sc) {
 		System.out.println("Montarias disponíveis: ");
-		for(Montaria m : montarias)
-			System.out.printf("[%d] %s\n",m.getId(),m.getRaca());
+		for (Montaria m : montarias)
+			System.out.printf("[%d] %s\n", m.getId(), m.getRaca());
 		System.out.printf("Selecione uma montaria para adicionar ao estoque: ");
-		
+
 		int montId = sc.nextInt();
-		for(Estoque e : estoques)
+		for (Estoque e : estoques)
 			if (e.getMontaria().getId() == montId) {
 				System.out.println("Montaria já existe no estoque.");
 				break;
 			}
-				
-		
+
 		Montaria monta = new Montaria();
 		for (Montaria m : montarias)
 			if (m.getId() == montId) {
@@ -136,9 +135,9 @@ public abstract class EstoqueInterface {
 		estoques.add(new Estoque(monta, qtd, preco));
 	}
 
-	
-	public static void visualizaEstoque(ArrayList<Estoque> estoques) {	
-		for(Estoque e : estoques)
-			System.out.printf("[%d] %s - QTD: %d - PREÇO: U$%.2f\n",e.getMontaria().getId(),e.getMontaria().getRaca(),e.getQuantidade(),e.getPreco());
+	public static void visualizaEstoque(ArrayList<Estoque> estoques) {
+		for (Estoque e : estoques)
+			System.out.printf("[%d] %s - QTD: %d - PREÇO: U$%.2f\n", e.getMontaria().getId(), e.getMontaria().getRaca(),
+					e.getQuantidade(), e.getPreco());
 	}
 }

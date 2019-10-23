@@ -5,12 +5,12 @@ public class Estoque {
 	private float preco;
 	private Montaria montaria;
 
-	public Estoque(Montaria montaria, int quantidade, float preco){
+	public Estoque(Montaria montaria, int quantidade, float preco) {
 		this.quantidade = quantidade;
 		this.preco = preco;
 		this.montaria = montaria;
 	}
-	
+
 	public Montaria getMontaria() {
 		return montaria;
 	}
