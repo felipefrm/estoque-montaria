@@ -68,8 +68,8 @@ public class Main {
 
 		while (true) {
 
-			System.out.println("MENU:");
-			System.out.printf("[0] Fechar programa\n[1] Vendedor\n[2] Montaria\n>>> ");
+			System.out.println(MENU_ROOF_LEFT+MENU_FR.repeat(MENU_FR_SIZE)+"MENU"+MENU_FR.repeat(MENU_FR_SIZE)+MENU_ROOF_RIGHT);
+			System.out.printf("╔0 Fechar programa\n╠1 Vendedor\n╚2 Montaria\n"+REQ_ENTRY);
 
 			int op = sc.nextInt();
 
