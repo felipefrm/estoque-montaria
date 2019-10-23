@@ -31,12 +31,10 @@ public abstract class VendedorInterface {
 
 		while (true) {
 
-			for (Vendedor v : vendedores) {
-				System.out.printf("[%d] %s, %s, %d\n", v.getId(), v.getNome(), v.getRaca(), v.getIdade());
-			}
+//			visualizaVendedores(vendedores);
 
 			System.out.println("Qual operação deseja realizar?");
-			System.out.printf("[0] Voltar\n[1] Adicionar Vendedor\n[2] Remover Vendedor\n[3] Estoque Vendedor\n>>> ");
+			System.out.printf("[0] Voltar\n[1] Adicionar Vendedor\n[2] Remover Vendedor\n[3] Visualizar Vendedores\n[4] Estoque Vendedor\n>>> ");
 			int op = sc.nextInt();
 
 			switch (op) {
@@ -50,6 +48,9 @@ public abstract class VendedorInterface {
 				removeVendedor(vendedores, sc);
 				break;
 			case 3:
+				visualizaVendedores(vendedores);
+				break;
+			case 4:
 				Vendedor vend = selecionaVendedor(vendedores, sc);
 				menuEstoque(vend.getEstoque(),montarias, sc);
 				break;
@@ -91,5 +92,11 @@ public abstract class VendedorInterface {
 
 		System.out.println("Não existe vendedor com este ID.");
 		return null;
+	}
+
+
+	public static void visualizaVendedores(ArrayList<Vendedor> vendedores) {
+		for (Vendedor v : vendedores) 
+			System.out.printf("[%d] %s, %s, %d\n", v.getId(), v.getNome(), v.getRaca(), v.getIdade());
 	}
 }
