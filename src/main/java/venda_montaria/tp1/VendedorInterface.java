@@ -7,7 +7,7 @@ public abstract class VendedorInterface {
 
 	public static Vendedor criaVendedor(Scanner sc) {
 
-		System.out.println("Criando vendedor...");
+		System.out.println("\nAdicionando vendedor...");
 		System.out.printf("Nome: ");
 		String nome = sc.nextLine();
 		System.out.printf("Raça: ");
@@ -32,9 +32,8 @@ public abstract class VendedorInterface {
 
 //			visualizaVendedores(vendedores);
 
-			System.out.println("Qual operação deseja realizar?");
-			System.out.printf(
-					"[0] Voltar\n[1] Adicionar Vendedor\n[2] Remover Vendedor\n[3] Visualizar Vendedores\n[4] Estoque Vendedor\n>>> ");
+			System.out.println("\n╔════════ MENU DE VENDEDORES ════════╗");
+			System.out.printf("╠0 Voltar\n╠1 Adicionar Vendedor\n╠2 Remover Vendedor\n╠3 Visualizar Vendedores\n╚4 Estoque Vendedor\n⟶ ");
 			int op = sc.nextInt();
 
 			switch (op) {
@@ -52,7 +51,7 @@ public abstract class VendedorInterface {
 				break;
 			case 4:
 				Vendedor vend = selecionaVendedor(vendedores, sc);
-				EstoqueInterface.menuEstoque(vend.getEstoque(), montarias, sc);
+				EstoqueInterface.menuEstoque(vend.getEstoque(), vend.getNome(), montarias, sc);
 				break;
 			default:
 				System.out.println("Não existe esta opção, por favor digite novamente.");
@@ -63,39 +62,46 @@ public abstract class VendedorInterface {
 
 	public static void removeVendedor(ArrayList<Vendedor> vendedores, Scanner sc) {
 
-		while (true) {
+		System.out.printf("\nQual vendedor deseja remover? [Digite 0 para voltar] ");
+		int vendId = sc.nextInt();
 
-			System.out.printf("Qual vendedor deseja remover? [Digite 0 para voltar] ");
-			int vend = sc.nextInt();
+		if (vendId == 0)
+			return;
 
-			if (vend == 0)
-				break;
-
-			for (Vendedor v : vendedores) {
-				if (v.getId() == vend) {
-					vendedores.remove(v);
-					System.out.println("Vendedor removido. ");
-					break;
-				}
+		for (Vendedor v : vendedores) {
+			if (v.getId() == vendId) {
+				vendedores.remove(v);
+				System.out.println("Vendedor removido. ");
+				return;
 			}
 		}
+		System.out.printf("Não há nenhum vendedor com o ID " + vendId + " na base de dados.");
+		
 	}
 
 	public static Vendedor selecionaVendedor(ArrayList<Vendedor> vendedores, Scanner sc) {
 
-		System.out.printf("Selecione um vendedor para acessar o estoque: ");
-		int vend = sc.nextInt();
+		System.out.printf("\nSelecione um vendedor para acessar o estoque: ");
+		int vendId = sc.nextInt();
 
 		for (Vendedor v : vendedores)
-			if (v.getId() == vend)
+			if (v.getId() == vendId)
 				return v;
 
-		System.out.println("Não existe vendedor com este ID.");
+		System.out.printf("Não há nenhum vendedor com o ID " + vendId + " na base de dados.");
 		return null;
 	}
 
 	public static void visualizaVendedores(ArrayList<Vendedor> vendedores) {
+		
+		if (vendedores.size() == 0) {
+			System.out.println("\nNão há nenhum vendedor cadastro na base de dados.");
+			return;
+		}	
+		
+		System.out.println();
+		
 		for (Vendedor v : vendedores)
-			System.out.printf("[%d] %s, %s, %d\n", v.getId(), v.getNome(), v.getRaca(), v.getIdade());
+			System.out.printf("[%d] %s, %s, %d anos\n", v.getId(), v.getNome(), v.getRaca(), v.getIdade());
 	}
 }

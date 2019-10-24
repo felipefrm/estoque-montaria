@@ -7,7 +7,7 @@ public abstract class MontariaInterface {
 
 	public static Montaria criaMontaria(Scanner sc) {
 
-		System.out.println("Criando Montaria...");
+		System.out.println("\nAdicionando Montaria...");
 		System.out.printf("Nome: ");
 		String nome = sc.nextLine();
 		System.out.printf("Raça: ");
@@ -32,9 +32,9 @@ public abstract class MontariaInterface {
 
 //			visualizaMontarias(montarias);
 
-			System.out.println("Qual operação deseja realizar?");
+			System.out.println("\n╔════════ MENU DE MONTARIAS ════════╗");
 			System.out
-					.printf("[0] Voltar\n[1] Adicionar Montaria\n[2] Remover Montaria\n[3] Visualizar Montarias\n>>> ");
+					.printf("╠0 Voltar\n╠1 Adicionar Montaria\n╠2 Remover Montaria\n╚3 Visualizar Montarias\n⟶ ");
 
 			int op = sc.nextInt();
 
@@ -49,6 +49,7 @@ public abstract class MontariaInterface {
 				break;
 			case 3:
 				visualizaMontarias(montarias);
+				break;
 			default:
 				System.out.println("Não existe esta opção, por favor digite novamente.");
 			}
@@ -57,23 +58,20 @@ public abstract class MontariaInterface {
 
 	public static void removeMontaria(ArrayList<Montaria> montarias, Scanner sc) {
 
-		while (true) {
+		System.out.printf("\nQual montaria deseja remover? [Digite 0 para voltar] ");
+		int montId = sc.nextInt();
 
-			System.out.printf("Qual montaria deseja remover? [Digite 0 para voltar] ");
-			int montId = sc.nextInt();
+		if (montId == 0)
+			return;
 
-			if (montId == 0)
-				break;
-
-			for (Montaria m : montarias) {
-				if (m.getId() == montId) {
-					montarias.remove(m);
-					System.out.println("Montaria removida. ");
-				}
-				System.out.printf("Não há nenhuma montaria com o ID " + montId + ".");
-				break;
+		for (Montaria m : montarias) {
+			if (m.getId() == montId) {
+				montarias.remove(m);
+				System.out.println("Montaria removida. ");
+				return;
 			}
 		}
+		System.out.printf("Não há nenhuma montaria com o ID " + montId + " na base de dados.");
 	}
 
 	public static void adicionaMontaria(ArrayList<Montaria> montarias, Scanner sc) {
@@ -82,6 +80,12 @@ public abstract class MontariaInterface {
 	}
 
 	public static void visualizaMontarias(ArrayList<Montaria> montarias) {
+		
+		if (montarias.size() == 0) {
+			System.out.println("\nNão há nenhuma montaria cadastrada na base de dados.");
+			return;
+		}	
+		
 		for (Montaria m : montarias)
 			System.out.printf("[%d] %s, %d, %s, %.2f, %s\n", m.getId(), m.getRaca(), m.getCapacidade(),
 					m.getCombustivel(), m.getVelocidade(), m.getRaridade());

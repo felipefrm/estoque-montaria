@@ -20,6 +20,7 @@ public class Main {
 			MENU_FLOOR_LEFT="╚",
 			REQ_ENTRY="⟶ ";
 	static final int MENU_FR_SIZE=8;
+	
 	public static void main(String[] args) {
 
 		ArrayList<Vendedor> vend = new ArrayList<Vendedor>();
@@ -28,8 +29,8 @@ public class Main {
 		Gson gson = new Gson();
 		JsonReader reader;
 
-		System.out.println(MENU_ROOF_LEFT+MENU_FR.repeat(MENU_FR_SIZE)+"Bases de dados"+MENU_FR.repeat(MENU_FR_SIZE)+MENU_ROOF_RIGHT);
-		System.out.print("Nome do arquivo de vendedores "+REQ_ENTRY);
+		System.out.println(MENU_ROOF_LEFT+MENU_FR.repeat(MENU_FR_SIZE)+" Bases de dados "+MENU_FR.repeat(MENU_FR_SIZE)+MENU_ROOF_RIGHT);
+		System.out.print("\nNome do arquivo de vendedores "+REQ_ENTRY);
 		String vendedorFileName = sc.next();
 
 		reader = null;
@@ -47,7 +48,7 @@ public class Main {
 			System.out.print("Arquivo não encontrado. Usando base vazia.");
 		}
 
-		System.out.print("\nNome do arquivo de montarias "+REQ_ENTRY);
+		System.out.print("Nome do arquivo de montarias "+REQ_ENTRY);
 		String montariaFileName = sc.next();
 		reader = null;
 
@@ -57,59 +58,62 @@ public class Main {
 			}.getType());
 			int max_id = 1;
 			for (Montaria m : mont) {
-				max_id = Math.max(max_id, m.getId());
+				max_id = Math.max(max_id, m.getId() + 1);
 			}
 			Montaria.setCont(max_id);
 		} catch (FileNotFoundException e) {
 			System.out.print("Arquivo não encontrado. Usando base vazia.");
 		}
 
-		System.out.println();
+
 
 		while (true) {
-
-			System.out.println(MENU_ROOF_LEFT+MENU_FR.repeat(MENU_FR_SIZE)+"MENU"+MENU_FR.repeat(MENU_FR_SIZE)+MENU_ROOF_RIGHT);
-			System.out.printf("╔0 Fechar programa\n╠1 Vendedor\n╚2 Montaria\n"+REQ_ENTRY);
+			
+			System.out.println();
+			System.out.println(MENU_ROOF_LEFT+MENU_FR.repeat(MENU_FR_SIZE)+" MENU "+MENU_FR.repeat(MENU_FR_SIZE)+MENU_ROOF_RIGHT);
+			System.out.printf("╠0 Fechar programa\n╠1 Vendedor\n╚2 Montaria\n"+REQ_ENTRY);
 
 			int op = sc.nextInt();
 
 			switch (op) {
-			case 0:
-
-				Writer writer;
-				if (!vend.isEmpty()) {
-					writer = null;
-					try {
-						writer = new FileWriter(vendedorFileName);
-						gson.toJson(vend, writer);
-						writer.close();
-					} catch (IOException e) {
-						e.printStackTrace();
+			
+				case 0:
+	
+					Writer writer;
+					if (!vend.isEmpty()) {
+						writer = null;
+						try {
+							writer = new FileWriter(vendedorFileName);
+							gson.toJson(vend, writer);
+							writer.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+	
 					}
-
-				}
-				if (!mont.isEmpty()) {
-					writer = null;
-					try {
-						writer = new FileWriter(montariaFileName);
-						gson.toJson(mont, writer);
-						writer.close();
-					} catch (IOException e) {
-						e.printStackTrace();
+					if (!mont.isEmpty()) {
+						writer = null;
+						try {
+							writer = new FileWriter(montariaFileName);
+							gson.toJson(mont, writer);
+							writer.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+	
 					}
-
-				}
-				return;
-			case 1:
-
-				VendedorInterface.menu(vend, mont, sc);
-				break;
-			case 2:
-
-				MontariaInterface.menu(mont, sc);
-				break;
-			default:
-				System.out.println("Não há esta opção, por favor digite novamente.");
+					return;
+				
+				case 1:
+					VendedorInterface.menu(vend, mont, sc);
+					break;
+				
+				case 2:
+					MontariaInterface.menu(mont, sc);
+					break;
+				
+				default:
+					System.out.println("Não há esta opção, por favor digite novamente.");
 
 			}
 		}
