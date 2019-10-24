@@ -1,6 +1,7 @@
 package venda_montaria.tp1;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public abstract class MontariaInterface {
@@ -15,9 +16,25 @@ public abstract class MontariaInterface {
 		System.out.printf("Raridade: ");
 		String raridade = sc.nextLine();
 		System.out.printf("Capacidade: ");
-		int capacidade = sc.nextInt();
+		int capacidade;
+		try {
+			capacidade = sc.nextInt();	
+		} 
+		catch(InputMismatchException e) {
+			sc.nextLine();
+			System.out.printf("A capacidade deve ser um valor inteiro.\nCapacidade: ");
+			capacidade = sc.nextInt();
+		}
 		System.out.printf("Velocidade: ");
-		float velocidade = sc.nextFloat();
+		float velocidade;
+		try {
+			velocidade = sc.nextFloat();	
+		} 
+		catch(InputMismatchException e) {
+			sc.nextLine();
+			System.out.printf("A velocidade deve ser um número real.\nVelocidade: ");
+			velocidade = sc.nextFloat();
+		}
 		System.out.printf("Combustivel: ");
 		String combustivel = sc.nextLine();
 		System.out.printf("Descrição: ");
@@ -36,7 +53,16 @@ public abstract class MontariaInterface {
 			System.out
 					.printf("╠0 Voltar\n╠1 Adicionar Montaria\n╠2 Remover Montaria\n╚3 Visualizar Montarias\n⟶ ");
 
-			int op = sc.nextInt();
+			int op;
+			try {
+				op = sc.nextInt();	
+			}
+			
+			catch(InputMismatchException e) {
+				sc.nextLine();
+				System.out.printf("Entrada inválida, por favor escolha uma das opções.\n⟶ ");
+				op = sc.nextInt();
+			}
 
 			switch (op) {
 			case 0:

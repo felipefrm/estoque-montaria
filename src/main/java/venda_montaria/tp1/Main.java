@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -45,7 +46,7 @@ public class Main {
 			}
 			Vendedor.setCont(max_id);
 		} catch (FileNotFoundException e) {
-			System.out.print("Arquivo não encontrado. Usando base vazia.");
+			System.out.print("Arquivo não encontrado. Usando base vazia.\n");
 		}
 
 		System.out.print("Nome do arquivo de montarias "+REQ_ENTRY);
@@ -62,7 +63,7 @@ public class Main {
 			}
 			Montaria.setCont(max_id);
 		} catch (FileNotFoundException e) {
-			System.out.print("Arquivo não encontrado. Usando base vazia.");
+			System.out.print("Arquivo não encontrado. Usando base vazia.\n");
 		}
 
 
@@ -73,8 +74,17 @@ public class Main {
 			System.out.println(MENU_ROOF_LEFT+MENU_FR.repeat(MENU_FR_SIZE)+" MENU "+MENU_FR.repeat(MENU_FR_SIZE)+MENU_ROOF_RIGHT);
 			System.out.printf("╠0 Fechar programa\n╠1 Vendedor\n╚2 Montaria\n"+REQ_ENTRY);
 
-			int op = sc.nextInt();
-
+			int op;
+			try {
+				op = sc.nextInt();	
+			}
+			
+			catch(InputMismatchException e) {
+				sc.nextLine();
+				System.out.printf("Entrada inválida, por favor escolha uma das opções.\n" + REQ_ENTRY);
+				op = sc.nextInt();
+			}
+			
 			switch (op) {
 			
 				case 0:
