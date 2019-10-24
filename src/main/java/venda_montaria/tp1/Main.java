@@ -75,16 +75,17 @@ public class Main {
 			System.out.printf("╠0 Fechar programa\n╠1 Vendedor\n╚2 Montaria\n"+REQ_ENTRY);
 
 			int op;
-			try {
-				op = sc.nextInt();	
+			while (true) {
+				try {
+					op = sc.nextInt();
+					break;
+				}
+				catch(InputMismatchException e) {
+					sc.nextLine();
+					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n" + REQ_ENTRY);
+				}
 			}
-			
-			catch(InputMismatchException e) {
-				sc.nextLine();
-				System.out.printf("Entrada inválida, por favor escolha uma das opções.\n" + REQ_ENTRY);
-				op = sc.nextInt();
-			}
-			
+
 			switch (op) {
 			
 				case 0:
@@ -123,7 +124,7 @@ public class Main {
 					break;
 				
 				default:
-					System.out.println("Não há esta opção, por favor digite novamente.");
+					System.out.println("\nNão há esta opção, por favor digite novamente.");
 
 			}
 		}

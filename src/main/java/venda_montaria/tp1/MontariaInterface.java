@@ -9,32 +9,38 @@ public abstract class MontariaInterface {
 	public static Montaria criaMontaria(Scanner sc) {
 
 		System.out.println("\nAdicionando Montaria...");
+		sc.nextLine();
 		System.out.printf("Nome: ");
 		String nome = sc.nextLine();
 		System.out.printf("Raça: ");
 		String raca = sc.nextLine();
 		System.out.printf("Raridade: ");
 		String raridade = sc.nextLine();
-		System.out.printf("Capacidade: ");
 		int capacidade;
-		try {
-			capacidade = sc.nextInt();	
-		} 
-		catch(InputMismatchException e) {
-			sc.nextLine();
-			System.out.printf("A capacidade deve ser um valor inteiro.\nCapacidade: ");
-			capacidade = sc.nextInt();
+		while (true) {
+			System.out.printf("Capacidade: ");
+			try {
+				capacidade = sc.nextInt();
+				break;
+			}
+			catch(InputMismatchException e) {
+				sc.nextLine();
+				System.out.println("Entrada inválida, insira um número inteiro para a capacidade.");
+			}
 		}
-		System.out.printf("Velocidade: ");
 		float velocidade;
-		try {
-			velocidade = sc.nextFloat();	
-		} 
-		catch(InputMismatchException e) {
-			sc.nextLine();
-			System.out.printf("A velocidade deve ser um número real.\nVelocidade: ");
-			velocidade = sc.nextFloat();
+		while (true) {
+			System.out.printf("Velocidade: ");
+			try {
+				velocidade = sc.nextInt();
+				break;
+			}
+			catch(InputMismatchException e) {
+				sc.nextLine();
+				System.out.println("Entrada inválida, insira um número real para a velocidade.");
+			}
 		}
+		sc.nextLine();
 		System.out.printf("Combustivel: ");
 		String combustivel = sc.nextLine();
 		System.out.printf("Descrição: ");
@@ -54,14 +60,15 @@ public abstract class MontariaInterface {
 					.printf("╠0 Voltar\n╠1 Adicionar Montaria\n╠2 Remover Montaria\n╚3 Visualizar Montarias\n⟶ ");
 
 			int op;
-			try {
-				op = sc.nextInt();	
-			}
-			
-			catch(InputMismatchException e) {
-				sc.nextLine();
-				System.out.printf("Entrada inválida, por favor escolha uma das opções.\n⟶ ");
-				op = sc.nextInt();
+			while (true) {
+				try {
+					op = sc.nextInt();
+					break;
+				}
+				catch(InputMismatchException e) {
+					sc.nextLine();
+					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n⟶ ");
+				}
 			}
 
 			switch (op) {
@@ -77,16 +84,26 @@ public abstract class MontariaInterface {
 				visualizaMontarias(montarias);
 				break;
 			default:
-				System.out.println("Não existe esta opção, por favor digite novamente.");
+				System.out.println("\nNão existe esta opção, por favor digite novamente.");
 			}
 		}
 	}
 
 	public static void removeMontaria(ArrayList<Montaria> montarias, Scanner sc) {
 
-		System.out.printf("\nQual montaria deseja remover? [Digite 0 para voltar] ");
-		int montId = sc.nextInt();
-
+		int montId;
+		while (true) {
+			System.out.printf("\nQual montaria deseja remover? [Digite 0 para voltar] ");
+			try {
+				montId = sc.nextInt();
+				break;
+			}
+			catch(InputMismatchException e) {
+				sc.nextLine();
+				System.out.println("Entrada inválida, digite o ID da montaria para removê-la.");
+			}
+		}
+		
 		if (montId == 0)
 			return;
 
@@ -97,7 +114,7 @@ public abstract class MontariaInterface {
 				return;
 			}
 		}
-		System.out.printf("Não há nenhuma montaria com o ID " + montId + " na base de dados.");
+		System.out.println("Não há nenhuma montaria com o ID " + montId + " na base de dados.");
 	}
 
 	public static void adicionaMontaria(ArrayList<Montaria> montarias, Scanner sc) {
@@ -111,6 +128,8 @@ public abstract class MontariaInterface {
 			System.out.println("\nNão há nenhuma montaria cadastrada na base de dados.");
 			return;
 		}	
+		
+		System.out.println();
 		
 		for (Montaria m : montarias)
 			System.out.printf("[%d] %s, %d, %s, %.2f, %s\n", m.getId(), m.getRaca(), m.getCapacidade(),
