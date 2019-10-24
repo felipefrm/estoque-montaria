@@ -6,6 +6,47 @@ import java.util.Scanner;
 
 public abstract class MontariaInterface {
 
+	public static void menu(ArrayList<Montaria> montarias, Scanner sc) {
+
+		while (true) {
+
+//			visualizaMontarias(montarias);
+
+			System.out.println("\n╔════════ MENU DE MONTARIAS ════════╗");
+			System.out
+					.printf("╠0 Voltar\n╠1 Adicionar Montaria\n╠2 Remover Montaria\n╚3 Visualizar Montarias\n⟶ ");
+
+			int op;
+			while (true) {
+				try {
+					op = sc.nextInt();
+					break;
+				}
+				catch(InputMismatchException e) {
+					sc.nextLine();
+					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n⟶ ");
+				}
+			}
+
+			switch (op) {
+			case 0:
+				return;
+			case 1:
+				adicionaMontaria(montarias, sc);
+				break;
+			case 2:
+				removeMontaria(montarias, sc);
+				break;
+			case 3:
+				visualizaMontarias(montarias);
+				break;
+			default:
+				System.out.println("\nNão existe esta opção, por favor digite novamente.");
+			}
+		}
+	}
+
+
 	public static Montaria criaMontaria(Scanner sc) {
 
 		System.out.println("\nAdicionando Montaria...");
@@ -49,44 +90,10 @@ public abstract class MontariaInterface {
 		return new Montaria(nome, raca, descricao, combustivel, raridade, capacidade, velocidade);
 	}
 
-	public static void menu(ArrayList<Montaria> montarias, Scanner sc) {
-
-		while (true) {
-
-//			visualizaMontarias(montarias);
-
-			System.out.println("\n╔════════ MENU DE MONTARIAS ════════╗");
-			System.out
-					.printf("╠0 Voltar\n╠1 Adicionar Montaria\n╠2 Remover Montaria\n╚3 Visualizar Montarias\n⟶ ");
-
-			int op;
-			while (true) {
-				try {
-					op = sc.nextInt();
-					break;
-				}
-				catch(InputMismatchException e) {
-					sc.nextLine();
-					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n⟶ ");
-				}
-			}
-
-			switch (op) {
-			case 0:
-				return;
-			case 1:
-				adicionaMontaria(montarias, sc);
-				break;
-			case 2:
-				removeMontaria(montarias, sc);
-				break;
-			case 3:
-				visualizaMontarias(montarias);
-				break;
-			default:
-				System.out.println("\nNão existe esta opção, por favor digite novamente.");
-			}
-		}
+	
+	public static void adicionaMontaria(ArrayList<Montaria> montarias, Scanner sc) {
+		Montaria nova_montaria = criaMontaria(sc);
+		montarias.add(nova_montaria);
 	}
 
 	public static void removeMontaria(ArrayList<Montaria> montarias, Scanner sc) {
@@ -117,11 +124,7 @@ public abstract class MontariaInterface {
 		System.out.println("Não há nenhuma montaria com o ID " + montId + " na base de dados.");
 	}
 
-	public static void adicionaMontaria(ArrayList<Montaria> montarias, Scanner sc) {
-		Montaria nova_montaria = criaMontaria(sc);
-		montarias.add(nova_montaria);
-	}
-
+	
 	public static void visualizaMontarias(ArrayList<Montaria> montarias) {
 		
 		if (montarias.size() == 0) {

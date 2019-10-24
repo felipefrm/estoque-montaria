@@ -6,37 +6,6 @@ import java.util.Scanner;
 
 public abstract class VendedorInterface {
 
-	public static Vendedor criaVendedor(Scanner sc) {
-
-		System.out.println("\nAdicionando vendedor...");
-		System.out.printf("Nome: ");
-		String nome = sc.nextLine();
-		System.out.printf("Raça: ");
-		String raca = sc.nextLine();
-		int idade;
-		while (true) {
-			System.out.printf("Idade: ");
-			try {
-				idade = sc.nextInt();
-				break;
-			}
-			catch(InputMismatchException e) {
-				sc.nextLine();
-				System.out.println("Entrada inválida, insira um número inteiro para a idade.");
-			}
-		}
-		System.out.printf("Descrição: ");
-		sc.nextLine();
-		String descricao = sc.nextLine();
-
-		return new Vendedor(nome, raca, idade, descricao);
-	}
-
-	public static void adicionaVendedor(ArrayList<Vendedor> vendedores, Scanner sc) {
-		Vendedor novo_vendedor = criaVendedor(sc);
-		vendedores.add(novo_vendedor);
-	}
-
 	public static void menu(ArrayList<Vendedor> vendedores, ArrayList<Montaria> montarias, Scanner sc) {
 
 		while (true) {
@@ -75,7 +44,7 @@ public abstract class VendedorInterface {
 			case 4:
 				Vendedor vend = selecionaVendedor(vendedores, sc);
 				if (vend != null)
-					EstoqueInterface.menuEstoque(vend.getEstoque(), vend.getNome(), montarias, sc);
+					EstoqueInterface.menu(vend.getEstoque(), vend.getNome(), montarias, sc);
 				break;
 			default:
 				System.out.println("\nNão existe esta opção, por favor digite novamente.");
@@ -83,6 +52,40 @@ public abstract class VendedorInterface {
 			}
 		}
 	}
+	
+	
+	public static Vendedor criaVendedor(Scanner sc) {
+
+		System.out.println("\nAdicionando vendedor...");
+		System.out.printf("Nome: ");
+		String nome = sc.nextLine();
+		System.out.printf("Raça: ");
+		String raca = sc.nextLine();
+		int idade;
+		while (true) {
+			System.out.printf("Idade: ");
+			try {
+				idade = sc.nextInt();
+				break;
+			}
+			catch(InputMismatchException e) {
+				sc.nextLine();
+				System.out.println("Entrada inválida, insira um número inteiro para a idade.");
+			}
+		}
+		System.out.printf("Descrição: ");
+		sc.nextLine();
+		String descricao = sc.nextLine();
+
+		return new Vendedor(nome, raca, idade, descricao);
+	}
+
+	
+	public static void adicionaVendedor(ArrayList<Vendedor> vendedores, Scanner sc) {
+		Vendedor novo_vendedor = criaVendedor(sc);
+		vendedores.add(novo_vendedor);
+	}
+
 
 	public static void removeVendedor(ArrayList<Vendedor> vendedores, Scanner sc) {
 
