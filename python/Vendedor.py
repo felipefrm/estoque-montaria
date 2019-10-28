@@ -1,7 +1,5 @@
 from Entidade import Entidade
 
-cont = 0
-
 class Vendedor (Entidade):
     __cont = 1
     def __init__(self, nome, raca, idade, descricao):

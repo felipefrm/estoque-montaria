@@ -1,12 +1,10 @@
 from Entidade import Entidade
 
-cont = 0
-
 class Montaria (Entidade):
-
+    __cont = 1
     def __init__(self, nome, raca, descricao, combustivel, raridade, capacidade, velocidade):
-        cont += 1
-        self.__setId(cont)
+        self._setId(self.__cont)
+        self.setCont(self.__cont+1)
         self.__nome = nome
         self.__raca = raca
         self.__descricao = descricao
@@ -14,9 +12,9 @@ class Montaria (Entidade):
         self.__raridade = raridade
         self.__capacidade = capacidade
         self.__velocidade = velocidade
-
-    def setCont(self, cont):
-        self.__cont = cont
+    @classmethod
+    def setCont(cls, cont):
+        cls.__cont = cont
 
     def getNome(self):
         return self.__nome

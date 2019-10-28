@@ -3,25 +3,25 @@ from Montaria import Montaria
 
 class MontariaInterface(ABC):
 
-    @staticmethod
-    def menu(montarias):
+    @classmethod
+    def menu(cls,montarias):
 
         while(True):
 
             print("\n╔════════ MENU DE MONTARIAS ════════╗")
-            op = input(int("╠0 Voltar\n╠1 Adicionar Montaria\n╠2 Remover Montaria\n╚3 Visualizar Montarias\n⟶ "))
+            op = int(input("╠0 Voltar\n╠1 Adicionar Montaria\n╠2 Remover Montaria\n╚3 Visualizar Montarias\n⟶ "))
 
             if op == 0:
                 return
 
             elif op == 1:
-                adicionaMontaria(montarias)
+                cls.adicionaMontaria(montarias)
 
             elif op == 2:
-                removeMontaria(montarias)
+                cls.removeMontaria(montarias)
 
             elif op == 3:
-                vizualizaMontaria(montarias)
+                cls.vizualizaMontaria(montarias)
             else:
                 print("\nNão existe esta opção, por favor digite novamente.")
 
@@ -31,7 +31,7 @@ class MontariaInterface(ABC):
 
         print("\nAdicionando Montaria...")
         nome = input("Nome: ")
-        raca = input("Raçã: ")
+        raca = input("Raça: ")
         raridade = input("Raridade: ")
         capacidade = int(input("Capacidade: "))
         velocidade = float(input("Velocidade: "))
@@ -40,9 +40,9 @@ class MontariaInterface(ABC):
         return Montaria(nome, raca, descricao, combustivel, raridade, capacidade, velocidade)
 
 
-    @staticmethod
-    def adicionaMontaria(montarias):
-        nova_montaria = criaMontaria()
+    @classmethod
+    def adicionaMontaria(cls,montarias):
+        nova_montaria = cls.criaMontaria()
         montarias.append(nova_montaria)
 
     @staticmethod
@@ -66,5 +66,5 @@ class MontariaInterface(ABC):
         if len(montarias) == 0:
             print("\nNão há nenhuma montaria cadastrada na base de dados.")
         for m in montarias:
-            print("["+m.getId()+"], "+m.getRaca()+", "+ m.getCapacidade()+", "+
-					m.getCombustivel()+", "+ m.getVelocidade()+", "+ m.getRaridade())
+            print("["+str(m.getId())+"], "+m.getRaca()+", "+ str(m.getCapacidade())+", "+
+					str(m.getCombustivel())+", "+ str(m.getVelocidade())+", "+ str(m.getRaridade()))
