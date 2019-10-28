@@ -3,18 +3,18 @@ from Entidade import Entidade
 cont = 0
 
 class Vendedor (Entidade):
-
+    __cont = 1
     def __init__(self, nome, raca, idade, descricao):
-        cont += 1
-        setId(cont)
+        self._setId(self.__cont)
+        self.setCont(self.__cont+1)
         self.__nome = nome
         self.__raca = raca
         self.__idade = idade
         self.__descricao = descricao
         self.__estoque = []
-
-    def setCont(self, cont):
-        self.__cont = cont
+    @classmethod
+    def setCont(cls, cont):
+        cls.__cont = cont
 
     def getEstoque(self):
         return self.__estoque

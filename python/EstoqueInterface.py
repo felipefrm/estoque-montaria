@@ -1,7 +1,7 @@
-from abc import ABC
+from abc import ABC,abstractmethod
 from Estoque import Estoque
 
-class estoqueInterface(ABC):
+class EstoqueInterface(ABC):
 
     @staticmethod
     def menu(estoques, nome, montarias):

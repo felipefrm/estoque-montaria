@@ -1,7 +1,7 @@
-from abc import ABC
+from abc import ABC,abstractmethod
 from Montaria import Montaria
 
-class montariaInterface(ABC):
+class MontariaInterface(ABC):
 
     @staticmethod
     def menu(montarias):

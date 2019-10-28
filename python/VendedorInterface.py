@@ -1,61 +1,61 @@
 # coding: utf-8
 
-from abc import ABC
+from abc import ABC,abstractmethod
 import EstoqueInterface
 from Vendedor import Vendedor
 
 class VendedorInterface(ABC):
 
-    @staticmethod
-    def menu(vendedores, montarias):
+    @classmethod
+    def menu(cls,vendedores, montarias):
+        while True:
+            print("\n╔════════ MENU DE VENDEDORES ════════╗")
+            op = int(input("╠0 Voltar\n╠1 Adicionar Vendedor\n╠2 Remover Vendedor\n╠3 Visualizar Vendedores\n╚4 Estoque Vendedor\n⟶ "))
 
-        print("\n╔════════ MENU DE VENDEDORES ════════╗")
-        op = int(input("╠0 Voltar\n╠1 Adicionar Vendedor\n╠2 Remover Vendedor\n╠3 Visualizar Vendedores\n╚4 Estoque Vendedor\n⟶ "))
+            if op == 0:
+                return
 
-        if op == 0:
-            return
+            elif op == 1:
+                cls.adicionaVendedor(vendedores)
 
-        elif op == 1:
-            adicionaVendedores(vendedores)
+            elif op == 2:
+                cls.removeVendedor(vendedores)
 
-        elif op == 2:
-            removeVendedor(vendedores)
+            elif op == 3:
+                cls.visualizaVendedores(vendedores)
 
-        elif op == 3:
-            visualizaVendedores(vendedores)
+            elif op == 4:
+                vend = cls.selecionaVendedor(vendedores)
+                if (vend != None):
+                    EstoqueInterface.menu(vend.getEstoque(), vend.getNome(), montarias)
 
-        elif op == 4:
-            vend = selecionaVendedor(vendedores)
-            if (vend != None):
-                EstoqueInterface.menu(vend.getEstoque(), vend.getNome(), montarias)
-
-        else:
-            print("Não existe esta opção, por favor digite novamente.")
+            else:
+                print("Não existe esta opção, por favor digite novamente.")
 
     @staticmethod
     def criaVendedor():
         print("\nAdicionando Vendedor...")
-        return Vendedor(input("Nome: "), input("Raça: "), int(input("Idade")), input("Descrição: "))
+        return Vendedor(input("Nome: "), input("Raça: "), int(input("Idade: ")), input("Descrição: "))
 
-    @staticmethod
-    def adicionaVendedor(vendedores):
-        vendedores.append(criaVendedor())
+    @classmethod
+    def adicionaVendedor(cls,vendedores):
+        vendedores.append(cls.criaVendedor())
 
     @staticmethod
     def removeVendedor(vendedores):
+        while True:
+            vendId = int(input("Qual vendedor deseja remover? [Digite 0 para voltar] "))
 
-        vendId = int(input("Qual vendedor deseja remover? [Digite 0 para voltar] "))
-
-        if vendId == 0:
-            return
-
-        for v in vendedores:
-            if v.getId() == vendId:
-                vendedores.remove(v)
-                print("Vendedor removido.")
+            if vendId == 0:
                 return
 
-        print("Não há nenhum vendedor com o ID " + vendId + " na base de dados.")
+            for v in vendedores:
+                if v.getId() == vendId:
+                    vendedores.remove(v)
+                    print("Vendedor removido.")
+                    return
+
+            print("Não há nenhum vendedor com o ID " + vendId + " na base de dados.")
 
     @staticmethod
     def selecionaVendedor(vendedores):
