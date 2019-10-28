@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from abc import ABC,abstractmethod
-import EstoqueInterface
+from EstoqueInterface import EstoqueInterface
 from Vendedor import Vendedor
 
 class VendedorInterface(ABC):

@@ -1,10 +1,11 @@
 from abc import ABC,abstractmethod
 from Estoque import Estoque
+from Montaria import Montaria
 
 class EstoqueInterface(ABC):
 
-    @staticmethod
-    def menu(estoques, nome, montarias):
+    @classmethod
+    def menu(cls,estoques, nome, montarias):
 
         while True:
 
@@ -15,13 +16,14 @@ class EstoqueInterface(ABC):
                 return
 
             elif op == 1:
-                adicionaEstoque(estoques, montarias)
-
+                cls.adicionaEstoque(estoques, montarias)
             elif op == 2:
-                removeEstoque(estoques)
-
+                pass
             elif op == 3:
-                visualizaEstoque(estoques)
+                cls.removeEstoque(estoques)
+
+            elif op == 4:
+                cls.visualizaEstoque(estoques)
 
             else:
                 print("\nNão existe esta opção, por favor digite novamente.")
@@ -38,7 +40,7 @@ class EstoqueInterface(ABC):
         else:
 
             for m in montarias:
-                print("["+m.getId()+"], "+m.getRaca())
+                print("["+str(m.getId())+"], "+m.getRaca())
 
             montId = int(input("\nSelecione uma montaria para adicionar ao estoque [Digite 0 para voltar]: "))
 
