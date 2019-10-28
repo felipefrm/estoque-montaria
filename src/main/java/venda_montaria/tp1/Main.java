@@ -15,12 +15,7 @@ import com.google.gson.stream.JsonReader;
 
 public class Main {
 	// String to use repeat function
-	static final String MENU_FR="═",
-			MENU_ROOF_RIGHT="╗",
-			MENU_ROOF_LEFT="╔",
-			MENU_FLOOR_LEFT="╚",
-			REQ_ENTRY="⟶ ";
-	static final int MENU_FR_SIZE=8;
+
 	
 	public static void main(String[] args) {
 
@@ -30,8 +25,8 @@ public class Main {
 		Gson gson = new Gson();
 		JsonReader reader;
 
-		System.out.println(MENU_ROOF_LEFT+MENU_FR.repeat(MENU_FR_SIZE)+" Bases de dados "+MENU_FR.repeat(MENU_FR_SIZE)+MENU_ROOF_RIGHT);
-		System.out.print("\nNome do arquivo de vendedores "+REQ_ENTRY);
+		System.out.println("╔════════ Bases de dados ════════╗");
+		System.out.print("\nNome do arquivo de vendedores ⟶ ");
 		String vendedorFileName = sc.next();
 
 		reader = null;
@@ -49,7 +44,7 @@ public class Main {
 			System.out.print("Arquivo não encontrado. Usando base vazia.\n");
 		}
 
-		System.out.print("Nome do arquivo de montarias "+REQ_ENTRY);
+		System.out.print("Nome do arquivo de montarias ⟶ ");
 		String montariaFileName = sc.next();
 		reader = null;
 
@@ -71,8 +66,8 @@ public class Main {
 		while (true) {
 			
 			System.out.println();
-			System.out.println(MENU_ROOF_LEFT+MENU_FR.repeat(MENU_FR_SIZE)+" MENU "+MENU_FR.repeat(MENU_FR_SIZE)+MENU_ROOF_RIGHT);
-			System.out.printf("╠0 Fechar programa\n╠1 Vendedor\n╚2 Montaria\n"+REQ_ENTRY);
+			System.out.println("╔════════ MENU ════════╗");
+			System.out.printf("╠0 Fechar programa\n╠1 Vendedor\n╚2 Montaria\n⟶ ");
 
 			int op;
 			while (true) {
@@ -82,7 +77,7 @@ public class Main {
 				}
 				catch(InputMismatchException e) {
 					sc.nextLine();
-					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n" + REQ_ENTRY);
+					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n⟶ ");
 				}
 			}
 
