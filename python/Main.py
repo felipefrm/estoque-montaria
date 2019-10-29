@@ -53,19 +53,6 @@ print(str(len(montarias))+" montarias carregadas da base")
 
 
 while True:
-    # m=Montaria('eqwq', 'jov', 'topdemais', 2, 'ee', 5, 3)
-    # montarias.append(m)
-    # m=Montaria('21ewq', 'gsmfm', 'dscc', 10, 'w', 20, 50)
-    # montarias.append(m)
-    # m=Montaria('44', 'g432', 'ds11', 112, 'a', 4, 40)
-    # montarias.append(m)
-    
-    # obj_dict=m.__dict__
-    # for i in obj_dict.copy():
-    #     name=re.split("__", i)[-1]
-    #     obj_dict[name]=obj_dict.pop(i)
-    # print(json.dumps(obj_dict))
-    # break
     print("\n╔════════ MENU ════════╗")
     try:
         op = int(input("╠0 Fechar programa\n╠1 Menu Vendedor\n╚2 Menu Montaria\n⟶ "))
@@ -82,10 +69,8 @@ while True:
                     ests[-1]['montaria']=getObjDict(ests[-1]['montaria'])
                 obj_dict['estoque']=ests
                 list_dict.append(obj_dict)
-               # print(obj_dict)
             with open(fname_vend, 'w') as outfile:
                 json.dump(list_dict, outfile)
-            # print(json.dumps(list_dict))
         list_dict=list()
         
         if montarias:
@@ -93,7 +78,6 @@ while True:
                 list_dict.append(getObjDict(m))
             with open(fname_mont, 'w') as outfile:
                 json.dump(list_dict, outfile)
-            #print(json.dumps(list_dict))
         break
     elif op == 1:
         VendedorInterface.menu(vendedores, montarias)
