@@ -7,6 +7,7 @@ class Utils(ABC):
         while True:
             try:
                 r=typeC(input(arg))
+                break
             except ValueError:
                 if msg:
                     print(msg)
