@@ -3,11 +3,13 @@ from abc import ABC,abstractmethod
 import re
 class Utils(ABC):
     @staticmethod
-    def inputER(arg='',typeC=str):
+    def inputER(arg='',typeC=str,msg=''):
         while True:
             try:
                 r=typeC(input(arg))
             except ValueError:
+                if msg:
+                    print(msg)
                 continue
         return r
     @staticmethod
