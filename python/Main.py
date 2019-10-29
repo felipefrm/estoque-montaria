@@ -7,7 +7,12 @@ import json
 
 vendedores = []
 montarias = []
-
+def getObjDict(obj):
+    obj_dict=obj.__dict__
+    for i in obj_dict.copy():
+        name=re.split("__", i)[-1]
+        obj_dict[name]=obj_dict.pop(i)
+    return obj_dict
 print("╔════════ Bases de dados ════════╗")
 fname_vend=input("Nome do arquivo de vendedores ⟶ ")
 
@@ -65,22 +70,14 @@ while True:
         list_dict=list()
         if vendedores:
             for v in vendedores:
-                obj_dict=v.__dict__
-                for i in obj_dict.copy():
-                    name=re.split("__", i)[-1]
-                    obj_dict[name]=obj_dict.pop(i)
+                obj_dict=getObjDict(v)
                 ests=list()
                 for i in obj_dict['estoque']:
-                    est_dict=i.__dict__
-                    print(est_dict)
-                    for j in est_dict.copy():
-                        name=re.split("__", j)[-1]
-                        est_dict[name]=est_dict.pop(j)
-                    print(est_dict)
-                    ests.append(est_dict)
+                    ests.append(getObjDict(i))
+                    ests[-1]['montaria']=getObjDict(ests[-1]['montaria'])
                 obj_dict['estoque']=ests
                 list_dict.append(obj_dict)
-            
+                print(obj_dict)
             # with open(fname_vend, 'w') as outfile:
             #     json.dump(list_dict, outfile)
             # print(json.dumps(list_dict))
@@ -88,11 +85,7 @@ while True:
         
         if montarias:
             for m in montarias:
-                obj_dict=m.__dict__
-                for i in obj_dict.copy():
-                    name=re.split("__", i)[-1]
-                    obj_dict[name]=obj_dict.pop(i)
-                list_dict.append(obj_dict)
+                list_dict.append(getObjDict(m))
             with open(fname_mont, 'w') as outfile:
                 json.dump(list_dict, outfile)
             #print(json.dumps(list_dict))

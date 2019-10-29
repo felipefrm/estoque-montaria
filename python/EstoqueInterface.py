@@ -68,7 +68,7 @@ class EstoqueInterface(ABC):
             preco = float(input("Preço: U$"))
             qtd = int(input("Quantidade: "))
 
-            estoques.append(Estoque(monta, qtd, preco))
+            estoques.append(Estoque(qtd,preco,monta))
 
     @staticmethod
     def editaEstoque(estoques):

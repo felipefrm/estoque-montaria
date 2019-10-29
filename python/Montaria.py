@@ -57,5 +57,3 @@ class Montaria (Entidade):
 
     def setVelocidade(self, velocidade):
         self.__velocidade = velocidade
-
-
