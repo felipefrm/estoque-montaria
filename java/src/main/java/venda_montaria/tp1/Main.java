@@ -54,7 +54,6 @@ public class Main {
 			vend = gson.fromJson(reader, new TypeToken<ArrayList<Vendedor>>() {
 			}.getType());
 			int max_id = 1;
-			int mnt_id=0;
 			for (Vendedor v : vend) {
 				max_id = Math.max(max_id, v.getId() + 1);
 				for(Estoque est : v.getEstoque()) {
