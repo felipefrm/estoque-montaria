@@ -3,7 +3,7 @@ from Entidade import Entidade
 class Montaria (Entidade):
     __cont = 1
     def __init__(self, nome, raca, descricao, combustivel, raridade, capacidade, velocidade):
-        self._setId(self.__cont)
+        self.setId(self.__cont)
         self.setCont(self.__cont+1)
         self.__nome = nome
         self.__raca = raca

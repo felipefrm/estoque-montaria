@@ -9,5 +9,5 @@ class Entidade (ABC):
     def getId(self):
         return self.__id
 
-    def _setId(self, id):
+    def setId(self, id):
         self.__id = id
