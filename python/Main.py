@@ -12,7 +12,7 @@ import json
 if __name__ == '__main__':
     vendedores = []
     montarias = []
-    print("╔════════ Bases de dados ════════╗")
+    print("╔════════ Bases de dados ════════╗\n")
     fname_mont=input("Nome do arquivo de montarias ⟶ ")
     max_id=1
     list_dict=list()
@@ -59,9 +59,9 @@ if __name__ == '__main__':
 
 
     while True:
-        print("\n╔════════ MENU ════════╗")
+
         try:
-            op = Utils.inputER("╠0 Fechar programa\n╠1 Menu Vendedor\n╚2 Menu Montaria\n⟶ ", int, "Entrada inválida, por favor escolha uma das opções.\n")
+            op = Utils.inputER("\n╔════════ MENU ════════╗\n╠0 Fechar programa\n╠1 Menu Vendedor\n╚2 Menu Montaria\n⟶ ", int, "Entrada inválida, por favor escolha uma das opções.\n")
         except ValueError:
             continue
         if op == 0:

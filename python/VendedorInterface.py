@@ -10,8 +10,7 @@ class VendedorInterface(ABC):
     @classmethod
     def menu(cls, vendedores, montarias):
         while True:
-            print("\n╔════════ MENU DE VENDEDORES ════════╗")
-            op = Utils.inputER("╠0 Voltar\n╠1 Adicionar Vendedor\n╠2 Remover Vendedor\n╠3 Visualizar Vendedores\n╚4 Estoque Vendedor\n⟶ ", int, "Entrada inválida, por favor escolha uma das opções.\n")
+            op = Utils.inputER("\n╔════════ MENU DE VENDEDORES ════════╗\n╠0 Voltar\n╠1 Adicionar Vendedor\n╠2 Remover Vendedor\n╠3 Visualizar Vendedores\n╚4 Estoque Vendedor\n⟶ ", int, "Entrada inválida, por favor escolha uma das opções.")
 
             if op == 0:
                 return
@@ -44,24 +43,24 @@ class VendedorInterface(ABC):
 
     @staticmethod
     def removeVendedor(vendedores):
-        while True:
-            vendId = Utils.inputER("Qual vendedor deseja remover? [Digite 0 para voltar] ", int, "Entrada inválida, insira o ID do vendedor que deseja remover.\n")
 
-            if vendId == 0:
+        vendId = Utils.inputER("\nQual vendedor deseja remover? [Digite 0 para voltar] ", int, "Entrada inválida, insira o ID do vendedor que deseja remover.\n")
+
+        if vendId == 0:
+            return
+
+        for v in vendedores:
+            if v.getId() == vendId:
+                vendedores.remove(v)
+                print("Vendedor removido.")
                 return
 
-            for v in vendedores:
-                if v.getId() == vendId:
-                    vendedores.remove(v)
-                    print("Vendedor removido.")
-                    return
-
-            print("Não há nenhum vendedor com o ID " + str(vendId) + " na base de dados.")
+        print("Não há nenhum vendedor com o ID " + str(vendId) + " na base de dados.")
 
     @staticmethod
     def selecionaVendedor(vendedores):
 
-        vendId = Utils.inputER("Selecione um vendedor para acessar o estoque [Digite 0 para voltar] ", int, "Entrada invália, insira o ID do vendedor qeu deseja acessar o estoque.\n")
+        vendId = Utils.inputER("\nSelecione um vendedor para acessar o estoque [Digite 0 para voltar] ", int, "Entrada invália, insira o ID do vendedor que deseja acessar o estoque.\n")
 
         if vendId == 0:
             return None
@@ -70,7 +69,7 @@ class VendedorInterface(ABC):
             if v.getId() == vendId:
                 return v
 
-        print("Nao há nenhum vendedor com o ID " + str(vendId) + " na base de dados\n")
+        print("Nao há nenhum vendedor com o ID " + str(vendId) + " na base de dados")
 
     @staticmethod
     def visualizaVendedores(vendedores):

@@ -9,8 +9,7 @@ class MontariaInterface(ABC):
 
         while(True):
 
-            print("\n╔════════ MENU DE MONTARIAS ════════╗")
-            op = Utils.inputER("╠0 Voltar\n╠1 Adicionar Montaria\n╠2 Remover Montaria\n╚3 Visualizar Montarias\n⟶ ", int, "Entrada inválida, por favor escolha uma das opções.\n")
+            op = Utils.inputER("\n╔════════ MENU DE MONTARIAS ════════╗\n╠0 Voltar\n╠1 Adicionar Montaria\n╠2 Remover Montaria\n╚3 Visualizar Montarias\n⟶ ", int, "Entrada inválida, por favor escolha uma das opções.")
 
             if op == 0:
                 return
@@ -64,8 +63,9 @@ class MontariaInterface(ABC):
 
     @staticmethod
     def vizualizaMontaria(montarias):
+        print("")
         if len(montarias) == 0:
-            print("\nNão há nenhuma montaria cadastrada na base de dados.")
+            print("Não há nenhuma montaria cadastrada na base de dados.")
         for m in montarias:
             print("["+str(m.getId())+"] "+m.getRaca()+", "+ str(m.getCapacidade())+", "+
 					str(m.getCombustivel())+", "+ str(m.getVelocidade())+", "+ str(m.getRaridade()))
