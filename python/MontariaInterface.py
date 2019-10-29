@@ -4,7 +4,7 @@ from Montaria import Montaria
 class MontariaInterface(ABC):
 
     @classmethod
-    def menu(cls,montarias):
+    def menu(cls, montarias):
 
         while(True):
 
@@ -41,7 +41,7 @@ class MontariaInterface(ABC):
 
 
     @classmethod
-    def adicionaMontaria(cls,montarias):
+    def adicionaMontaria(cls, montarias):
         nova_montaria = cls.criaMontaria()
         montarias.append(nova_montaria)
 
@@ -59,12 +59,12 @@ class MontariaInterface(ABC):
                 print("Montaria removida. ")
                 return
 
-        print("Não há nenhuma montaria com o ID " + montId + " na base de dados.")
+        print("Não há nenhuma montaria com o ID " + str(montId) + " na base de dados.")
 
     @staticmethod
     def vizualizaMontaria(montarias):
         if len(montarias) == 0:
             print("\nNão há nenhuma montaria cadastrada na base de dados.")
         for m in montarias:
-            print("["+str(m.getId())+"], "+m.getRaca()+", "+ str(m.getCapacidade())+", "+
+            print("["+str(m.getId())+"] "+m.getRaca()+", "+ str(m.getCapacidade())+", "+
 					str(m.getCombustivel())+", "+ str(m.getVelocidade())+", "+ str(m.getRaridade()))

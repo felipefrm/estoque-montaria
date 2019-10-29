@@ -7,7 +7,7 @@ from Vendedor import Vendedor
 class VendedorInterface(ABC):
 
     @classmethod
-    def menu(cls,vendedores, montarias):
+    def menu(cls, vendedores, montarias):
         while True:
             print("\n╔════════ MENU DE VENDEDORES ════════╗")
             op = int(input("╠0 Voltar\n╠1 Adicionar Vendedor\n╠2 Remover Vendedor\n╠3 Visualizar Vendedores\n╚4 Estoque Vendedor\n⟶ "))
@@ -55,7 +55,7 @@ class VendedorInterface(ABC):
                     print("Vendedor removido.")
                     return
 
-            print("Não há nenhum vendedor com o ID " + vendId + " na base de dados.")
+            print("Não há nenhum vendedor com o ID " + str(vendId) + " na base de dados.")
 
     @staticmethod
     def selecionaVendedor(vendedores):
@@ -69,7 +69,7 @@ class VendedorInterface(ABC):
             if v.getId() == vendId:
                 return v
 
-        print("Nao há nenhum vendedor com o ID " + vendId + " na base de dados\n")
+        print("Nao há nenhum vendedor com o ID " + str(vendId) + " na base de dados\n")
 
     @staticmethod
     def visualizaVendedores(vendedores):

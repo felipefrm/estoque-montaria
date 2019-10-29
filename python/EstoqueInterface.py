@@ -5,7 +5,7 @@ from Montaria import Montaria
 class EstoqueInterface(ABC):
 
     @classmethod
-    def menu(cls,estoques, nome, montarias):
+    def menu(cls, estoques, nome, montarias):
 
         while True:
 
@@ -18,7 +18,8 @@ class EstoqueInterface(ABC):
             elif op == 1:
                 cls.adicionaEstoque(estoques, montarias)
             elif op == 2:
-                pass
+                cls.editaEstoque(estoques)
+                # pass
             elif op == 3:
                 cls.removeEstoque(estoques)
 
@@ -40,7 +41,7 @@ class EstoqueInterface(ABC):
         else:
 
             for m in montarias:
-                print("["+str(m.getId())+"], "+m.getRaca())
+                print("["+str(m.getId())+"] "+ str(m.getRaca()))
 
             montId = int(input("\nSelecione uma montaria para adicionar ao estoque [Digite 0 para voltar]: "))
 
@@ -68,7 +69,7 @@ class EstoqueInterface(ABC):
             preco = float(input("Preço: U$"))
             qtd = int(input("Quantidade: "))
 
-            estoques.append(Estoque(qtd,preco,monta))
+            estoques.append(Estoque(qtd, preco, monta))
 
     @staticmethod
     def editaEstoque(estoques):
@@ -92,13 +93,13 @@ class EstoqueInterface(ABC):
                         return
 
                     elif op == 1:
-                        print("\nAtual quantidade: " + e.getQuantidade())
+                        print("\nAtual quantidade: " + str(e.getQuantidade()))
                         qtd = int(input("\nNova quantidade: "))
                         e.setQuantidade(qtd)
                         print("Quantidade alterada com sucesso!\n")
 
                     elif op == 2:
-                        print("\nAtual preço: U$" + e.getPreco())
+                        print("\nAtual preço: U$" + str(e.getPreco()))
                         preco = float(input("\nNovo preço: "))
                         e.setPreco(preco)
                         print("Preço alterado com sucesso!\n")
@@ -133,4 +134,4 @@ class EstoqueInterface(ABC):
             return
 
         for e in estoques:
-            print("["+e.getMontaria().getId()+"], "+e.getMontaria().getRaca()+" - QTD: "+e.getQuantidade()+" - Preço: U$"+e.getPreco())
+            print("["+str(e.getMontaria().getId())+"], "+str(e.getMontaria().getRaca())+" - QTD: "+str(e.getQuantidade())+" - Preço: U$"+str(e.getPreco()))
