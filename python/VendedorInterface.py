@@ -3,6 +3,7 @@
 from abc import ABC,abstractmethod
 from EstoqueInterface import EstoqueInterface
 from Vendedor import Vendedor
+from Utils import Utils
 
 class VendedorInterface(ABC):
 
@@ -10,7 +11,7 @@ class VendedorInterface(ABC):
     def menu(cls, vendedores, montarias):
         while True:
             print("\n╔════════ MENU DE VENDEDORES ════════╗")
-            op = int(input("╠0 Voltar\n╠1 Adicionar Vendedor\n╠2 Remover Vendedor\n╠3 Visualizar Vendedores\n╚4 Estoque Vendedor\n⟶ "))
+            op = Utils.inputER("╠0 Voltar\n╠1 Adicionar Vendedor\n╠2 Remover Vendedor\n╠3 Visualizar Vendedores\n╚4 Estoque Vendedor\n⟶ ", int, "Entrada inválida, por favor escolha uma das opções.\n")
 
             if op == 0:
                 return
@@ -35,7 +36,7 @@ class VendedorInterface(ABC):
     @staticmethod
     def criaVendedor():
         print("\nAdicionando Vendedor...")
-        return Vendedor(input("Nome: "), input("Raça: "), int(input("Idade: ")), input("Descrição: "))
+        return Vendedor(input("Nome: "), input("Raça: "), Utils.inputER("Idade: ", int, "Entrada inválida, insira um número inteiro para a idade."), input("Descrição: "))
 
     @classmethod
     def adicionaVendedor(cls,vendedores):
@@ -44,7 +45,7 @@ class VendedorInterface(ABC):
     @staticmethod
     def removeVendedor(vendedores):
         while True:
-            vendId = int(input("Qual vendedor deseja remover? [Digite 0 para voltar] "))
+            vendId = Utils.inputER("Qual vendedor deseja remover? [Digite 0 para voltar] ", int, "Entrada inválida, insira o ID do vendedor que deseja remover.\n")
 
             if vendId == 0:
                 return
@@ -60,7 +61,7 @@ class VendedorInterface(ABC):
     @staticmethod
     def selecionaVendedor(vendedores):
 
-        vendId = int(input("Selecione um vendedor para acessar o estoque [Digite 0 para voltar] "))
+        vendId = Utils.inputER("Selecione um vendedor para acessar o estoque [Digite 0 para voltar] ", int, "Entrada invália, insira o ID do vendedor qeu deseja acessar o estoque.\n")
 
         if vendId == 0:
             return None

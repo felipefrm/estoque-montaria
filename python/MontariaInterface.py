@@ -1,5 +1,6 @@
 from abc import ABC,abstractmethod
 from Montaria import Montaria
+from Utils import Utils
 
 class MontariaInterface(ABC):
 
@@ -9,7 +10,7 @@ class MontariaInterface(ABC):
         while(True):
 
             print("\n╔════════ MENU DE MONTARIAS ════════╗")
-            op = int(input("╠0 Voltar\n╠1 Adicionar Montaria\n╠2 Remover Montaria\n╚3 Visualizar Montarias\n⟶ "))
+            op = Utils.inputER("╠0 Voltar\n╠1 Adicionar Montaria\n╠2 Remover Montaria\n╚3 Visualizar Montarias\n⟶ ", int, "Entrada inválida, por favor escolha uma das opções.\n")
 
             if op == 0:
                 return
@@ -33,8 +34,8 @@ class MontariaInterface(ABC):
         nome = input("Nome: ")
         raca = input("Raça: ")
         raridade = input("Raridade: ")
-        capacidade = int(input("Capacidade: "))
-        velocidade = float(input("Velocidade: "))
+        capacidade = Utils.inputER("Capacidade: ", int, "Entrada inválida, insira um número inteiro para a capacidade.")
+        velocidade = Utils.inputER("Velocidade: ", float, "Entrada inválida, insira um número real para a velocidade.")
         combustivel = input("Combustível: ")
         descricao = input("Descrição: ")
         return Montaria(nome, raca, descricao, combustivel, raridade, capacidade, velocidade)
@@ -48,7 +49,7 @@ class MontariaInterface(ABC):
     @staticmethod
     def removeMontaria(montarias):
 
-        montId = input(("\nQual montaria deseja remover? [Digite 0 para voltar] "))
+        montId = Utils.inputER("\nQual montaria deseja remover? [Digite 0 para voltar] ", int, "Entrada inválida, digite o ID da montaria para removê-la.")
 
         if montId == 0:
             return
