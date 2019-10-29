@@ -26,24 +26,7 @@ public class Main {
 		JsonReader reader;
 
 		System.out.println("╔════════ Bases de dados ════════╗");
-		System.out.print("\nNome do arquivo de vendedores ⟶ ");
-		String vendedorFileName = sc.next();
-
-		reader = null;
-
-		try {
-			reader = new JsonReader(new FileReader(vendedorFileName));
-			vend = gson.fromJson(reader, new TypeToken<ArrayList<Vendedor>>() {
-			}.getType());
-			int max_id = 1;
-			for (Vendedor v : vend) {
-				max_id = Math.max(max_id, v.getId() + 1);
-			}
-			Vendedor.setCont(max_id);
-		} catch (FileNotFoundException e) {
-			System.out.print("Arquivo não encontrado. Usando base vazia.\n");
-		}
-
+		
 		System.out.print("Nome do arquivo de montarias ⟶ ");
 		String montariaFileName = sc.next();
 		reader = null;
@@ -60,24 +43,51 @@ public class Main {
 		} catch (FileNotFoundException e) {
 			System.out.print("Arquivo não encontrado. Usando base vazia.\n");
 		}
+		System.out.println(mont.size() + " montarias carregadas da base.");
+		
+		System.out.print("Nome do arquivo de vendedores ⟶ ");
+		String vendedorFileName = sc.next();
+
+		reader = null;
+
+		try {
+			reader = new JsonReader(new FileReader(vendedorFileName));
+			vend = gson.fromJson(reader, new TypeToken<ArrayList<Vendedor>>() {
+			}.getType());
+			int max_id = 1;
+			for (Vendedor v : vend) {
+				max_id = Math.max(max_id, v.getId() + 1);
+				for(Estoque est : v.getEstoque()) {
+					for(Montaria m: mont) {
+						if(est.getMontaria().getId()==m.getId()) {
+							est.setMontaria(m);
+							break;
+						}
+					}
+				}
+			}
+			Vendedor.setCont(max_id);
+		} catch (FileNotFoundException e) {
+			System.out.print("Arquivo não encontrado. Usando base vazia.\n");
+		}
+		System.out.println(vend.size() + " vendedores carregados da base.");
+		
 
 
 
 		while (true) {
-			
-			System.out.println();
-			System.out.println("╔════════ MENU ════════╗");
-			System.out.printf("╠0 Fechar programa\n╠1 Vendedor\n╚2 Montaria\n⟶ ");
 
 			int op;
 			while (true) {
+				System.out.println("\n╔════════ MENU ════════╗");
+				System.out.printf("╠0 Fechar programa\n╠1 Menu Vendedor\n╚2 Menu Montaria\n⟶ ");
 				try {
 					op = sc.nextInt();
 					break;
 				}
 				catch(InputMismatchException e) {
 					sc.nextLine();
-					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n⟶ ");
+					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n ");
 				}
 			}
 
