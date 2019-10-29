@@ -12,18 +12,18 @@ public abstract class EstoqueInterface {
 
 		while (true) {
 
-			System.out.println("\n╔════════ MENU DO VENDEDOR " + nome.toUpperCase() + " ════════╗");
-			System.out.printf("╠0 Voltar\n╠1 Adicionar nova montaria ao estoque\n╠2 Editar o estoque de uma montaria existente\n╠3 Remover uma montaria do estoque\n╚4 Visualizar estoque\n⟶ ");
-			
 			int op;
 			while (true) {
+				System.out.println("\n╔════════ MENU DO VENDEDOR " + nome.toUpperCase() + " ════════╗");
+				System.out.printf("╠0 Voltar\n╠1 Adicionar nova montaria ao estoque\n╠2 Editar o estoque de uma montaria existente\n╠3 Remover uma montaria do estoque\n╚4 Visualizar estoque\n⟶ ");
+				
 				try {
 					op = sc.nextInt();
 					break;
 				}
 				catch(InputMismatchException e) {
 					sc.nextLine();
-					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n⟶ ");
+					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n ");
 				}
 			}
 			
@@ -163,21 +163,20 @@ public abstract class EstoqueInterface {
 		for (Estoque e : estoques) {
 			if (e.getMontaria().getId() == idEscolha) {
 				flag = 1;
-				System.out.println("\n╔════════ MENU DE EDIÇÃO ════════╗");
-			
+				
 				while (true) {
-
-					System.out.printf("╔0 Voltar\n╠1 Editar quantidade\n╚2 Editar preço\n⟶ ");
 					
 					int op;
 					while (true) {
+						System.out.println("\n╔════════ MENU DE EDIÇÃO ════════╗");
+						System.out.printf("╔0 Voltar\n╠1 Editar quantidade\n╚2 Editar preço\n⟶ ");
 						try {
 							op = sc.nextInt();
 							break;
 						}
 						catch(InputMismatchException ex) {
 							sc.nextLine();
-							System.out.printf("Entrada inválida, por favor escolha uma das opções.\n⟶ ");
+							System.out.printf("Entrada inválida, por favor escolha uma das opções.\n ");
 						}
 					}
 

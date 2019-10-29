@@ -43,8 +43,9 @@ public class Main {
 		} catch (FileNotFoundException e) {
 			System.out.print("Arquivo não encontrado. Usando base vazia.\n");
 		}
+		System.out.println(mont.size() + " montarias carregadas da base.");
 		
-		System.out.print("\nNome do arquivo de vendedores ⟶ ");
+		System.out.print("Nome do arquivo de vendedores ⟶ ");
 		String vendedorFileName = sc.next();
 
 		reader = null;
@@ -69,26 +70,24 @@ public class Main {
 		} catch (FileNotFoundException e) {
 			System.out.print("Arquivo não encontrado. Usando base vazia.\n");
 		}
-
-
+		System.out.println(vend.size() + " vendedores carregados da base.");
+		
 
 
 
 		while (true) {
-			
-			System.out.println();
-			System.out.println("╔════════ MENU ════════╗");
-			System.out.printf("╠0 Fechar programa\n╠1 Vendedor\n╚2 Montaria\n⟶ ");
 
 			int op;
 			while (true) {
+				System.out.println("\n╔════════ MENU ════════╗");
+				System.out.printf("╠0 Fechar programa\n╠1 Menu Vendedor\n╚2 Menu Montaria\n⟶ ");
 				try {
 					op = sc.nextInt();
 					break;
 				}
 				catch(InputMismatchException e) {
 					sc.nextLine();
-					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n⟶ ");
+					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n ");
 				}
 			}
 

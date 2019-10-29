@@ -12,18 +12,18 @@ public abstract class VendedorInterface {
 
 //			visualizaVendedores(vendedores);
 
-			System.out.println("\n╔════════ MENU DE VENDEDORES ════════╗");
-			System.out.printf("╠0 Voltar\n╠1 Adicionar Vendedor\n╠2 Remover Vendedor\n╠3 Visualizar Vendedores\n╚4 Estoque Vendedor\n⟶ ");
-
 			int op;
 			while (true) {
+				System.out.println("\n╔════════ MENU DE VENDEDORES ════════╗");
+				System.out.printf("╠0 Voltar\n╠1 Adicionar Vendedor\n╠2 Remover Vendedor\n╠3 Visualizar Vendedores\n╚4 Estoque Vendedor\n⟶ ");
+
 				try {
 					op = sc.nextInt();
 					break;
 				}
 				catch(InputMismatchException e) {
 					sc.nextLine();
-					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n⟶ ");
+					System.out.printf("Entrada inválida, por favor escolha uma das opções.\n ");
 				}
 			}
 
@@ -91,6 +91,7 @@ public abstract class VendedorInterface {
 
 		
 		int vendId;
+		while(true) {
 		while (true) {
 			System.out.printf("\nQual vendedor deseja remover? [Digite 0 para voltar] ");
 			try {
@@ -115,15 +116,15 @@ public abstract class VendedorInterface {
 			}
 		}
 		System.out.printf("Não há nenhum vendedor com o ID " + vendId + " na base de dados.");
-		
+		}
 	}
 
 	public static Vendedor selecionaVendedor(ArrayList<Vendedor> vendedores, Scanner sc) {
-
+		
 		
 		int vendId;
 		while (true) {
-				System.out.printf("\nSelecione um vendedor para acessar o estoque [Digite 0 para voltar]: ");
+				System.out.printf("Selecione um vendedor para acessar o estoque [Digite 0 para voltar]: ");
 				try {
 				vendId = sc.nextInt();
 				break;
