@@ -2,6 +2,7 @@ from MontariaInterface import MontariaInterface
 from VendedorInterface import VendedorInterface
 from Montaria import Montaria
 from Vendedor import Vendedor
+from Estoque import Estoque
 from Utils import Utils
 
 import json
@@ -12,26 +13,6 @@ if __name__ == '__main__':
     vendedores = []
     montarias = []
     print("╔════════ Bases de dados ════════╗")
-    fname_vend=input("Nome do arquivo de vendedores ⟶ ")
-    max_id=1
-    list_dict=list()
-    try:
-        with open(fname_vend, 'r') as fvend:
-            list_dict=json.load(fvend)
-            for obj in list_dict:
-                max_id=max(max_id,obj['id']+1)
-                vendedores.append(Vendedor(obj['nome'], obj['raca'], obj['idade'], obj['descricao']))
-                vendedores[-1].setId(obj['id'])
-                estoque=list()
-                for i in obj['estoque']:
-                    estoque.append(Estoque(i['quantidade'],i['preco'],i['montaria']))
-                vendedores[-1].setEstoque(estoque)
-        Vendedor.setCont(max_id)
-    except Exception as e:
-        print(e)
-        print("Arquivo não encontrado. Usando base vazia.")
-    print(str(len(vendedores))+" vendedores carregados da base")
-
     fname_mont=input("Nome do arquivo de montarias ⟶ ")
     max_id=1
     list_dict=list()
@@ -48,6 +29,33 @@ if __name__ == '__main__':
         print(e)
         print("Arquivo não encontrado. Usando base vazia.")
     print(str(len(montarias))+" montarias carregadas da base")
+
+
+    fname_vend=input("Nome do arquivo de vendedores ⟶ ")
+    max_id=1
+    list_dict=list()
+    try:
+        with open(fname_vend, 'r') as fvend:
+            list_dict=json.load(fvend)
+            for obj in list_dict:
+                max_id=max(max_id,obj['id']+1)
+                vendedores.append(Vendedor(obj['nome'], obj['raca'], obj['idade'], obj['descricao']))
+                vendedores[-1].setId(obj['id'])
+                estoque=list()
+                for i in obj['estoque']:
+                    montid=i['montaria']['id']
+                    for m in montarias:
+                        if m.getId() == montid:
+                            estoque.append(Estoque(i['quantidade'],i['preco'],m))
+                            break
+                vendedores[-1].setEstoque(estoque)
+        Vendedor.setCont(max_id)
+    except Exception as e:
+        print(e)
+        print("Arquivo não encontrado. Usando base vazia.")
+    print(str(len(vendedores))+" vendedores carregados da base")
+
+
 
 
     while True:
