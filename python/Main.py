@@ -61,7 +61,7 @@ if __name__ == '__main__':
     while True:
         print("\n╔════════ MENU ════════╗")
         try:
-            op = int(input("╠0 Fechar programa\n╠1 Menu Vendedor\n╚2 Menu Montaria\n⟶ "))
+            op = Utils.inputER("╠0 Fechar programa\n╠1 Menu Vendedor\n╚2 Menu Montaria\n⟶ ", int, "Entrada inválida, por favor escolha uma das opções.\n")
         except ValueError:
             continue
         if op == 0:
