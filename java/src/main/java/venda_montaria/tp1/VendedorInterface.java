@@ -139,7 +139,7 @@ public abstract class VendedorInterface {
 			if (v.getId() == vendId)
 				return v;
 
-		System.out.println("Não há nenhum vendedor com o ID " + vendId + " na base de dados.\n");
+		System.out.println("Não há nenhum vendedor com o ID " + vendId + " na base de dados.");
 		return null;
 	}
 

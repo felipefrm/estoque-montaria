@@ -197,7 +197,7 @@ public abstract class EstoqueInterface {
 						}
 						
 						e.setQuantidade(qtd);
-						System.out.println("Quantidade alterada com sucesso!\n");
+						System.out.println("Quantidade alterada com sucesso!");
 						break;
 
 					case 2:
@@ -217,7 +217,7 @@ public abstract class EstoqueInterface {
 						}
 						
 						e.setPreco(preco);
-						System.out.println("Preço alterado com sucesso!\n");
+						System.out.println("Preço alterado com sucesso!");
 						break;
 
 					case 0:
