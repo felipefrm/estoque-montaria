@@ -5,7 +5,7 @@ from Utils import Utils
 class MontariaInterface(ABC):
 
     @classmethod
-    def menu(cls, montarias):
+    def menu(cls, montarias, vendedores):
 
         while(True):
 
@@ -18,7 +18,7 @@ class MontariaInterface(ABC):
                 cls.adicionaMontaria(montarias)
 
             elif op == 2:
-                cls.removeMontaria(montarias)
+                cls.removeMontaria(montarias,vendedores)
 
             elif op == 3:
                 cls.vizualizaMontaria(montarias)
@@ -45,7 +45,7 @@ class MontariaInterface(ABC):
         montarias.append(nova_montaria)
 
     @staticmethod
-    def removeMontaria(montarias):
+    def removeMontaria(montarias, vendedores):
 
         montId = Utils.inputER("\nQual montaria deseja remover? [Digite 0 para voltar] ", int, "Entrada inválida, digite o ID da montaria para removê-la.")
 
@@ -54,6 +54,11 @@ class MontariaInterface(ABC):
 
         for m in montarias:
             if m.getId() == montId:
+                for v in vendedores:
+                    for e in v.getEstoque():
+                        if e.getMontaria().getId() == montId:
+                            v.getEstoque().remove(e)
+                            break
                 montarias.remove(m)
                 print("Montaria removida. ")
                 return

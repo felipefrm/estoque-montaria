@@ -74,7 +74,7 @@ if __name__ == '__main__':
                 with open(fname_vend, 'w') as outfile:
                     json.dump(list_dict, outfile)
             list_dict=list()
-            
+
             if montarias:
                 for m in montarias:
                     list_dict.append(Utils.getObjDict(m))
@@ -85,7 +85,7 @@ if __name__ == '__main__':
             VendedorInterface.menu(vendedores, montarias)
 
         elif op == 2:
-            MontariaInterface.menu(montarias)
+            MontariaInterface.menu(montarias, vendedores)
 
         else:
             print("\nNão há esta opção, por favor digite novamente.")
