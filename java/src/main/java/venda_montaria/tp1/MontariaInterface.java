@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public abstract class MontariaInterface {
 
-	public static void menu(ArrayList<Montaria> montarias, Scanner sc) {
+	public static void menu(ArrayList<Montaria> montarias, ArrayList<Vendedor> vendedores, Scanner sc) {
 
 		while (true) {
 
@@ -31,7 +31,7 @@ public abstract class MontariaInterface {
 				adicionaMontaria(montarias, sc);
 				break;
 			case 2:
-				removeMontaria(montarias, sc);
+				removeMontaria(montarias, vendedores, sc);
 				break;
 			case 3:
 				visualizaMontarias(montarias);
@@ -90,7 +90,7 @@ public abstract class MontariaInterface {
 		montarias.add(nova_montaria);
 	}
 
-	public static void removeMontaria(ArrayList<Montaria> montarias, Scanner sc) {
+	public static void removeMontaria(ArrayList<Montaria> montarias, ArrayList<Vendedor> vendedores, Scanner sc) {
 
 		int montId;
 		while (true) {
@@ -107,9 +107,16 @@ public abstract class MontariaInterface {
 		
 		if (montId == 0)
 			return;
-
+		
 		for (Montaria m : montarias) {
 			if (m.getId() == montId) {
+				for(Vendedor v : vendedores) {
+					for(Estoque e : v.getEstoque()) {
+						if(e.getMontaria().getId() == montId) 
+							v.getEstoque().remove(e);
+							break;
+					}
+				}
 				montarias.remove(m);
 				System.out.println("Montaria removida. ");
 				return;

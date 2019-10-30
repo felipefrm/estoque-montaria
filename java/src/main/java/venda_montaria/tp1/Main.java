@@ -123,7 +123,7 @@ public class Main {
 					break;
 				
 				case 2:
-					MontariaInterface.menu(mont, sc);
+					MontariaInterface.menu(mont, vend, sc);
 					break;
 				
 				default:
