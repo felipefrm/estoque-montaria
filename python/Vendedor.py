@@ -1,6 +1,7 @@
 from Entidade import Entidade
 
 class Vendedor (Entidade):
+
     __cont = 1
     def __init__(self, nome, raca, idade, descricao):
         self.setId(self.__cont)
@@ -10,6 +11,7 @@ class Vendedor (Entidade):
         self.__idade = idade
         self.__descricao = descricao
         self.__estoque = []
+
     @classmethod
     def setCont(cls, cont):
         cls.__cont = cont

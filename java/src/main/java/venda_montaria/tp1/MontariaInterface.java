@@ -10,8 +10,6 @@ public abstract class MontariaInterface {
 
 		while (true) {
 
-//			visualizaMontarias(montarias);
-
 			int op;
 			while (true) {
 				System.out.println("\n╔════════ MENU DE MONTARIAS ════════╗");
@@ -49,8 +47,6 @@ public abstract class MontariaInterface {
 
 		System.out.println("\nAdicionando Montaria...");
 		sc.nextLine();
-		System.out.printf("Nome: ");
-		String nome = sc.nextLine();
 		System.out.printf("Raça: ");
 		String raca = sc.nextLine();
 		System.out.printf("Raridade: ");
@@ -85,7 +81,7 @@ public abstract class MontariaInterface {
 		System.out.printf("Descrição: ");
 		String descricao = sc.nextLine();
 
-		return new Montaria(nome, raca, descricao, combustivel, raridade, capacidade, velocidade);
+		return new Montaria(raca, descricao, combustivel, raridade, capacidade, velocidade);
 	}
 
 	

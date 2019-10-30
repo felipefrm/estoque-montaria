@@ -10,9 +10,6 @@ public class Vendedor extends Entidade {
 	private ArrayList<Estoque> estoque;
 	static private int cont = 1;
 
-	public static void setCont(int cont) {
-		Vendedor.cont = cont;
-	}
 
 	public Vendedor(String nome, String raca, int idade, String descricao) {
 		setId(cont++);
@@ -22,6 +19,11 @@ public class Vendedor extends Entidade {
 		this.descricao = descricao;
 		this.estoque = new ArrayList<Estoque>();
 	}
+
+	public static void setCont(int cont) {
+		Vendedor.cont = cont;
+	}
+
 
 	public ArrayList<Estoque> getEstoque() {
 		return estoque;

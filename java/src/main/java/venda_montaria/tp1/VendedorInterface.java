@@ -10,8 +10,6 @@ public abstract class VendedorInterface {
 
 		while (true) {
 
-//			visualizaVendedores(vendedores);
-
 			int op;
 			while (true) {
 				System.out.println("\n╔════════ MENU DE VENDEDORES ════════╗");

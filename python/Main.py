@@ -8,7 +8,6 @@ from Utils import Utils
 import json
 
 
-
 if __name__ == '__main__':
     vendedores = []
     montarias = []
@@ -21,7 +20,7 @@ if __name__ == '__main__':
             list_dict=json.load(fvend)
             for obj in list_dict:
                 max_id=max(max_id,obj['id']+1)
-                montarias.append(Montaria(obj['nome'], obj['raca'], obj['descricao'], obj['combustivel'], 
+                montarias.append(Montaria(obj['raca'], obj['descricao'], obj['combustivel'],
                 obj['raridade'], obj['capacidade'], obj['velocidade']))
                 montarias[-1].setId(obj['id'])
         Montaria.setCont(max_id)
@@ -54,9 +53,6 @@ if __name__ == '__main__':
         print(e)
         print("Arquivo não encontrado. Usando base vazia.")
     print(str(len(vendedores))+" vendedores carregados da base")
-
-
-
 
     while True:
 

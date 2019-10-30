@@ -30,14 +30,13 @@ class MontariaInterface(ABC):
     def criaMontaria():
 
         print("\nAdicionando Montaria...")
-        nome = input("Nome: ")
         raca = input("Raça: ")
         raridade = input("Raridade: ")
         capacidade = Utils.inputER("Capacidade: ", int, "Entrada inválida, insira um número inteiro para a capacidade.")
         velocidade = Utils.inputER("Velocidade: ", float, "Entrada inválida, insira um número real para a velocidade.")
         combustivel = input("Combustível: ")
         descricao = input("Descrição: ")
-        return Montaria(nome, raca, descricao, combustivel, raridade, capacidade, velocidade)
+        return Montaria(raca, descricao, combustivel, raridade, capacidade, velocidade)
 
 
     @classmethod

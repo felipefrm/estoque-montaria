@@ -2,7 +2,6 @@ package venda_montaria.tp1;
 
 public class Montaria extends Entidade {
 
-	private String nome;
 	private String raca;
 	private String descricao;
 	private String combustivel;
@@ -11,14 +10,9 @@ public class Montaria extends Entidade {
 	private float velocidade;
 	static private int cont = 1;
 
-	public static void setCont(int cont) {
-		Montaria.cont = cont;
-	}
-
-	public Montaria(String nome, String raca, String descricao, String combustivel, String raridade, int capacidade,
+	public Montaria(String raca, String descricao, String combustivel, String raridade, int capacidade,
 			float velocidade) {
 		setId(cont++);
-		this.nome = nome;
 		this.raca = raca;
 		this.descricao = descricao;
 		this.combustivel = combustivel;
@@ -27,16 +21,12 @@ public class Montaria extends Entidade {
 		this.velocidade = velocidade;
 	}
 
+	public static void setCont(int cont) {
+		Montaria.cont = cont;
+	}
+
 	public Montaria() {
 
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public String getRaca() {

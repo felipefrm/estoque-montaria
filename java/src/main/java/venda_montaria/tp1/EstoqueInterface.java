@@ -8,8 +8,6 @@ public abstract class EstoqueInterface {
 
 	public static void menu(ArrayList<Estoque> estoques, String nome, ArrayList<Montaria> montarias, Scanner sc) {
 
-//		visualizaEstoque(estoques);
-
 		while (true) {
 
 			int op;
