@@ -14,9 +14,7 @@ import com.google.gson.stream.JsonReader;
 
 
 public class Main {
-	// String to use repeat function
-
-	
+		
 	public static void main(String[] args) {
 
 		ArrayList<Vendedor> vend = new ArrayList<Vendedor>();

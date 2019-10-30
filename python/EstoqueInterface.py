@@ -136,4 +136,4 @@ class EstoqueInterface(ABC):
             return
 
         for e in estoques:
-            print("["+str(e.getMontaria().getId())+"] "+str(e.getMontaria().getRaca())+" - QTD: "+str(e.getQuantidade())+" - Preço: U$"+str(e.getPreco()))
+            print("["+str(e.getMontaria().getId())+"] "+str(e.getMontaria().getRaca())+" - QTD: "+str(e.getQuantidade())+" - PREÇO: U$"+str(e.getPreco()))
