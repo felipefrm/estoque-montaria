@@ -13,7 +13,7 @@ public abstract class MontariaInterface {
 			int op;
 			while (true) {
 				System.out.println("\n╔════════ MENU DE MONTARIAS ════════╗");
-				System.out.printf("╠0 Voltar\n╠1 Adicionar Montaria\n╠2 Remover Montaria\n╚3 Visualizar Montarias\n");
+				System.out.printf("╠0 Voltar\n╠1 Adicionar Montaria\n╠2 Remover Montaria\n╚3 Visualizar Montarias\n⟶ ");
 				try {
 					op = sc.nextInt();
 					break;
