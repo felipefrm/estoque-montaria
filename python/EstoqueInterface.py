@@ -68,8 +68,8 @@ class EstoqueInterface(ABC):
                 print("Não há nenhuma montaria com o ID " + str(montId) + " na base de dados.")
                 return
 
-            preco = Utils.inputER("Preço: U$", float, "Entrada inválida, insira um número real para o preço da montaria.\n")
-            qtd = Utils.inputER("Quantidade: ", int, "Entrada inválida, insira um número inteiro para a quantidade da montaria no estoque.\n")
+            preco = Utils.inputER("Preço: U$", float, "Entrada inválida, insira um número real para o preço da montaria.")
+            qtd = Utils.inputER("Quantidade: ", int, "Entrada inválida, insira um número inteiro para a quantidade da montaria no estoque.")
 
             estoques.append(Estoque(qtd, preco, monta))
 
@@ -88,7 +88,7 @@ class EstoqueInterface(ABC):
 
                 while True:
 
-                    op = Utils.inputER("\n╔════════ MENU DE EDIÇÃO ════════╗\n╔0 Voltar\n╠1 Editar quantidade\n╚2 Editar preço\n⟶ ", int, "Entrada inválida, por favor escolha uma das opções.")
+                    op = Utils.inputER("\n╔════════ MENU DE EDIÇÃO ════════╗\n╠0 Voltar\n╠1 Editar quantidade\n╚2 Editar preço\n⟶ ", int, "Entrada inválida, por favor escolha uma das opções.")
 
                     if op == 0:
                         return

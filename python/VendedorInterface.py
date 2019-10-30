@@ -44,7 +44,7 @@ class VendedorInterface(ABC):
     @staticmethod
     def removeVendedor(vendedores):
 
-        vendId = Utils.inputER("\nQual vendedor deseja remover? [Digite 0 para voltar] ", int, "Entrada inválida, insira o ID do vendedor que deseja remover.\n")
+        vendId = Utils.inputER("\nQual vendedor deseja remover? [Digite 0 para voltar] ", int, "Entrada inválida, insira o ID do vendedor que deseja remover.")
 
         if vendId == 0:
             return
@@ -60,7 +60,7 @@ class VendedorInterface(ABC):
     @staticmethod
     def selecionaVendedor(vendedores):
 
-        vendId = Utils.inputER("\nSelecione um vendedor para acessar o estoque [Digite 0 para voltar] ", int, "Entrada invália, insira o ID do vendedor que deseja acessar o estoque.\n")
+        vendId = Utils.inputER("\nSelecione um vendedor para acessar o estoque [Digite 0 para voltar] ", int, "Entrada inválida, insira o ID do vendedor que deseja acessar o estoque.")
 
         if vendId == 0:
             return None
