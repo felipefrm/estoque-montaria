@@ -91,7 +91,6 @@ public abstract class VendedorInterface {
 
 		
 		int vendId;
-		while(true) {
 		while (true) {
 			System.out.printf("\nQual vendedor deseja remover? [Digite 0 para voltar] ");
 			try {
@@ -115,9 +114,9 @@ public abstract class VendedorInterface {
 				return;
 			}
 		}
-		System.out.printf("Não há nenhum vendedor com o ID " + vendId + " na base de dados.");
+		System.out.printf("Não há nenhum vendedor com o ID " + vendId + " na base de dados.\n");
 		}
-	}
+	
 
 	public static Vendedor selecionaVendedor(ArrayList<Vendedor> vendedores, Scanner sc) {
 		
@@ -131,7 +130,7 @@ public abstract class VendedorInterface {
 			}
 			catch(InputMismatchException e) {
 				sc.nextLine();
-				System.out.println("Entrada inválida, insira o ID do vendedor que deseja acessar o estoque.");
+				System.out.println("Entrada inválida, insira o ID do vendedor que deseja acessar o estoque.\n");
 			}
 		}
 

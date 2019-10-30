@@ -169,7 +169,7 @@ public abstract class EstoqueInterface {
 					int op;
 					while (true) {
 						System.out.println("\n╔════════ MENU DE EDIÇÃO ════════╗");
-						System.out.printf("╔0 Voltar\n╠1 Editar quantidade\n╚2 Editar preço\n⟶ ");
+						System.out.printf("╠0 Voltar\n╠1 Editar quantidade\n╚2 Editar preço\n⟶ ");
 						try {
 							op = sc.nextInt();
 							break;
@@ -204,7 +204,7 @@ public abstract class EstoqueInterface {
 
 					case 2:
 						System.out.printf("\nAtual preço: U$" + e.getPreco());
-						System.out.printf("\nNovo preço: ");
+						System.out.printf("\nNovo preço: U$");
 						
 						float preco;
 						while (true) {
