@@ -1,4 +1,4 @@
-package venda_montaria.tp1;
+package venda_montaria.tp1.model;
 
 public class Montaria extends Entidade {
 

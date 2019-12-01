@@ -1,4 +1,4 @@
-package venda_montaria.tp1;
+package venda_montaria.tp1.view_terminal;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,6 +11,10 @@ import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+
+import venda_montaria.tp1.model.Estoque;
+import venda_montaria.tp1.model.Montaria;
+import venda_montaria.tp1.model.Vendedor;
 
 
 public class Main {

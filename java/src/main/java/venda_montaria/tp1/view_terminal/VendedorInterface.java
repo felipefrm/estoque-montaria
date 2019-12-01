@@ -1,8 +1,11 @@
-package venda_montaria.tp1;
+package venda_montaria.tp1.view_terminal;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import venda_montaria.tp1.model.Montaria;
+import venda_montaria.tp1.model.Vendedor;
 
 public abstract class VendedorInterface {
 
