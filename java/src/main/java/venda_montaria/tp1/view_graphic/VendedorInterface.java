@@ -7,15 +7,18 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import javax.swing.JInternalFrame;
+
 import java.awt.event.ActionListener;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 
 public class VendedorInterface extends JPanel {
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-
+	private JTextField textNome;
+	private JTextField textRaca;
+	private JTextField textIdade;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -28,29 +31,35 @@ public class VendedorInterface extends JPanel {
 		
 		JLabel lblNome = new JLabel("Nome");
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		textNome = new JTextField();
+		textNome.setColumns(10);
 		
 		JLabel lblRaa = new JLabel("Raça");
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		textRaca = new JTextField();
+		textRaca.setColumns(10);
 		
 		JLabel lblIdade = new JLabel("Idade");
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		textIdade = new JTextField();
+		textIdade.setColumns(10);
 		
-		JButton btnAdicionar = new JButton("Adicionar");
-		
-		JButton btnNewButton = new JButton("Remover");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btRemover = new JButton("Remover");
+		btRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
 		JButton button_1 = new JButton("Limpar");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bt_limparActionPerformed(e);
+			}
+		});
 		
+		JButton btnAdicionar = new JButton("Adicionar");
+		
+		JButton btEstoque = new JButton("Acessar estoque do Vendedor");
 		
 		
 		
@@ -63,26 +72,33 @@ public class VendedorInterface extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblRaa)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblIdade)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnAdicionar, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
-							.addGap(12)
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+							.addComponent(textRaca, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblNome)
 								.addComponent(lblId))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(textField_1)
+								.addComponent(textNome)
 								.addComponent(textField))
 							.addGap(17)
-							.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
+							.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(7)
+									.addComponent(btnAdicionar, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblIdade)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(textIdade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btRemover, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(19, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(116)
+					.addComponent(btEstoque)
+					.addContainerGap(106, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -95,24 +111,40 @@ public class VendedorInterface extends JPanel {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNome)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblRaa)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textRaca, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblIdade)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(textIdade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(12)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAdicionar)
-						.addComponent(btnNewButton))
-					.addContainerGap(139, Short.MAX_VALUE))
+						.addComponent(btRemover))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btEstoque)
+					.addContainerGap(102, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 		
 
 
+	}
+	private void initComponents() {
+		
+	}
+
+	private void bt_limparActionPerformed(ActionEvent evt) {
+
+		Component[] components = getComponents();
+		for (Component c : components) {
+			  if (c instanceof JTextField) {         
+				  	JTextField field = (JTextField) c;   
+	                field.setText("");   
+			  }
+		}
 	}
 }
