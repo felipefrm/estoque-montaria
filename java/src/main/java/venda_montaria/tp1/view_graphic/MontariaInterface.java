@@ -5,20 +5,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class MontariaInterface extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textID;
 	private JTextField textRaca;
 	private JTextField textCapacidade;
 	private JTextField textVelocidade;
 	private JTextField textRaridade;
 	private JTextField textCombustivel;
+	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -65,12 +71,15 @@ public class MontariaInterface extends JPanel {
 		textCombustivel.setColumns(10);
 		
 		JButton btAdicionar = new JButton("Adicionar");
+		
+		table = new JTable();
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(table, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(groupLayout.createSequentialGroup()
@@ -105,7 +114,7 @@ public class MontariaInterface extends JPanel {
 									.addGap(18)
 									.addComponent(btLimpar, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
 								.addComponent(textRaca, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(18, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -135,7 +144,9 @@ public class MontariaInterface extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btAdicionar)
 						.addComponent(btRemover))
-					.addContainerGap(133, Short.MAX_VALUE))
+					.addGap(18)
+					.addComponent(table, GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		setLayout(groupLayout);
 		
