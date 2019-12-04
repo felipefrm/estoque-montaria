@@ -1,5 +1,6 @@
 package venda_montaria.tp1.view_graphic;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -9,15 +10,11 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class HomeInterface extends JPanel {
 
@@ -38,74 +35,72 @@ public class HomeInterface extends JPanel {
 
 	public void initComponents() throws IOException {
 		
-		BufferedImage myPicture = ImageIO.read(new File("/home/felipefrm/Downloads/Saddle.png"));
+		BufferedImage myPicture = ImageIO.read(new File("/home/felipefrm/Documentos/venda-montaria/java/src/main/java/venda_montaria/tp1/view_graphic/Saddle.png"));
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+		picLabel.setBounds(161, 43, 125, 166);
+		
+		JLabel lblOk_1 = new JLabel("OK!");
+		lblOk_1.setForeground(new Color(51, 204, 0));
+		lblOk_1.setBounds(360, 226, 66, 15);
+		lblOk_1.setVisible(false);
+		add(lblOk_1);
+		
+		JLabel lblOk_2 = new JLabel("OK!");
+		lblOk_2.setForeground(new Color(0, 204, 0));
+		lblOk_2.setBounds(360, 263, 66, 15);
+		lblOk_2.setVisible(false);
+		add(lblOk_2);
 		
 		JButton btArqVendedor = new JButton("Selecionar arquivo de vendedores");
+		btArqVendedor.setBounds(87, 221, 266, 25);
 		btArqVendedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bt_selecionarArquivo();
+				if(bt_selecionarArquivo()) {
+					lblOk_1.setVisible(true);
+				}
 			}
 		});
 		
 		JButton btArqMontaria = new JButton("Selecionar arquivo de montarias");
+		btArqMontaria.setBounds(87, 258, 266, 25);
 		btArqMontaria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bt_selecionarArquivo();
+				if(bt_selecionarArquivo()) {
+					lblOk_2.setVisible(true);
+				}
 			}
 		});
 		
 		JLabel lblSistemaDeEstoque = new JLabel("Sistema de Estoque de Montarias");
+		lblSistemaDeEstoque.setBounds(67, 12, 306, 19);
 		lblSistemaDeEstoque.setFont(new Font("Dialog", Font.BOLD, 16));
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(161)
-							.addComponent(picLabel, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(67)
-							.addComponent(lblSistemaDeEstoque))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(87)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(btArqMontaria, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btArqVendedor, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-					.addContainerGap(77, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblSistemaDeEstoque)
-					.addGap(29)
-					.addComponent(picLabel, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-					.addGap(36)
-					.addComponent(btArqVendedor)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btArqMontaria)
-					.addContainerGap(17, Short.MAX_VALUE))
-		);
-		setLayout(groupLayout);
+		setLayout(null);
+		add(picLabel);
+		add(lblSistemaDeEstoque);
+		add(btArqMontaria);
+		add(btArqVendedor);
+		
+
 		
 
 	}
 	
 	
-	private void bt_selecionarArquivo() {
+	private boolean bt_selecionarArquivo() {
 		JFileChooser chooser = new JFileChooser();
 		chooser.setPreferredSize(new Dimension(800, 600));
-		int result = chooser.showSaveDialog(this);
+		int result = chooser.showOpenDialog(this);
+		boolean control = false;
 		if (result == JFileChooser.APPROVE_OPTION) {
 			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			File f = chooser.getSelectedFile();
-			String absPath = f.getAbsolutePath();	
+			System.out.println(f.getName());
+			String absPath = f.getAbsolutePath();
+			control = true;
 		} 
 		else if (result == JFileChooser.CANCEL_OPTION) {
 		    System.out.println("Cancel was selected");
 		}
-	
+		return control;
 	}
 }
