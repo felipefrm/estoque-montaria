@@ -9,9 +9,13 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableModel;
+
+import java.awt.SystemColor;
 
 public class MontariaInterface extends JPanel {
 	/**
@@ -24,19 +28,27 @@ public class MontariaInterface extends JPanel {
 	private JTextField textVelocidade;
 	private JTextField textRaridade;
 	private JTextField textCombustivel;
-	private JTable table;
+	private JTable tableMontaria;
 
 	/**
 	 * Create the panel.
 	 */
 	public MontariaInterface() {
 		
+		initComponents();
+		
+	}
+	
+	private void initComponents() {
+		
 		JLabel lblId = new JLabel("ID");
 		
 		textID = new JTextField();
+		textID.setBackground(SystemColor.control);
+		textID.setEditable(false);
 		textID.setColumns(10);
 		
-		JLabel lblNome = new JLabel("Raça");
+		JLabel lbRaca = new JLabel("Raça");
 		
 		JLabel lblCapacidade = new JLabel("Capacidade");
 		
@@ -72,14 +84,27 @@ public class MontariaInterface extends JPanel {
 		
 		JButton btAdicionar = new JButton("Adicionar");
 		
-		table = new JTable();
+		tableMontaria = new JTable();
+		tableMontaria.setModel(new DefaultTableModel(
+				new Object [][] {
+
+	            },
+	            new String [] {
+	                "ID", "Raça", "Capacidade", "Raridade", "Velocidade", "Combustivel"
+	            }
+	       	));
+			JScrollPane scroll = new JScrollPane(tableMontaria);
+			scroll.setViewportView(tableMontaria);
+			add(scroll);
+
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(table, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tableMontaria, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(groupLayout.createSequentialGroup()
@@ -105,7 +130,7 @@ public class MontariaInterface extends JPanel {
 							.addComponent(btRemover, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNome)
+								.addComponent(lbRaca)
 								.addComponent(lblId))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -126,7 +151,7 @@ public class MontariaInterface extends JPanel {
 						.addComponent(btLimpar))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNome)
+						.addComponent(lbRaca)
 						.addComponent(textRaca, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
@@ -145,11 +170,10 @@ public class MontariaInterface extends JPanel {
 						.addComponent(btAdicionar)
 						.addComponent(btRemover))
 					.addGap(18)
-					.addComponent(table, GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+					.addComponent(tableMontaria, GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		setLayout(groupLayout);
-		
 		
 	}
 

@@ -1,14 +1,17 @@
 package venda_montaria.tp1.view_graphic;
 
+import java.awt.SystemColor;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableModel;
 
 public class EstoqueInterface extends JPanel {
 	/**
@@ -25,18 +28,25 @@ public class EstoqueInterface extends JPanel {
 	private JButton btAdicionar;
 	private JButton btEditar;
 	private JButton btRemover;
-	private JTextPane txtpnEstoqueDoVendedor;
-	private JTable table;
-	private JTable table_1;
+	private JTable tableEstoque;
+	private JTable tableMontaria;
 
 	/**
 	 * Create the panel.
 	 */
 	public EstoqueInterface() {
 		
+		initComponents();
+		
+	}
+	
+	private void initComponents() {
+
 		JLabel lblId = new JLabel("ID");
 		
 		textID = new JTextField();
+		textID.setBackground(SystemColor.control);
+		textID.setEditable(false);
 		textID.setColumns(10);
 		
 		JLabel lblRaa = new JLabel("Raça");
@@ -62,12 +72,35 @@ public class EstoqueInterface extends JPanel {
 		
 		btRemover = new JButton("Remover");
 		
-		txtpnEstoqueDoVendedor = new JTextPane();
-		txtpnEstoqueDoVendedor.setText("Estoque do Vendedor ");
+		tableEstoque = new JTable();
+		tableEstoque.setModel(new DefaultTableModel(
+				new Object [][] {
+
+	            },
+	            new String [] {
+	                "ID", "Raça", "Quantidade", "Preço"
+	            }
+	       	));
+			JScrollPane scrollE = new JScrollPane(tableEstoque);
+			scrollE.setViewportView(tableEstoque);
+			add(scrollE);
+
 		
-		table = new JTable();
+		tableMontaria = new JTable();
+		tableMontaria.setModel(new DefaultTableModel(
+				new Object [][] {
+
+	            },
+	            new String [] {
+	                "ID", "Raça"
+	            }
+	       	));
+			JScrollPane scrollM = new JScrollPane(tableMontaria);
+			scrollM.setViewportView(tableMontaria);
+			add(scrollM);
+
 		
-		table_1 = new JTable();
+		JLabel lblNewLabel = new JLabel("Estoque do Vendedor ");
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -75,11 +108,11 @@ public class EstoqueInterface extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(table, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE))
+							.addComponent(tableEstoque, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addContainerGap()
+							.addContainerGap()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addGroup(groupLayout.createSequentialGroup()
 											.addComponent(lblId)
@@ -102,14 +135,10 @@ public class EstoqueInterface extends JPanel {
 										.addComponent(btEditar, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
 										.addComponent(btAdicionar, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
 										.addComponent(btRemover, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-										.addComponent(btLimpar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-									.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(147)
-									.addComponent(txtpnEstoqueDoVendedor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, 46, Short.MAX_VALUE)))
+										.addComponent(btLimpar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+								.addComponent(lblNewLabel))
 							.addGap(29)
-							.addComponent(table_1, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(tableMontaria, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -117,9 +146,9 @@ public class EstoqueInterface extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(8)
-							.addComponent(txtpnEstoqueDoVendedor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
+							.addContainerGap()
+							.addComponent(lblNewLabel)
+							.addGap(20)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblId)
 								.addComponent(textID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -145,14 +174,13 @@ public class EstoqueInterface extends JPanel {
 								.addComponent(textPreco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(27)
-							.addComponent(table_1, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(tableMontaria, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
-					.addComponent(table, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+					.addComponent(tableEstoque, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(13, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 
-		
 		
 	}
 }

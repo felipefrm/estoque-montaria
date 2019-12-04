@@ -1,5 +1,9 @@
 package venda_montaria.tp1.view_graphic;
 
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -8,17 +12,12 @@ import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class HomeInterface extends JPanel {
 
@@ -32,6 +31,12 @@ public class HomeInterface extends JPanel {
 	 * @throws IOException 
 	 */
 	public HomeInterface() throws IOException {
+		
+		initComponents();
+		
+	}
+
+	public void initComponents() throws IOException {
 		
 		BufferedImage myPicture = ImageIO.read(new File("/home/felipefrm/Downloads/Saddle.png"));
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
@@ -87,15 +92,11 @@ public class HomeInterface extends JPanel {
 		
 
 	}
-
-
+	
+	
 	private void bt_selecionarArquivo() {
-		JFrame explorer = new JFrame("Selecione o arquivo");
 		JFileChooser chooser = new JFileChooser();
-		explorer.add(chooser);
 		chooser.setPreferredSize(new Dimension(800, 600));
-		explorer.setPreferredSize(new Dimension(800, 600));
-		explorer.setVisible(true);
 		int result = chooser.showSaveDialog(this);
 		if (result == JFileChooser.APPROVE_OPTION) {
 			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);

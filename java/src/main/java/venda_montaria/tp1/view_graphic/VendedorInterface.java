@@ -1,6 +1,7 @@
 package venda_montaria.tp1.view_graphic;
 
 import java.awt.Component;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,6 +10,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -19,7 +21,7 @@ public class VendedorInterface extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
+	private JTextField textID;
 	private JTextField textNome;
 	private JTextField textRaca;
 	private JTextField textIdade;
@@ -32,27 +34,33 @@ public class VendedorInterface extends JPanel {
 	 */
 	public VendedorInterface() {
 		
+		initComponents();
+	
+	}
+	
+	private void initComponents() {
+		
 		JLabel lblId = new JLabel("ID");
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
 		JLabel lblNome = new JLabel("Nome");
+		JLabel lblRaa = new JLabel("Raça");
+		JLabel lblIdade = new JLabel("Idade");
+		
+		textID = new JTextField();
+		textID.setBackground(SystemColor.control);
+		textID.setEditable(false);
+		textID.setColumns(10);	
 		
 		textNome = new JTextField();
-		textNome.setColumns(10);
-		
-		JLabel lblRaa = new JLabel("Raça");
-		
+		textNome.setColumns(10);	
+			
 		textRaca = new JTextField();
-		textRaca.setColumns(10);
-		
-		JLabel lblIdade = new JLabel("Idade");
+		textRaca.setColumns(10);	
 		
 		textIdade = new JTextField();
 		textIdade.setColumns(10);
 		
 		JButton btRemover = new JButton("Remover");
+		
 		btRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -69,16 +77,24 @@ public class VendedorInterface extends JPanel {
 		
 		JButton btEstoque = new JButton("Acessar estoque do Vendedor");
 		
-		modeloTabela = new DefaultTableModel();		
-		modeloTabela.addColumn("ID");
-		modeloTabela.addColumn("Nome");
-		modeloTabela.addColumn("Raça");
-		modeloTabela.addColumn("Idade");
-		tableVendedor = new JTable(modeloTabela);
-//		JScrollPane scroll = new JScrollPane();
-//		scroll.setViewportView(tableVendedor);
-//		add(scroll);
-//		
+//		modeloTabela = new DefaultTableModel();		
+//		modeloTabela.addColumn("ID");
+//		modeloTabela.addColumn("Nome");
+//		modeloTabela.addColumn("Raça");
+//		modeloTabela.addColumn("Idade");
+		tableVendedor = new JTable();
+		tableVendedor.setModel(new DefaultTableModel(
+			new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nome", "Raça", "Idade"
+            }
+       	));
+		JScrollPane scroll = new JScrollPane(tableVendedor);
+		scroll.setViewportView(tableVendedor);
+		add(scroll);
+
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -98,7 +114,7 @@ public class VendedorInterface extends JPanel {
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 										.addComponent(textNome)
-										.addComponent(textField))
+										.addComponent(textID))
 									.addGap(17)
 									.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
@@ -126,7 +142,7 @@ public class VendedorInterface extends JPanel {
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblId)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(button_1))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
@@ -151,12 +167,6 @@ public class VendedorInterface extends JPanel {
 					.addGap(10))
 		);
 		setLayout(groupLayout);
-		
-
-
-	}
-	private void initComponents() {
-		
 	}
 
 	private void bt_limparActionPerformed(ActionEvent evt) {
