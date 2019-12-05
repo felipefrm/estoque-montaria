@@ -15,6 +15,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
 
 public class MontariaInterface extends JPanel {
 	/**
@@ -92,6 +94,7 @@ public class MontariaInterface extends JPanel {
 
 		
 		tableMontaria = new JTable();
+		tableMontaria.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tableMontaria.setModel(new DefaultTableModel(
 				new Object [][] {
 

@@ -17,6 +17,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
 
 public class VendedorInterface extends JPanel {
 	/**
@@ -100,9 +104,12 @@ public class VendedorInterface extends JPanel {
 //		modeloTabela.addColumn("Raça");
 //		modeloTabela.addColumn("Idade");
 		tableVendedor = new JTable();
+		tableVendedor.setToolTipText("");
+		tableVendedor.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		
 		tableVendedor.setModel(new DefaultTableModel(
 			new Object [][] {
-
+				{"aaa", "aaa", "aaa", "aaa"}
             },
             new String [] {
                 "ID", "Nome", "Raça", "Idade"

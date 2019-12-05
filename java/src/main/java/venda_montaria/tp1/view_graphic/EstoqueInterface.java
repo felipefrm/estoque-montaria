@@ -15,6 +15,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.MatteBorder;
+import java.awt.Color;
 
 public class EstoqueInterface extends JPanel {
 	/**
@@ -97,6 +101,7 @@ public class EstoqueInterface extends JPanel {
 		});
 		
 		tableEstoque = new JTable();
+		tableEstoque.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tableEstoque.setModel(new DefaultTableModel(
 				new Object [][] {
 
@@ -111,6 +116,7 @@ public class EstoqueInterface extends JPanel {
 
 		
 		tableMontaria = new JTable();
+		tableMontaria.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tableMontaria.setModel(new DefaultTableModel(
 				new Object [][] {
 
