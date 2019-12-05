@@ -53,6 +53,7 @@ public class Main {
 		frame = new JFrame("Estoque de Montaria");
 		frame.setBounds(100, 100, 440, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
