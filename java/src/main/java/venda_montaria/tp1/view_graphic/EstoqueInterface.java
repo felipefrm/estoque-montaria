@@ -83,6 +83,11 @@ public class EstoqueInterface extends JPanel {
 		});
 		
 		btEditar = new JButton("Editar");
+		btEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bt_editActionPerformed();
+			}
+		});
 		
 		btRemover = new JButton("Remover");
 		btRemover.addActionListener(new ActionListener() {
@@ -219,10 +224,6 @@ public class EstoqueInterface extends JPanel {
 	}
 	
 	private void bt_removeActionPerformed() {
-		
-	}
-	
-	private void bt_acessActionPerformed() {
 		
 	}
 	
