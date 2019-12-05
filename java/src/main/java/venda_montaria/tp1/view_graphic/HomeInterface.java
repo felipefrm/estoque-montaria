@@ -78,10 +78,7 @@ public class HomeInterface extends JPanel {
 		add(picLabel);
 		add(lblSistemaDeEstoque);
 		add(btArqMontaria);
-		add(btArqVendedor);
-		
-
-		
+		add(btArqVendedor);		
 
 	}
 	

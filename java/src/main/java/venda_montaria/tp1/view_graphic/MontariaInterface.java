@@ -1,6 +1,7 @@
 package venda_montaria.tp1.view_graphic;
 
 import java.awt.Component;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,8 +15,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
-
-import java.awt.SystemColor;
 
 public class MontariaInterface extends JPanel {
 	/**
@@ -41,22 +40,17 @@ public class MontariaInterface extends JPanel {
 	
 	private void initComponents() {
 		
-		JLabel lblId = new JLabel("ID");
+		JLabel lblId = new JLabel("ID");		
+		JLabel lbRaca = new JLabel("Raça");
+		JLabel lblCapacidade = new JLabel("Capacidade");
+		JLabel lblRaridade = new JLabel("Raridade");
+		JLabel lblVelocidade = new JLabel("Velocidade");
+		JLabel lblCombustivel = new JLabel("Combustivel");
 		
 		textID = new JTextField();
 		textID.setBackground(SystemColor.control);
 		textID.setEditable(false);
 		textID.setColumns(10);
-		
-		JLabel lbRaca = new JLabel("Raça");
-		
-		JLabel lblCapacidade = new JLabel("Capacidade");
-		
-		JLabel lblRaridade = new JLabel("Raridade");
-		
-		JLabel lblVelocidade = new JLabel("Velocidade");
-		
-		JLabel lblCombustivel = new JLabel("Combustivel");
 		
 		textRaca = new JTextField();
 		textRaca.setColumns(10);
@@ -67,6 +61,13 @@ public class MontariaInterface extends JPanel {
 		textVelocidade = new JTextField();
 		textVelocidade.setColumns(10);
 		
+		textRaridade = new JTextField();
+		textRaridade.setColumns(10);		
+		
+		textCombustivel = new JTextField();
+		textCombustivel.setColumns(10);
+
+		
 		JButton btLimpar = new JButton("Limpar");
 		btLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -75,14 +76,20 @@ public class MontariaInterface extends JPanel {
 		});
 		
 		JButton btRemover = new JButton("Remover");
-		
-		textRaridade = new JTextField();
-		textRaridade.setColumns(10);
-		
-		textCombustivel = new JTextField();
-		textCombustivel.setColumns(10);
-		
+		btRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bt_removeActionPerformed();
+			}
+		});
+
+				
 		JButton btAdicionar = new JButton("Adicionar");
+		btAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bt_addActionPerformed();
+			}
+		});
+
 		
 		tableMontaria = new JTable();
 		tableMontaria.setModel(new DefaultTableModel(
@@ -186,5 +193,18 @@ public class MontariaInterface extends JPanel {
 	                field.setText("");   
 			  }
 		}
+	}
+	
+
+	private void bt_addActionPerformed() {
+
+	}
+	
+	private void bt_removeActionPerformed() {
+		
+	}
+	
+	private void bt_acessActionPerformed() {
+		
 	}
 }

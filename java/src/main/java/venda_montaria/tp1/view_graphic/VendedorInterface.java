@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 public class VendedorInterface extends JPanel {
@@ -60,22 +62,37 @@ public class VendedorInterface extends JPanel {
 		textIdade.setColumns(10);
 		
 		JButton btRemover = new JButton("Remover");
-		
 		btRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				bt_removeActionPerformed();
 			}
 		});
 		
-		JButton button_1 = new JButton("Limpar");
-		button_1.addActionListener(new ActionListener() {
+		JButton btLimpar = new JButton("Limpar");
+		btLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				bt_limparActionPerformed(e);
 			}
 		});
 		
-		JButton btnAdicionar = new JButton("Adicionar");
+		JButton btAdicionar = new JButton("Adicionar");
+//		btAdicionar.setEnabled(false);
+//		
+//		if (!textNome.getText().equals("") && !textRaca.getText().equals("") && !textIdade.getText().equals(""))
+//			btAdicionar.setEnabled(true);
+	
+		btAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bt_addActionPerformed();
+			}
+		});
 		
 		JButton btEstoque = new JButton("Acessar estoque do Vendedor");
+		btEstoque.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bt_acessActionPerformed();
+			}
+		});
 		
 //		modeloTabela = new DefaultTableModel();		
 //		modeloTabela.addColumn("ID");
@@ -91,7 +108,7 @@ public class VendedorInterface extends JPanel {
                 "ID", "Nome", "Raça", "Idade"
             }
        	));
-		JScrollPane scroll = new JScrollPane(tableVendedor);
+		JScrollPane scroll = new JScrollPane();
 		scroll.setViewportView(tableVendedor);
 		add(scroll);
 
@@ -116,12 +133,12 @@ public class VendedorInterface extends JPanel {
 										.addComponent(textNome)
 										.addComponent(textID))
 									.addGap(17)
-									.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
+									.addComponent(btLimpar, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addGroup(groupLayout.createSequentialGroup()
 											.addGap(7)
-											.addComponent(btnAdicionar, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+											.addComponent(btAdicionar, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
 										.addGroup(groupLayout.createSequentialGroup()
 											.addComponent(lblIdade)
 											.addPreferredGap(ComponentPlacement.RELATED)
@@ -143,7 +160,7 @@ public class VendedorInterface extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblId)
 						.addComponent(textID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(button_1))
+						.addComponent(btLimpar))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNome)
@@ -158,7 +175,7 @@ public class VendedorInterface extends JPanel {
 						.addComponent(textIdade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(12)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAdicionar)
+						.addComponent(btAdicionar)
 						.addComponent(btRemover))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btEstoque)
@@ -178,5 +195,17 @@ public class VendedorInterface extends JPanel {
 	                field.setText("");   
 			  }
 		}
+	}
+	
+	private void bt_addActionPerformed() {
+		
+	}
+	
+	private void bt_removeActionPerformed() {
+		
+	}
+	
+	private void bt_acessActionPerformed() {
+
 	}
 }

@@ -1,6 +1,9 @@
 package venda_montaria.tp1.view_graphic;
 
+import java.awt.Component;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -43,13 +46,14 @@ public class EstoqueInterface extends JPanel {
 	private void initComponents() {
 
 		JLabel lblId = new JLabel("ID");
+		JLabel lblRaa = new JLabel("Raça");
+		
 		
 		textID = new JTextField();
 		textID.setBackground(SystemColor.control);
 		textID.setEditable(false);
 		textID.setColumns(10);
 		
-		JLabel lblRaa = new JLabel("Raça");
 		
 		textRaca = new JTextField();
 		textRaca.setColumns(10);
@@ -65,12 +69,27 @@ public class EstoqueInterface extends JPanel {
 		textPreco.setColumns(10);
 		
 		btLimpar = new JButton("Limpar");
+		btLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bt_limparActionPerformed(e);
+			}
+		});
 		
 		btAdicionar = new JButton("Adicionar");
+		btAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bt_addActionPerformed();
+			}
+		});
 		
 		btEditar = new JButton("Editar");
 		
 		btRemover = new JButton("Remover");
+		btRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bt_removeActionPerformed();
+			}
+		});
 		
 		tableEstoque = new JTable();
 		tableEstoque.setModel(new DefaultTableModel(
@@ -181,6 +200,33 @@ public class EstoqueInterface extends JPanel {
 		);
 		setLayout(groupLayout);
 
+		
+	}
+	
+	private void bt_limparActionPerformed(ActionEvent evt) {
+
+		Component[] components = getComponents();
+		for (Component c : components) {
+			  if (c instanceof JTextField) {         
+				  	JTextField field = (JTextField) c;   
+	                field.setText("");   
+			  }
+		}
+	}
+	
+	private void bt_addActionPerformed() {
+		
+	}
+	
+	private void bt_removeActionPerformed() {
+		
+	}
+	
+	private void bt_acessActionPerformed() {
+		
+	}
+	
+	private void bt_editActionPerformed() {
 		
 	}
 }
