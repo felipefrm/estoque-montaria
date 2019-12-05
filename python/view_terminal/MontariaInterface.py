@@ -1,5 +1,5 @@
 from abc import ABC,abstractmethod
-from Montaria import Montaria
+from model.Montaria import Montaria
 from Utils import Utils
 
 class MontariaInterface(ABC):

@@ -1,8 +1,8 @@
 # coding: utf-8
 
 from abc import ABC,abstractmethod
-from EstoqueInterface import EstoqueInterface
-from Vendedor import Vendedor
+from model.EstoqueInterface import EstoqueInterface
+from model.Vendedor import Vendedor
 from Utils import Utils
 
 class VendedorInterface(ABC):

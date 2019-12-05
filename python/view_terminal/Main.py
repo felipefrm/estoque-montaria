@@ -1,8 +1,8 @@
-from MontariaInterface import MontariaInterface
-from VendedorInterface import VendedorInterface
-from Montaria import Montaria
-from Vendedor import Vendedor
-from Estoque import Estoque
+from view_terminal.MontariaInterface import MontariaInterface
+from view_terminal.VendedorInterface import VendedorInterface
+from model.Montaria import Montaria
+from model.Vendedor import Vendedor
+from model.Estoque import Estoque
 from Utils import Utils
 
 import json

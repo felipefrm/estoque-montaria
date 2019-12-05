@@ -1,6 +1,6 @@
 from abc import ABC,abstractmethod
-from Estoque import Estoque
-from Montaria import Montaria
+from model.Estoque import Estoque
+from model.Montaria import Montaria
 from Utils import Utils
 
 class EstoqueInterface(ABC):
