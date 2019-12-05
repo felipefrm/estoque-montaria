@@ -41,18 +41,18 @@ public class HomeInterface extends JPanel {
 		
 		JLabel lblOk_1 = new JLabel("OK!");
 		lblOk_1.setForeground(new Color(51, 204, 0));
-		lblOk_1.setBounds(360, 226, 66, 15);
+		lblOk_1.setBounds(360, 214, 66, 15);
 		lblOk_1.setVisible(false);
 		add(lblOk_1);
 		
 		JLabel lblOk_2 = new JLabel("OK!");
 		lblOk_2.setForeground(new Color(0, 204, 0));
-		lblOk_2.setBounds(360, 263, 66, 15);
+		lblOk_2.setBounds(360, 248, 66, 15);
 		lblOk_2.setVisible(false);
 		add(lblOk_2);
 		
 		JButton btArqVendedor = new JButton("Selecionar arquivo de vendedores");
-		btArqVendedor.setBounds(87, 221, 266, 25);
+		btArqVendedor.setBounds(87, 209, 266, 25);
 		btArqVendedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(bt_selecionarArquivo()) {
@@ -62,7 +62,7 @@ public class HomeInterface extends JPanel {
 		});
 		
 		JButton btArqMontaria = new JButton("Selecionar arquivo de montarias");
-		btArqMontaria.setBounds(87, 258, 266, 25);
+		btArqMontaria.setBounds(87, 243, 266, 25);
 		btArqMontaria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(bt_selecionarArquivo()) {
@@ -78,7 +78,16 @@ public class HomeInterface extends JPanel {
 		add(picLabel);
 		add(lblSistemaDeEstoque);
 		add(btArqMontaria);
-		add(btArqVendedor);		
+		add(btArqVendedor);
+		
+		JButton btSalvar = new JButton("Salvar");
+		btSalvar.setBounds(161, 275, 114, 25);
+		add(btSalvar);
+		btSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bt_saveActionPerformed();
+			}
+		});
 
 	}
 	
@@ -93,11 +102,16 @@ public class HomeInterface extends JPanel {
 			File f = chooser.getSelectedFile();
 			System.out.println(f.getName());
 			String absPath = f.getAbsolutePath();
+			System.out.println(absPath);
 			control = true;
 		} 
 		else if (result == JFileChooser.CANCEL_OPTION) {
 		    System.out.println("Cancel was selected");
 		}
 		return control;
+	}
+	
+	private void bt_saveActionPerformed() {
+		
 	}
 }
