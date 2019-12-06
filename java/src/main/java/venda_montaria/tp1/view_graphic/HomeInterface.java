@@ -35,7 +35,7 @@ public class HomeInterface extends JPanel {
 
 	public void initComponents() throws IOException {
 		
-		BufferedImage myPicture = ImageIO.read(new File("/home/felipefrm/Documentos/venda-montaria/java/src/main/java/venda_montaria/tp1/view_graphic/Saddle.png"));
+		BufferedImage myPicture = ImageIO.read(new File("src/main/java/venda_montaria/tp1/view_graphic/Saddle.png"));
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 		picLabel.setBounds(161, 43, 125, 166);
 		

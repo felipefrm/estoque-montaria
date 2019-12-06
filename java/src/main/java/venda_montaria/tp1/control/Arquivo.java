@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
+import venda_montaria.tp1.model.Entidade;
 import venda_montaria.tp1.model.Estoque;
 import venda_montaria.tp1.model.Montaria;
 import venda_montaria.tp1.model.Vendedor;
@@ -33,7 +34,7 @@ public class Arquivo {
 		return uniqueInstance;
 	}
 	
-	public JsonReader abreArquivoMontaria(String montariaFileName, ArrayList<Montaria> mont) {
+	public JsonReader carregaArquivoMontaria(String montariaFileName, ArrayList<Montaria> mont) {
 		
 		reader = null;
 		
@@ -54,7 +55,7 @@ public class Arquivo {
 		return reader;
 	}
 	
-	public JsonReader abreArquivoVendedor(String vendedorFileName, ArrayList<Vendedor> vend, ArrayList<Montaria> mont) {
+	public JsonReader carregaArquivoVendedor(String vendedorFileName, ArrayList<Vendedor> vend, ArrayList<Montaria> mont) {
 		
 		reader = null;
 
@@ -82,26 +83,15 @@ public class Arquivo {
 		return reader;
 	}
 	
-	public void salvaArquivo(String pathVendedor, String pathMontaria, ArrayList<Vendedor> vend, ArrayList<Montaria> mont) {
+	public <T extends Entidade> void salvaArquivo(String path, ArrayList<T> obj) {
 		
 		Writer writer;
 		
-		if (!vend.isEmpty()) {
+		if (!obj.isEmpty()) {
 			writer = null;
 			try {
-				writer = new FileWriter(pathVendedor);
-				gson.toJson(vend, writer);
-				writer.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-		}
-		if (!mont.isEmpty()) {
-			writer = null;
-			try {
-				writer = new FileWriter(pathMontaria);
-				gson.toJson(mont, writer);
+				writer = new FileWriter(path);
+				gson.toJson(obj, writer);
 				writer.close();
 			} catch (IOException e) {
 				e.printStackTrace();
