@@ -82,10 +82,8 @@ public abstract class MontariaInterface {
 		sc.nextLine();
 		System.out.printf("Combustivel: ");
 		String combustivel = sc.nextLine();
-		System.out.printf("Descrição: ");
-		String descricao = sc.nextLine();
 
-		return new Montaria(raca, descricao, combustivel, raridade, capacidade, velocidade);
+		return new Montaria(raca, combustivel, raridade, capacidade, velocidade);
 	}
 
 	

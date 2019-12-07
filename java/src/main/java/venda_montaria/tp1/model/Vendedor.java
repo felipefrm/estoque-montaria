@@ -6,17 +6,15 @@ public class Vendedor extends Entidade {
 	private int idade;
 	private String raca;
 	private String nome;
-	private String descricao;
 	private ArrayList<Estoque> estoque;
 	static private int cont = 1;
 
 
-	public Vendedor(String nome, String raca, int idade, String descricao) {
+	public Vendedor(String nome, String raca, int idade) {
 		setId(cont++);
 		this.nome = nome;
 		this.raca = raca;
 		this.idade = idade;
-		this.descricao = descricao;
 		this.estoque = new ArrayList<Estoque>();
 	}
 
@@ -57,11 +55,4 @@ public class Vendedor extends Entidade {
 		this.nome = nome;
 	}
 
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
 }

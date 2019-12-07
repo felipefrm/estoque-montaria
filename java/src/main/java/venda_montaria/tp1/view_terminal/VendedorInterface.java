@@ -76,9 +76,8 @@ public abstract class VendedorInterface {
 		}
 		System.out.printf("Descrição: ");
 		sc.nextLine();
-		String descricao = sc.nextLine();
-
-		return new Vendedor(nome, raca, idade, descricao);
+	
+		return new Vendedor(nome, raca, idade);
 	}
 
 	
