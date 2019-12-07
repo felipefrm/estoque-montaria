@@ -9,6 +9,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -71,7 +72,6 @@ public class MontariaInterface extends JPanel {
 		
 		textCombustivel = new JTextField();
 		textCombustivel.setColumns(10);
-
 		
 		JButton btLimpar = new JButton("Limpar");
 		btLimpar.addActionListener(new ActionListener() {
@@ -95,16 +95,12 @@ public class MontariaInterface extends JPanel {
 			}
 		});
 
-		
+	
 		tableMontaria = new JTable();
 		tableMontaria.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tableMontaria.setModel(new DefaultTableModel(
-				new Object [][] {
-
-	            },
-	            new String [] {
-	                "ID", "Raça", "Capacidade", "Raridade", "Velocidade", "Combustivel"
-	            }
+				new Object [][] {},
+	            new String [] {"ID", "Raça", "Capacidade", "Raridade", "Velocidade", "Combustivel"}
 	       	));
 		JScrollPane scroll = new JScrollPane(tableMontaria);
 		scroll.setViewportView(tableMontaria);
@@ -113,6 +109,7 @@ public class MontariaInterface extends JPanel {
 		tableMontaria.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
             	tableMontariaMouseClick(evt);
+            	btRemover.setEnabled(true);
             }
         });
 		
@@ -207,16 +204,28 @@ public class MontariaInterface extends JPanel {
 	}
 
 	private void bt_addActionPerformed() {
+		try {
+			Integer.parseInt(textCapacidade.getText());
+			Float.parseFloat(textVelocidade.getText());
+
+		} catch(NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "O campo capacidade deve ser um número inteiro e o campo velocidade deve ser um número real.");
+			return;
+		}
+	
 		Montaria m  = new Montaria(textRaca.getText(), textCombustivel.getText(), textRaridade.getText(), Integer.valueOf(textCapacidade.getText()),  Float.valueOf(textVelocidade.getText()));
         DefaultTableModel model = (DefaultTableModel)tableMontaria.getModel();
         model.setRowCount(rowCount++);
-        model.addRow(new Object[]{m.getId(), m.getRaca() ,m.getCombustivel(), m.getRaridade(), m.getCapacidade(), m.getVelocidade()});
+        model.addRow(new Object[]{m.getId(), m.getRaca(), m.getCombustivel(), m.getRaridade(), m.getCapacidade(), m.getVelocidade()});
 	}
 	
 	private void bt_removeActionPerformed() {
 		DefaultTableModel model = (DefaultTableModel) tableMontaria.getModel();
-		System.out.println(tableMontaria.getSelectedRow());
-	    model.removeRow(tableMontaria.getSelectedRow());
+		if (tableMontaria.getSelectedRow() == -1) { 
+			JOptionPane.showMessageDialog(null, "Selecione a montaria que deseja remover.");
+			return;
+		}
+		model.removeRow(tableMontaria.getSelectedRow());
 	    rowCount--;
 	}
 	
@@ -226,6 +235,6 @@ public class MontariaInterface extends JPanel {
 	        textCombustivel.setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 2)));
 	        textRaridade.setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 3)));
 	        textCapacidade.setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 4)));
-	        textVelocidade.setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 5)));	    
-	 }
+	        textVelocidade.setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 5)));
+	 }	
 }

@@ -9,6 +9,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -30,7 +31,6 @@ public class VendedorInterface extends JPanel {
 	private JTextField textRaca;
 	private JTextField textIdade;
 	private JTable tableVendedor;
-	private DefaultTableModel modeloTabela;
 	private static int rowCount = 0;
 	
 	
@@ -54,11 +54,9 @@ public class VendedorInterface extends JPanel {
 		textID.setBackground(SystemColor.control);
 		textID.setEditable(false);
 		textID.setColumns(10);	
-//		textID.setText("1");
-//		
+		
 		textNome = new JTextField();
 		textNome.setColumns(10);	
-//		textNome.setText("Felipe");
 			
 		textRaca = new JTextField();
 		textRaca.setColumns(10);	
@@ -94,11 +92,6 @@ public class VendedorInterface extends JPanel {
 			}
 		});
 		
-//		modeloTabela = new DefaultTableModel();		
-//		modeloTabela.addColumn("ID");
-//		modeloTabela.addColumn("Nome");
-//		modeloTabela.addColumn("Raça");
-//		modeloTabela.addColumn("Idade");
 		tableVendedor = new JTable();
 		tableVendedor.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
@@ -203,6 +196,14 @@ public class VendedorInterface extends JPanel {
 	}
 	
 	private void bt_addActionPerformed() {
+
+		try {
+			Integer.parseInt(textIdade.getText());
+		} catch(NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "A idade deve ser um inteiro.");
+			return;
+		}
+		
 		Vendedor v  = new Vendedor(textNome.getText(), textRaca.getText(), Integer.valueOf(textIdade.getText()));
         DefaultTableModel model = (DefaultTableModel)tableVendedor.getModel();
         model.setRowCount(rowCount++);
@@ -211,7 +212,10 @@ public class VendedorInterface extends JPanel {
 	
 	private void bt_removeActionPerformed() {
 		DefaultTableModel model = (DefaultTableModel) tableVendedor.getModel();
-		System.out.println(tableVendedor.getSelectedRow());
+		if (tableVendedor.getSelectedRow() == -1) { 
+			JOptionPane.showMessageDialog(null, "Selecione o vendedor que deseja remover.");
+			return;
+		}
 	    model.removeRow(tableVendedor.getSelectedRow());
 	    rowCount--;
 	}
