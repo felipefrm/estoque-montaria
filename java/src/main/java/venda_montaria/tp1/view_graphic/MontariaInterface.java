@@ -19,7 +19,6 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.table.DefaultTableModel;
 
 import venda_montaria.tp1.model.Montaria;
-import venda_montaria.tp1.model.Vendedor;
 
 public class MontariaInterface extends JPanel {
 	/**
@@ -111,6 +110,11 @@ public class MontariaInterface extends JPanel {
 		scroll.setViewportView(tableMontaria);
 		add(scroll);
 
+		tableMontaria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            	tableMontariaMouseClick(evt);
+            }
+        });
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -201,7 +205,6 @@ public class MontariaInterface extends JPanel {
 			  }
 		}
 	}
-	
 
 	private void bt_addActionPerformed() {
 		Montaria m  = new Montaria(textRaca.getText(), textCombustivel.getText(), textRaridade.getText(), Integer.valueOf(textCapacidade.getText()),  Float.valueOf(textVelocidade.getText()));
@@ -211,6 +214,18 @@ public class MontariaInterface extends JPanel {
 	}
 	
 	private void bt_removeActionPerformed() {
-		
+		DefaultTableModel model = (DefaultTableModel) tableMontaria.getModel();
+		System.out.println(tableMontaria.getSelectedRow());
+	    model.removeRow(tableMontaria.getSelectedRow());
+	    rowCount--;
 	}
+	
+	 private void tableMontariaMouseClick(java.awt.event.MouseEvent evt) {
+	        textID.setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 0)));
+	        textRaca.setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 1)));
+	        textCombustivel.setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 2)));
+	        textRaridade.setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 3)));
+	        textCapacidade.setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 4)));
+	        textVelocidade.setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 5)));	    
+	 }
 }

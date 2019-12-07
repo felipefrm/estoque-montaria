@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -111,6 +110,13 @@ public class VendedorInterface extends JPanel {
 		scroll.setViewportView(tableVendedor);
 		add(scroll);
 
+		tableVendedor.addMouseListener(new java.awt.event.MouseAdapter() {
+	            public void mouseClicked(java.awt.event.MouseEvent evt) {
+	            	tableVendedorMouseClick(evt);
+	            }
+	        });
+		
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -184,7 +190,7 @@ public class VendedorInterface extends JPanel {
 		);
 		setLayout(groupLayout);
 	}
-
+	
 	private void bt_limparActionPerformed(ActionEvent evt) {
 
 		Component[] components = getComponents();
@@ -204,14 +210,24 @@ public class VendedorInterface extends JPanel {
 	}
 	
 	private void bt_removeActionPerformed() {
-		
+		DefaultTableModel model = (DefaultTableModel) tableVendedor.getModel();
+		System.out.println(tableVendedor.getSelectedRow());
+	    model.removeRow(tableVendedor.getSelectedRow());
+	    rowCount--;
 	}
 	
 	private void bt_acessActionPerformed(int ID, String nome) {
-		JFrame frame = new JFrame("Estoque do vendedor " + nome);
-		frame.add(new EstoqueInterface());
-		frame.setBounds(100, 100, 440, 400);
-		frame.setResizable(false);
-		frame.setVisible(true);
+//		JFrame frame = new JFrame("Estoque do vendedor " + nome);
+//		frame.add(new EstoqueInterface());
+//		frame.setBounds(100, 100, 440, 400);
+//		frame.setResizable(false);
+//		frame.setVisible(true);
 	}
+
+	 private void tableVendedorMouseClick(java.awt.event.MouseEvent evt) {
+	        textID.setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 0)));
+	        textNome.setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 1)));
+	        textRaca.setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 2)));
+	        textIdade.setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 3)));
+	    }
 }
