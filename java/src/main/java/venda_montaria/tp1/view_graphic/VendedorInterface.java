@@ -8,19 +8,18 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.table.DefaultTableModel;
+
+import venda_montaria.tp1.model.Vendedor;
 
 public class VendedorInterface extends JPanel {
 	/**
@@ -33,6 +32,7 @@ public class VendedorInterface extends JPanel {
 	private JTextField textIdade;
 	private JTable tableVendedor;
 	private DefaultTableModel modeloTabela;
+	private static int rowCount = 0;
 	
 	
 	/**
@@ -55,9 +55,11 @@ public class VendedorInterface extends JPanel {
 		textID.setBackground(SystemColor.control);
 		textID.setEditable(false);
 		textID.setColumns(10);	
-		
+//		textID.setText("1");
+//		
 		textNome = new JTextField();
 		textNome.setColumns(10);	
+//		textNome.setText("Felipe");
 			
 		textRaca = new JTextField();
 		textRaca.setColumns(10);	
@@ -79,12 +81,7 @@ public class VendedorInterface extends JPanel {
 			}
 		});
 		
-		JButton btAdicionar = new JButton("Adicionar");
-//		btAdicionar.setEnabled(false);
-//		
-//		if (!textNome.getText().equals("") && !textRaca.getText().equals("") && !textIdade.getText().equals(""))
-//			btAdicionar.setEnabled(true);
-	
+		JButton btAdicionar = new JButton("Adicionar");	
 		btAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				bt_addActionPerformed();
@@ -94,7 +91,7 @@ public class VendedorInterface extends JPanel {
 		JButton btEstoque = new JButton("Acessar estoque do Vendedor");
 		btEstoque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bt_acessActionPerformed();
+				bt_acessActionPerformed(Integer.valueOf(textID.getText()), textNome.getText());
 			}
 		});
 		
@@ -104,16 +101,11 @@ public class VendedorInterface extends JPanel {
 //		modeloTabela.addColumn("Raça");
 //		modeloTabela.addColumn("Idade");
 		tableVendedor = new JTable();
-		tableVendedor.setToolTipText("");
 		tableVendedor.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
 		tableVendedor.setModel(new DefaultTableModel(
-			new Object [][] {
-				{"aaa", "aaa", "aaa", "aaa"}
-            },
-            new String [] {
-                "ID", "Nome", "Raça", "Idade"
-            }
+			new Object [][] {},
+            new String [] { "ID", "Nome", "Raça", "Idade"}
        	));
 		JScrollPane scroll = new JScrollPane();
 		scroll.setViewportView(tableVendedor);
@@ -205,14 +197,21 @@ public class VendedorInterface extends JPanel {
 	}
 	
 	private void bt_addActionPerformed() {
-		
+		Vendedor v  = new Vendedor(textNome.getText(), textRaca.getText(), Integer.valueOf(textIdade.getText()));
+        DefaultTableModel model = (DefaultTableModel)tableVendedor.getModel();
+        model.setRowCount(rowCount++);
+        model.addRow(new Object[]{v.getId(), v.getNome() ,v.getRaca(), v.getIdade()});
 	}
 	
 	private void bt_removeActionPerformed() {
 		
 	}
 	
-	private void bt_acessActionPerformed() {
-
+	private void bt_acessActionPerformed(int ID, String nome) {
+		JFrame frame = new JFrame("Estoque do vendedor " + nome);
+		frame.add(new EstoqueInterface());
+		frame.setBounds(100, 100, 440, 400);
+		frame.setResizable(false);
+		frame.setVisible(true);
 	}
 }

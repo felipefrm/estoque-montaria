@@ -14,9 +14,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.table.DefaultTableModel;
+
+import venda_montaria.tp1.model.Montaria;
+import venda_montaria.tp1.model.Vendedor;
 
 public class MontariaInterface extends JPanel {
 	/**
@@ -30,6 +33,7 @@ public class MontariaInterface extends JPanel {
 	private JTextField textRaridade;
 	private JTextField textCombustivel;
 	private JTable tableMontaria;
+	private static int rowCount = 0;
 
 	/**
 	 * Create the panel.
@@ -103,9 +107,9 @@ public class MontariaInterface extends JPanel {
 	                "ID", "Raça", "Capacidade", "Raridade", "Velocidade", "Combustivel"
 	            }
 	       	));
-			JScrollPane scroll = new JScrollPane(tableMontaria);
-			scroll.setViewportView(tableMontaria);
-			add(scroll);
+		JScrollPane scroll = new JScrollPane(tableMontaria);
+		scroll.setViewportView(tableMontaria);
+		add(scroll);
 
 		
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -200,14 +204,13 @@ public class MontariaInterface extends JPanel {
 	
 
 	private void bt_addActionPerformed() {
-
+		Montaria m  = new Montaria(textRaca.getText(), textCombustivel.getText(), textRaridade.getText(), Integer.valueOf(textCapacidade.getText()),  Float.valueOf(textVelocidade.getText()));
+        DefaultTableModel model = (DefaultTableModel)tableMontaria.getModel();
+        model.setRowCount(rowCount++);
+        model.addRow(new Object[]{m.getId(), m.getRaca() ,m.getCombustivel(), m.getRaridade(), m.getCapacidade(), m.getVelocidade()});
 	}
 	
 	private void bt_removeActionPerformed() {
-		
-	}
-	
-	private void bt_acessActionPerformed() {
 		
 	}
 }
