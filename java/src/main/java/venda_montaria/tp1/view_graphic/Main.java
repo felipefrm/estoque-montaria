@@ -3,11 +3,15 @@ package venda_montaria.tp1.view_graphic;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import venda_montaria.tp1.model.Montaria;
+import venda_montaria.tp1.model.Vendedor;
 
 public class Main {
 
@@ -17,7 +21,7 @@ public class Main {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-		
+
 		for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
             if ("Nimbus".equals(info.getName())) {
                 javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -50,6 +54,10 @@ public class Main {
 	 * @throws IOException 
 	 */
 	private void initialize() throws IOException {
+	
+		ArrayList<Vendedor> vend = new ArrayList<Vendedor>();
+		ArrayList<Montaria> mont = new ArrayList<Montaria>();
+		
 		frame = new JFrame("Estoque de Montaria");
 		frame.setBounds(100, 100, 440, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,13 +66,14 @@ public class Main {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
-		JPanel home = new HomeInterface();
+		JPanel home = new HomeInterface(vend, mont);
 		tabbedPane.addTab("Home", null, home, null);
-
-		JPanel vendedor = new VendedorInterface();
+		
+		JPanel vendedor = new VendedorInterface(vend, mont);
 		tabbedPane.addTab("Vendedor", null, vendedor, null);
 		
-		JPanel montaria = new MontariaInterface();
+		JPanel montaria = new MontariaInterface(mont);
 		tabbedPane.addTab("Montaria", null, montaria, null);
+	
 	}
 }

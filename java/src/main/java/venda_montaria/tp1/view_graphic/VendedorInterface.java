@@ -4,10 +4,12 @@ import java.awt.Component;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,6 +21,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.table.DefaultTableModel;
 
+import venda_montaria.tp1.model.Montaria;
 import venda_montaria.tp1.model.Vendedor;
 
 public class VendedorInterface extends JPanel {
@@ -31,19 +34,27 @@ public class VendedorInterface extends JPanel {
 	private JTextField textRaca;
 	private JTextField textIdade;
 	private JTable tableVendedor;
-	private static int rowCount = 0;
+	private static int rowCount;
 	
+	public void setRowCount(int count) {
+		rowCount = count;
+	}
+	
+	public int getRowCount() {
+		return rowCount;
+	}
 	
 	/**
 	 * Create the panel.
 	 */
-	public VendedorInterface() {
+	public VendedorInterface(ArrayList<Vendedor> vend, ArrayList<Montaria> mont) {
 		
-		initComponents();
+		setRowCount(0);
+		initComponents(vend, mont);
 	
 	}
 	
-	private void initComponents() {
+	private void initComponents(ArrayList<Vendedor> vend, ArrayList<Montaria> mont) {
 		
 		JLabel lblId = new JLabel("ID");
 		JLabel lblNome = new JLabel("Nome");
@@ -67,7 +78,7 @@ public class VendedorInterface extends JPanel {
 		JButton btRemover = new JButton("Remover");
 		btRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bt_removeActionPerformed();
+				bt_removeActionPerformed(vend);
 			}
 		});
 		
@@ -81,14 +92,17 @@ public class VendedorInterface extends JPanel {
 		JButton btAdicionar = new JButton("Adicionar");	
 		btAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bt_addActionPerformed();
+				bt_addActionPerformed(vend);
 			}
 		});
 		
 		JButton btEstoque = new JButton("Acessar estoque do Vendedor");
 		btEstoque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bt_acessActionPerformed(Integer.valueOf(textID.getText()), textNome.getText());
+				for (Vendedor v : vend) {
+					if (v.getId() == Integer.valueOf(textID.getText()))
+						bt_acessActionPerformed(v, mont);
+				}
 			}
 		});
 		
@@ -195,7 +209,7 @@ public class VendedorInterface extends JPanel {
 		}
 	}
 	
-	private void bt_addActionPerformed() {
+	private void bt_addActionPerformed(ArrayList<Vendedor> vend) {
 
 		try {
 			Integer.parseInt(textIdade.getText());
@@ -205,27 +219,38 @@ public class VendedorInterface extends JPanel {
 		}
 		
 		Vendedor v  = new Vendedor(textNome.getText(), textRaca.getText(), Integer.valueOf(textIdade.getText()));
-        DefaultTableModel model = (DefaultTableModel)tableVendedor.getModel();
+		vend.add(v);
+		DefaultTableModel model = (DefaultTableModel)tableVendedor.getModel();
         model.setRowCount(rowCount++);
         model.addRow(new Object[]{v.getId(), v.getNome() ,v.getRaca(), v.getIdade()});
 	}
 	
-	private void bt_removeActionPerformed() {
+	private void bt_removeActionPerformed(ArrayList<Vendedor> vend) {
 		DefaultTableModel model = (DefaultTableModel) tableVendedor.getModel();
 		if (tableVendedor.getSelectedRow() == -1) { 
 			JOptionPane.showMessageDialog(null, "Selecione o vendedor que deseja remover.");
 			return;
 		}
+
+		int linha = tableVendedor.getSelectedRow();
+		Object id = tableVendedor.getValueAt(linha, 0);
+		for (Vendedor v : vend)
+			if (v.getId() == Integer.valueOf(id.toString())) {
+				vend.remove(v);
+				break;
+			}
+
+		
 	    model.removeRow(tableVendedor.getSelectedRow());
 	    rowCount--;
 	}
 	
-	private void bt_acessActionPerformed(int ID, String nome) {
-//		JFrame frame = new JFrame("Estoque do vendedor " + nome);
-//		frame.add(new EstoqueInterface());
-//		frame.setBounds(100, 100, 440, 400);
-//		frame.setResizable(false);
-//		frame.setVisible(true);
+	private void bt_acessActionPerformed(Vendedor v, ArrayList<Montaria> mont) {
+		JFrame frame = new JFrame("Estoque do vendedor " + v.getNome());
+		frame.add(new EstoqueInterface(v, mont));
+		frame.setBounds(100, 100, 440, 400);
+		frame.setResizable(false);
+		frame.setVisible(true);
 	}
 
 	 private void tableVendedorMouseClick(java.awt.event.MouseEvent evt) {

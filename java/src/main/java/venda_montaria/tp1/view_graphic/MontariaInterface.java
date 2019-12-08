@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -34,17 +35,18 @@ public class MontariaInterface extends JPanel {
 	private JTextField textCombustivel;
 	private JTable tableMontaria;
 	private static int rowCount = 0;
+	
 
 	/**
 	 * Create the panel.
 	 */
-	public MontariaInterface() {
+	public MontariaInterface(ArrayList<Montaria> mont) {
 		
-		initComponents();
+		initComponents(mont);
 		
 	}
 	
-	private void initComponents() {
+	private void initComponents(ArrayList<Montaria> mont) {
 		
 		JLabel lblId = new JLabel("ID");		
 		JLabel lbRaca = new JLabel("Raça");
@@ -83,7 +85,7 @@ public class MontariaInterface extends JPanel {
 		JButton btRemover = new JButton("Remover");
 		btRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bt_removeActionPerformed();
+				bt_removeActionPerformed(mont);
 			}
 		});
 
@@ -91,7 +93,7 @@ public class MontariaInterface extends JPanel {
 		JButton btAdicionar = new JButton("Adicionar");
 		btAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bt_addActionPerformed();
+				bt_addActionPerformed(mont);
 			}
 		});
 
@@ -203,7 +205,7 @@ public class MontariaInterface extends JPanel {
 		}
 	}
 
-	private void bt_addActionPerformed() {
+	private void bt_addActionPerformed(ArrayList<Montaria> mont) {
 		try {
 			Integer.parseInt(textCapacidade.getText());
 			Float.parseFloat(textVelocidade.getText());
@@ -214,17 +216,25 @@ public class MontariaInterface extends JPanel {
 		}
 	
 		Montaria m  = new Montaria(textRaca.getText(), textCombustivel.getText(), textRaridade.getText(), Integer.valueOf(textCapacidade.getText()),  Float.valueOf(textVelocidade.getText()));
-        DefaultTableModel model = (DefaultTableModel)tableMontaria.getModel();
+        mont.add(m);
+		DefaultTableModel model = (DefaultTableModel)tableMontaria.getModel();
         model.setRowCount(rowCount++);
         model.addRow(new Object[]{m.getId(), m.getRaca(), m.getCombustivel(), m.getRaridade(), m.getCapacidade(), m.getVelocidade()});
 	}
 	
-	private void bt_removeActionPerformed() {
+	private void bt_removeActionPerformed(ArrayList<Montaria> mont) {
 		DefaultTableModel model = (DefaultTableModel) tableMontaria.getModel();
 		if (tableMontaria.getSelectedRow() == -1) { 
 			JOptionPane.showMessageDialog(null, "Selecione a montaria que deseja remover.");
 			return;
 		}
+		int linha = tableMontaria.getSelectedRow();
+		Object id = tableMontaria.getValueAt(linha, 0);
+		for (Montaria m : mont)
+			if (m.getId() == Integer.valueOf(id.toString())) {
+				mont.remove(m);
+				break;
+			}
 		model.removeRow(tableMontaria.getSelectedRow());
 	    rowCount--;
 	}

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -16,24 +17,30 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import venda_montaria.tp1.control.Arquivo;
+import venda_montaria.tp1.model.Montaria;
+import venda_montaria.tp1.model.Vendedor;
+
 public class HomeInterface extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static String pathVendedor;
+	private static String pathMontaria;
 
 	/**
 	 * Create the panel.
 	 * @throws IOException 
 	 */
-	public HomeInterface() throws IOException {
+	public HomeInterface(ArrayList<Vendedor> vend, ArrayList<Montaria> mont) throws IOException {
 		
-		initComponents();
+		initComponents(vend, mont);
 		
 	}
 
-	public void initComponents() throws IOException {
+	public void initComponents(ArrayList<Vendedor> vend, ArrayList<Montaria> mont) throws IOException {
 		
 		BufferedImage myPicture = ImageIO.read(new File("src/main/java/venda_montaria/tp1/view_graphic/Saddle.png"));
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
@@ -55,8 +62,8 @@ public class HomeInterface extends JPanel {
 		btArqVendedor.setBounds(87, 209, 266, 25);
 		btArqVendedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(bt_selecionarArquivo()) {
-					lblOk_1.setVisible(true);
+				if(bt_selecionarArquivoVendedor(vend, mont, lblOk_1)) {
+				
 				}
 			}
 		});
@@ -65,8 +72,8 @@ public class HomeInterface extends JPanel {
 		btArqMontaria.setBounds(87, 243, 266, 25);
 		btArqMontaria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(bt_selecionarArquivo()) {
-					lblOk_2.setVisible(true);
+				if(bt_selecionarArquivoMontaria(mont, lblOk_2)) {
+		
 				}
 			}
 		});
@@ -85,33 +92,56 @@ public class HomeInterface extends JPanel {
 		add(btSalvar);
 		btSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bt_saveActionPerformed();
+				bt_saveActionPerformed(vend, mont);
 			}
 		});
 
 	}
 	
 	
-	private boolean bt_selecionarArquivo() {
+	private boolean bt_selecionarArquivoVendedor(ArrayList<Vendedor> vend, ArrayList<Montaria> mont, JLabel lbl) {
 		JFileChooser chooser = new JFileChooser();
 		chooser.setPreferredSize(new Dimension(800, 600));
 		int result = chooser.showOpenDialog(this);
 		boolean control = false;
+		File f;
 		if (result == JFileChooser.APPROVE_OPTION) {
 			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			File f = chooser.getSelectedFile();
+			f = chooser.getSelectedFile();
 			System.out.println(f.getName());
-			String absPath = f.getAbsolutePath();
-			System.out.println(absPath);
+			pathVendedor = f.getName();
 			control = true;
+			Arquivo arq = Arquivo.getInstance();	
+			arq.carregaArquivoVendedor(f.getName(), vend, mont);
+			lbl.setVisible(true);
 		} 
-		else if (result == JFileChooser.CANCEL_OPTION) {
-		    System.out.println("Cancel was selected");
-		}
+		
 		return control;
 	}
-	
-	private void bt_saveActionPerformed() {
+
+	private boolean bt_selecionarArquivoMontaria(ArrayList<Montaria> mont, JLabel lbl) {
+		JFileChooser chooser = new JFileChooser();
+		chooser.setPreferredSize(new Dimension(800, 600));
+		int result = chooser.showOpenDialog(this);
+		boolean control = false;
+		File f;
+		if (result == JFileChooser.APPROVE_OPTION) {
+			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			f = chooser.getSelectedFile();
+			pathMontaria = f.getName();
+			control = true;
+			Arquivo arq = Arquivo.getInstance();	
+			arq.carregaArquivoMontaria(f.getName(), mont);
+			lbl.setVisible(true);
+		} 
 		
+		return control;
+	}
+
+	
+	private void bt_saveActionPerformed(ArrayList<Vendedor> vend, ArrayList<Montaria> mont) {
+		Arquivo arq = Arquivo.getInstance();
+		arq.salvaArquivo(pathVendedor, vend);
+		arq.salvaArquivo(pathMontaria, mont);
 	}
 }
