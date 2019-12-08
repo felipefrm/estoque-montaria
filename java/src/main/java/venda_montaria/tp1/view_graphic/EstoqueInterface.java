@@ -103,7 +103,7 @@ public class EstoqueInterface extends JPanel {
 		btEditar = new JButton("Editar");
 		btEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bt_editActionPerformed();
+				bt_editActionPerformed(v);
 			}
 		});
 		
@@ -312,7 +312,7 @@ public class EstoqueInterface extends JPanel {
 
 	}
 	
-	private void bt_editActionPerformed() {
+	private void bt_editActionPerformed(Vendedor v) {
 		
 		try {
 			Integer.parseInt(textQTD.getText());
@@ -329,9 +329,16 @@ public class EstoqueInterface extends JPanel {
 
 		
 		int linha = tableEstoque.getSelectedRow();
+		Object id = tableEstoque.getValueAt(linha, 0);
 		tableEstoque.setValueAt(textQTD.getText(), linha, 2);
 		tableEstoque.setValueAt(textPreco.getText(), linha, 3);
-		
+		for (Estoque e : v.getEstoque())
+			if (e.getMontaria().getId() == Integer.valueOf(id.toString())) {
+				e.setQuantidade(Integer.valueOf(textQTD.getText()));
+				e.setPreco(Integer.valueOf(textPreco.getText()));
+				break;
+			}
+
 	}
 	
 	 private void tableEstoqueMouseClick(java.awt.event.MouseEvent evt) {
