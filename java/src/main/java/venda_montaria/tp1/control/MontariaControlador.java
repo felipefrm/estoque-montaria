@@ -106,5 +106,26 @@ public class MontariaControlador {
 		interf.getTextRaridade().setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 3)));
 		interf.getTextCapacidade().setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 4)));
 		interf.getTextVelocidade().setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 5)));
+		
+	}
+	
+	public void atualizaTabela() {
+		JTable tableMontaria = interf.getTableMontaria();
+		
+		DefaultTableModel model = (DefaultTableModel)tableMontaria.getModel();
+		while(model.getRowCount() > 0)
+		{
+			model.removeRow(0);
+		}
+		MontariaInterface.setRowCount(0);
+		
+		
+		for(Montaria m : modelo) {
+			
+			model.setRowCount(MontariaInterface.getRowCount());
+			MontariaInterface.setRowCount(MontariaInterface.getRowCount()+1);
+			
+	        model.addRow(new Object[]{m.getId(), m.getRaca(), m.getCombustivel(), m.getRaridade(), m.getCapacidade(), m.getVelocidade()});
+		}
 	}
 }

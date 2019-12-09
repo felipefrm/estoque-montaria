@@ -15,6 +15,7 @@ import venda_montaria.tp1.model.Estoque;
 import venda_montaria.tp1.model.Montaria;
 import venda_montaria.tp1.model.Vendedor;
 import venda_montaria.tp1.view_graphic.EstoqueInterface;
+import venda_montaria.tp1.view_graphic.MontariaInterface;
 import venda_montaria.tp1.view_graphic.VendedorInterface;
 
 public class VendedorControlador {
@@ -135,5 +136,26 @@ public class VendedorControlador {
         interf.getTextNome().setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 1)));
         interf.getTextRaca().setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 2)));
         interf.getTextIdade().setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 3)));
+        atualizaTabela();
     }
+	
+	public void atualizaTabela() {
+		JTable tableVendedor = interf.getTableVendedor();
+		
+		DefaultTableModel model = (DefaultTableModel)tableVendedor.getModel();
+		while(model.getRowCount() > 0)
+		{
+			model.removeRow(0);
+		}
+		interf.setRowCount(0);
+		
+		
+		for(Vendedor v : modelo) {
+			
+			model.setRowCount(interf.getRowCount());
+			interf.setRowCount(interf.getRowCount()+1);
+			
+			model.addRow(new Object[]{v.getId(), v.getNome() ,v.getRaca(), v.getIdade()});	
+		}
+	}
 }
