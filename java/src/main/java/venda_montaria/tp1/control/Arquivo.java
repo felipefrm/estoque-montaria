@@ -40,8 +40,11 @@ public class Arquivo {
 		
 		try {
 			reader = new JsonReader(new FileReader(montariaFileName));
-			mont = gson.fromJson(reader, new TypeToken<ArrayList<Montaria>>() {
+			ArrayList<Montaria> base_mont = gson.fromJson(reader, new TypeToken<ArrayList<Montaria>>() {
 			}.getType());
+			for(Montaria m : base_mont) {
+				mont.add(m);
+			}
 			int max_id = 1;
 			for (Montaria m : mont) {
 				max_id = Math.max(max_id, m.getId() + 1);
@@ -61,8 +64,11 @@ public class Arquivo {
 
 		try {
 			reader = new JsonReader(new FileReader(vendedorFileName));
-			vend = gson.fromJson(reader, new TypeToken<ArrayList<Vendedor>>() {
+			ArrayList<Vendedor> base_vend = gson.fromJson(reader, new TypeToken<ArrayList<Vendedor>>() {
 			}.getType());
+			for(Vendedor v : base_vend) {
+				vend.add(v);
+			}
 			int max_id = 1;
 			for (Vendedor v : vend) {
 				max_id = Math.max(max_id, v.getId() + 1);
