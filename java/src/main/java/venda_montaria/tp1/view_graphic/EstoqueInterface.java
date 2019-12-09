@@ -43,6 +43,46 @@ public class EstoqueInterface extends JPanel {
 	private JTable tableMontaria;
 	private static int rowCount;
 	
+	public JTextField getTextID() {
+		return textID;
+	}
+
+	public JTextField getTextRaca() {
+		return textRaca;
+	}
+
+	public JTextField getTextQTD() {
+		return textQTD;
+	}
+
+	public JTextField getTextPreco() {
+		return textPreco;
+	}
+
+	public JButton getBtLimpar() {
+		return btLimpar;
+	}
+
+	public JButton getBtAdicionar() {
+		return btAdicionar;
+	}
+
+	public JButton getBtEditar() {
+		return btEditar;
+	}
+
+	public JButton getBtRemover() {
+		return btRemover;
+	}
+
+	public JTable getTableEstoque() {
+		return tableEstoque;
+	}
+
+	public JTable getTableMontaria() {
+		return tableMontaria;
+	}
+
 	public void setRowCount(int count) {
 		rowCount = count;
 	}
@@ -56,14 +96,14 @@ public class EstoqueInterface extends JPanel {
 	 */
 	
 	
-	public EstoqueInterface(Vendedor v, ArrayList<Montaria> mont) {
+	public EstoqueInterface() {
 
 		setRowCount(0);
-		initComponents(v, mont);
+		initComponents();
 		
 	}
 	
-	private void initComponents(Vendedor v, ArrayList<Montaria> mont) {
+	private void initComponents() {
 
 		JLabel lblId = new JLabel("ID");
 		JLabel lblRaa = new JLabel("Raça");
@@ -86,34 +126,6 @@ public class EstoqueInterface extends JPanel {
 		textPreco = new JTextField();
 		textPreco.setColumns(10);
 		
-		btLimpar = new JButton("Limpar");
-		btLimpar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				bt_limparActionPerformed(e);
-			}
-		});
-		
-		btAdicionar = new JButton("Adicionar");
-		btAdicionar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				bt_addActionPerformed(v, mont);
-			}
-		});
-		
-		btEditar = new JButton("Editar");
-		btEditar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				bt_editActionPerformed(v);
-			}
-		});
-		
-		btRemover = new JButton("Remover");
-		btRemover.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				bt_removeActionPerformed(v);
-			}
-		});
-		
 		tableEstoque = new JTable();
 		tableEstoque.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tableEstoque.setModel(new DefaultTableModel(
@@ -129,17 +141,7 @@ public class EstoqueInterface extends JPanel {
 		add(scrollE);
 
 		DefaultTableModel modelEstoque = (DefaultTableModel) tableEstoque.getModel();
-		for (Estoque e : v.getEstoque()) {
-			modelEstoque.addRow(new Object[]{e.getMontaria().getId(), e.getMontaria().getRaca(), e.getQuantidade(), e.getPreco()});
-		}
 
-		
-		tableEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				tableEstoqueMouseClick(evt);
-        	}
-        });
-		
 		tableMontaria = new JTable();
 		tableMontaria.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tableMontaria.setModel(new DefaultTableModel(
@@ -155,16 +157,6 @@ public class EstoqueInterface extends JPanel {
 		add(scrollM);
 
 		DefaultTableModel modelMontaria = (DefaultTableModel) tableMontaria.getModel();
-		for (Montaria m : mont) {
-			modelMontaria.addRow(new Object[]{m.getId(), m.getRaca()});
-		}
-
-		tableMontaria.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				tableMontariaMouseClick(evt);
-        	}
-        });
-
 		
 		JLabel lblNewLabel = new JLabel("Estoque do Vendedor ");
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -250,109 +242,5 @@ public class EstoqueInterface extends JPanel {
 		
 	}
 	
-	private void bt_limparActionPerformed(ActionEvent evt) {
-
-		Component[] components = getComponents();
-		for (Component c : components) {
-			  if (c instanceof JTextField) {         
-				  	JTextField field = (JTextField) c;   
-	                field.setText("");   
-			  }
-		}
-	}
-	
-	private void bt_addActionPerformed(Vendedor v, ArrayList<Montaria> mont) {		
-		
-		int linha = tableMontaria.getSelectedRow();
-		Object id = tableMontaria.getValueAt(linha, 0);
-
-		for (Estoque e : v.getEstoque())
-			if (e.getMontaria().getId() == Integer.valueOf(id.toString())) {
-				JOptionPane.showMessageDialog(null, "Montaria já existe no estoque.");			
-				return;
-			}
-		
-		for (Montaria m : mont)
-			if (m.getId() == Integer.valueOf(id.toString())) {
-				try {
-					Integer.parseInt(textQTD.getText());
-					Float.parseFloat(textPreco.getText());
-				} catch(NumberFormatException e) {
-					JOptionPane.showMessageDialog(null, "A quantidade deve ser um número inteiro e o preco um número real.");
-					return;
-				}
-			
-				v.getEstoque().add(new Estoque(m, Integer.valueOf(textQTD.getText()), Float.valueOf(textPreco.getText())));
-				DefaultTableModel model = (DefaultTableModel)tableEstoque.getModel();
-		        model.setRowCount(rowCount++);
-		        model.addRow(new Object[]{m.getId(), m.getRaca(), Integer.valueOf(textQTD.getText()), Float.valueOf(textPreco.getText())});
-				break;
-			}
-		
-	
-	}	
-	
-	private void bt_removeActionPerformed(Vendedor v) {
-		DefaultTableModel model = (DefaultTableModel) tableEstoque.getModel();
-		if (tableEstoque.getSelectedRow() == -1) { 
-			JOptionPane.showMessageDialog(null, "Selecione a montaria que deseja remover do estoque.");
-			return;
-		}
-
-		int linha = tableEstoque.getSelectedRow();
-		Object id = tableEstoque.getValueAt(linha, 0);
-		for (Estoque e : v.getEstoque())
-			if (e.getMontaria().getId() == Integer.valueOf(id.toString())) {
-				v.getEstoque().remove(e);
-				break;
-			}
-
-	    model.removeRow(linha);
-	    rowCount--;
-
-	}
-	
-	private void bt_editActionPerformed(Vendedor v) {
-		
-		try {
-			Integer.parseInt(textQTD.getText());
-			Float.parseFloat(textPreco.getText());
-		} catch(NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, "A quantidade deve ser um número inteiro e o preco um número real.");
-			return;
-		}
-		
-		if (tableEstoque.getSelectedRow() == -1) { 
-			JOptionPane.showMessageDialog(null, "Selecione a montaria que deseja editar o estoque.");
-			return;
-		}
-
-		
-		int linha = tableEstoque.getSelectedRow();
-		Object id = tableEstoque.getValueAt(linha, 0);
-		tableEstoque.setValueAt(textQTD.getText(), linha, 2);
-		tableEstoque.setValueAt(textPreco.getText(), linha, 3);
-		for (Estoque e : v.getEstoque())
-			if (e.getMontaria().getId() == Integer.valueOf(id.toString())) {
-				e.setQuantidade(Integer.valueOf(textQTD.getText()));
-				e.setPreco(Integer.valueOf(textPreco.getText()));
-				break;
-			}
-
-	}
-	
-	 private void tableEstoqueMouseClick(java.awt.event.MouseEvent evt) {
-        textID.setText(String.valueOf(tableEstoque.getValueAt(tableEstoque.getSelectedRow(), 0)));
-        textRaca.setText(String.valueOf(tableEstoque.getValueAt(tableEstoque.getSelectedRow(), 1)));
-        textQTD.setText(String.valueOf(tableEstoque.getValueAt(tableEstoque.getSelectedRow(), 2)));
-        textPreco.setText(String.valueOf(tableEstoque.getValueAt(tableEstoque.getSelectedRow(), 3)));
-
-	 }	
-
-	 private void tableMontariaMouseClick(java.awt.event.MouseEvent evt) {
-	        textID.setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 0)));
-	        textRaca.setText(String.valueOf(tableMontaria.getValueAt(tableMontaria.getSelectedRow(), 1)));
-		 }	
-
 	 
 }

@@ -35,6 +35,10 @@ public class VendedorInterface extends JPanel {
 	private JTextField textIdade;
 	private JTable tableVendedor;
 	private static int rowCount;
+	private JButton btRemover = new JButton("Remover");
+	private JButton btLimpar = new JButton("Limpar");
+	private JButton btAdicionar = new JButton("Adicionar");
+	private JButton btEstoque = new JButton("Acessar estoque do Vendedor");
 	
 	public void setRowCount(int count) {
 		rowCount = count;
@@ -44,6 +48,42 @@ public class VendedorInterface extends JPanel {
 		return rowCount;
 	}
 	
+	public JTextField getTextID() {
+		return textID;
+	}
+
+	public JTextField getTextNome() {
+		return textNome;
+	}
+
+	public JTextField getTextRaca() {
+		return textRaca;
+	}
+
+	public JTextField getTextIdade() {
+		return textIdade;
+	}
+
+	public JTable getTableVendedor() {
+		return tableVendedor;
+	}
+
+	public JButton getBtRemover() {
+		return btRemover;
+	}
+
+	public JButton getBtLimpar() {
+		return btLimpar;
+	}
+
+	public JButton getBtAdicionar() {
+		return btAdicionar;
+	}
+
+	public JButton getBtEstoque() {
+		return btEstoque;
+	}
+
 	/**
 	 * Create the panel.
 	 */
@@ -75,37 +115,6 @@ public class VendedorInterface extends JPanel {
 		textIdade = new JTextField();
 		textIdade.setColumns(10);
 		
-		JButton btRemover = new JButton("Remover");
-		btRemover.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				bt_removeActionPerformed(vend);
-			}
-		});
-		
-		JButton btLimpar = new JButton("Limpar");
-		btLimpar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				bt_limparActionPerformed(e);
-			}
-		});
-		
-		JButton btAdicionar = new JButton("Adicionar");	
-		btAdicionar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				bt_addActionPerformed(vend);
-			}
-		});
-		
-		JButton btEstoque = new JButton("Acessar estoque do Vendedor");
-		btEstoque.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				for (Vendedor v : vend) {
-					if (v.getId() == Integer.valueOf(textID.getText()))
-						bt_acessActionPerformed(v, mont);
-				}
-			}
-		});
-		
 		tableVendedor = new JTable();
 		tableVendedor.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
@@ -116,12 +125,6 @@ public class VendedorInterface extends JPanel {
 		JScrollPane scroll = new JScrollPane();
 		scroll.setViewportView(tableVendedor);
 		add(scroll);
-
-		tableVendedor.addMouseListener(new java.awt.event.MouseAdapter() {
-	            public void mouseClicked(java.awt.event.MouseEvent evt) {
-	            	tableVendedorMouseClick(evt);
-	            }
-	        });
 		
 		
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -198,65 +201,9 @@ public class VendedorInterface extends JPanel {
 		setLayout(groupLayout);
 	}
 	
-	private void bt_limparActionPerformed(ActionEvent evt) {
-
-		Component[] components = getComponents();
-		for (Component c : components) {
-			  if (c instanceof JTextField) {         
-				  	JTextField field = (JTextField) c;   
-	                field.setText("");   
-			  }
-		}
-	}
 	
-	private void bt_addActionPerformed(ArrayList<Vendedor> vend) {
-
-		try {
-			Integer.parseInt(textIdade.getText());
-		} catch(NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, "A idade deve ser um inteiro.");
-			return;
-		}
-		
-		Vendedor v  = new Vendedor(textNome.getText(), textRaca.getText(), Integer.valueOf(textIdade.getText()));
-		vend.add(v);
-		DefaultTableModel model = (DefaultTableModel)tableVendedor.getModel();
-        model.setRowCount(rowCount++);
-        model.addRow(new Object[]{v.getId(), v.getNome() ,v.getRaca(), v.getIdade()});
-	}
 	
-	private void bt_removeActionPerformed(ArrayList<Vendedor> vend) {
-		DefaultTableModel model = (DefaultTableModel) tableVendedor.getModel();
-		if (tableVendedor.getSelectedRow() == -1) { 
-			JOptionPane.showMessageDialog(null, "Selecione o vendedor que deseja remover.");
-			return;
-		}
-
-		int linha = tableVendedor.getSelectedRow();
-		Object id = tableVendedor.getValueAt(linha, 0);
-		for (Vendedor v : vend)
-			if (v.getId() == Integer.valueOf(id.toString())) {
-				vend.remove(v);
-				break;
-			}
-
-		
-	    model.removeRow(tableVendedor.getSelectedRow());
-	    rowCount--;
-	}
 	
-	private void bt_acessActionPerformed(Vendedor v, ArrayList<Montaria> mont) {
-		JFrame frame = new JFrame("Estoque do vendedor " + v.getNome());
-		frame.add(new EstoqueInterface(v, mont));
-		frame.setBounds(100, 100, 440, 400);
-		frame.setResizable(false);
-		frame.setVisible(true);
-	}
 
-	 private void tableVendedorMouseClick(java.awt.event.MouseEvent evt) {
-	        textID.setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 0)));
-	        textNome.setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 1)));
-	        textRaca.setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 2)));
-	        textIdade.setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 3)));
-	    }
+	 
 }
