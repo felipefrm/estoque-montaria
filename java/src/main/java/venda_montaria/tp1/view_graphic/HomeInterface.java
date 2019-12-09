@@ -29,7 +29,23 @@ public class HomeInterface extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static String pathVendedor = "./vend";
 	private static String pathMontaria = "./mont";
+	private JButton btArqVendedor = new JButton("Selecionar arquivo de vendedores");
+	private JButton btArqMontaria = new JButton("Selecionar arquivo de montarias");
+	private JButton btSalvar = new JButton("Salvar");
+	
+	public JButton getBtArqVendedor(){
+		return btArqVendedor;
+	}
 
+	public JButton getBtArqMontaria(){
+		return btArqMontaria;
+	}
+
+	public JButton getBtSalvar(){
+		return btSalvar;
+	}
+	
+	
 	/**
 	 * Create the panel.
 	 * @throws IOException 
@@ -46,35 +62,17 @@ public class HomeInterface extends JPanel {
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 		picLabel.setBounds(161, 43, 125, 166);
 		
-		JLabel lblOk_1 = new JLabel("OK!");
-		lblOk_1.setForeground(new Color(51, 204, 0));
-		lblOk_1.setBounds(360, 214, 66, 15);
-		lblOk_1.setVisible(false);
-		add(lblOk_1);
-		
-		JLabel lblOk_2 = new JLabel("OK!");
-		lblOk_2.setForeground(new Color(0, 204, 0));
-		lblOk_2.setBounds(360, 248, 66, 15);
-		lblOk_2.setVisible(false);
-		add(lblOk_2);
-		
-		JButton btArqVendedor = new JButton("Selecionar arquivo de vendedores");
 		btArqVendedor.setBounds(87, 209, 266, 25);
 		btArqVendedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(bt_selecionarArquivoVendedor(vend, mont, lblOk_1)) {
-				
-				}
+				bt_selecionarArquivoVendedor(vend, mont)); 
 			}
 		});
 		
-		JButton btArqMontaria = new JButton("Selecionar arquivo de montarias");
 		btArqMontaria.setBounds(87, 243, 266, 25);
 		btArqMontaria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(bt_selecionarArquivoMontaria(mont, lblOk_2)) {
-		
-				}
+				bt_selecionarArquivoMontaria(mont);
 			}
 		});
 		
@@ -87,7 +85,6 @@ public class HomeInterface extends JPanel {
 		add(btArqMontaria);
 		add(btArqVendedor);
 		
-		JButton btSalvar = new JButton("Salvar");
 		btSalvar.setBounds(161, 275, 114, 25);
 		add(btSalvar);
 		btSalvar.addActionListener(new ActionListener() {
