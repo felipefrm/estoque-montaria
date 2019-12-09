@@ -27,8 +27,8 @@ public class HomeInterface extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static String pathVendedor;
-	private static String pathMontaria;
+	private static String pathVendedor = "./vend";
+	private static String pathMontaria = "./mont";
 
 	/**
 	 * Create the panel.
