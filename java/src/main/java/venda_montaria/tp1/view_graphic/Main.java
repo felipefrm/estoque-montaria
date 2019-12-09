@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import venda_montaria.tp1.control.MontariaControlador;
 import venda_montaria.tp1.model.Montaria;
 import venda_montaria.tp1.model.Vendedor;
 
@@ -72,7 +73,9 @@ public class Main {
 		JPanel vendedor = new VendedorInterface(vend, mont);
 		tabbedPane.addTab("Vendedor", null, vendedor, null);
 		
-		JPanel montaria = new MontariaInterface(mont);
+		MontariaInterface montaria = new MontariaInterface();
+		ArrayList<Montaria> modeloMontaria = new ArrayList<Montaria>();
+		MontariaControlador controladorMontaria = new MontariaControlador(montaria, modeloMontaria);
 		tabbedPane.addTab("Montaria", null, montaria, null);
 	
 	}
