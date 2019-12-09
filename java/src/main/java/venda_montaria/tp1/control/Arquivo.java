@@ -19,7 +19,7 @@ import venda_montaria.tp1.model.Vendedor;
 public class Arquivo {
 	
 	private static Arquivo uniqueInstance;
-	private Gson gson;
+	private Gson gson = new Gson();
 	private JsonReader reader;
 	Writer writer;
 	
@@ -91,6 +91,7 @@ public class Arquivo {
 			writer = null;
 			try {
 				writer = new FileWriter(path);
+				System.out.println(gson.toJson(obj));
 				gson.toJson(obj, writer);
 				writer.close();
 			} catch (IOException e) {
