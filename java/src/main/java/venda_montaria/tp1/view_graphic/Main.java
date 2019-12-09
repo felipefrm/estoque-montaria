@@ -56,9 +56,9 @@ public class Main {
 	 * @throws IOException 
 	 */
 	private void initialize() throws IOException {
-	
-		ArrayList<Vendedor> vend = new ArrayList<Vendedor>();
-		ArrayList<Montaria> mont = new ArrayList<Montaria>();
+		ArrayList<Montaria> modeloMontaria = new ArrayList<Montaria>();
+		ArrayList<Vendedor> modeloVendedor = new ArrayList<Vendedor>();
+
 		
 		frame = new JFrame("Estoque de Montaria");
 		frame.setBounds(100, 100, 440, 400);
@@ -68,17 +68,17 @@ public class Main {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
-		JPanel home = new HomeInterface(vend, mont);
+		JPanel home = new HomeInterface(modeloVendedor, modeloMontaria);
 		tabbedPane.addTab("Home", null, home, null);
 		
 		
 		MontariaInterface montaria = new MontariaInterface();
-		ArrayList<Montaria> modeloMontaria = new ArrayList<Montaria>();
+
 		MontariaControlador controladorMontaria = new MontariaControlador(montaria, modeloMontaria);
 		tabbedPane.addTab("Montaria", null, montaria, null);
 		
-		VendedorInterface vendedor = new VendedorInterface(vend, mont);
-		ArrayList<Vendedor> modeloVendedor = new ArrayList<Vendedor>();
+		VendedorInterface vendedor = new VendedorInterface(modeloVendedor, modeloMontaria);
+		
 		VendedorControlador controladorVendedor = new VendedorControlador(vendedor,modeloVendedor,modeloMontaria);
 		tabbedPane.addTab("Vendedor", null, vendedor, null);
 	
