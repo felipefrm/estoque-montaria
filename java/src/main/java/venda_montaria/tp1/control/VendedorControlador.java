@@ -61,7 +61,7 @@ public class VendedorControlador {
 	}
 	
 	private void bt_estoqueActionPerformed() {
-		for (Vendedor v : this.modelo) {
+		for (Vendedor v : modelo) {
 			if (v.getId() == Integer.valueOf(interf.getTextID().getText()))
 				bt_acessActionPerformed(v);
 		}

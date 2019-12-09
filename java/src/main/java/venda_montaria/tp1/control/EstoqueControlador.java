@@ -91,7 +91,7 @@ public class EstoqueControlador {
 	
 	private void bt_addActionPerformed() {		
 		JTable tableMontaria = interf.getTableMontaria();
-		JTable tableEstoque = interf.getTableMontaria();
+		JTable tableEstoque = interf.getTableEstoque();
 		int linha = tableMontaria.getSelectedRow();
 		Object id = tableMontaria.getValueAt(linha, 0);
 
@@ -170,7 +170,7 @@ public class EstoqueControlador {
 		for (Estoque e : vendedor.getEstoque())
 			if (e.getMontaria().getId() == Integer.valueOf(id.toString())) {
 				e.setQuantidade(Integer.valueOf(interf.getTextQTD().getText()));
-				e.setPreco(Integer.valueOf(interf.getTextPreco().getText()));
+				e.setPreco(Float.valueOf(interf.getTextPreco().getText()));
 				break;
 			}
 

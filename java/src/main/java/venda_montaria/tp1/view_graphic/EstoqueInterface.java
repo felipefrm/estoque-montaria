@@ -35,10 +35,10 @@ public class EstoqueInterface extends JPanel {
 	private JLabel lblPreo;
 	private JTextField textQTD;
 	private JTextField textPreco;
-	private JButton btLimpar;
-	private JButton btAdicionar;
-	private JButton btEditar;
-	private JButton btRemover;
+	private JButton btLimpar = new JButton("Limpar");
+	private JButton btAdicionar = new JButton("Adicionar");
+	private JButton btEditar = new JButton("Editar");
+	private JButton btRemover = new JButton("Remover");
 	private JTable tableEstoque;
 	private JTable tableMontaria;
 	private static int rowCount;
@@ -105,7 +105,7 @@ public class EstoqueInterface extends JPanel {
 	
 	private void initComponents() {
 
-		JLabel lblId = new JLabel("ID");
+		JLabel lblId = new JLabel("ID");new JButton("Remover");
 		JLabel lblRaa = new JLabel("Raça");
 		
 		
@@ -140,8 +140,7 @@ public class EstoqueInterface extends JPanel {
 		scrollE.setViewportView(tableEstoque);
 		add(scrollE);
 
-		DefaultTableModel modelEstoque = (DefaultTableModel) tableEstoque.getModel();
-
+		
 		tableMontaria = new JTable();
 		tableMontaria.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tableMontaria.setModel(new DefaultTableModel(
@@ -156,7 +155,6 @@ public class EstoqueInterface extends JPanel {
 		scrollM.setViewportView(tableMontaria);
 		add(scrollM);
 
-		DefaultTableModel modelMontaria = (DefaultTableModel) tableMontaria.getModel();
 		
 		JLabel lblNewLabel = new JLabel("Estoque do Vendedor ");
 		GroupLayout groupLayout = new GroupLayout(this);
