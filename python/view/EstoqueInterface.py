@@ -1,4 +1,8 @@
 from tkinter import *
+from Estoque import Estoque
+from Montaria import Montaria
+from Utils import Utils
+
 class EstoqueInterface:
     def __init__(self, instancia_Tk):
 
@@ -39,7 +43,7 @@ class EstoqueInterface:
         self.botaoRem['height'] = 2
         self.botaoRem.grid(row=5, column=0)
 
-        self.botaoLim = Button(instancia_Tk, text ='Limpar', width=12)
+        self.botaoLim = Button(instancia_Tk, text ='Limpar', width=12, command = self.clear)
         self.botaoLim['height'] = 2
         self.botaoLim.grid(row=6, column=0)
 
@@ -47,6 +51,12 @@ class EstoqueInterface:
         self.botaoEdt['height'] = 2
         self.botaoEdt.grid(row=7, column=0)
 
+
+    def clear(self):
+        self.id.delete(0,'end')
+        self.montaria.delete(0,'end')
+        self.quantidade.delete(0,'end')
+        self.preco.delete(0,'end')
 raiz=Tk()
 EstoqueInterface(raiz)
 raiz.mainloop()
