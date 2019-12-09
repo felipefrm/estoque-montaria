@@ -39,10 +39,16 @@ class VendedorInterface:
         self.botaoRem['height'] = 2
         self.botaoRem.grid(row=5, column=0)
 
-        self.botaoLim = Button(instancia_Tk, text ='Limpar', width = 12)
+        self.botaoLim = Button(instancia_Tk, text ='Limpar', width = 12,command = self.clear)
         self.botaoLim['height'] = 2
         self.botaoLim.grid(row=6, column=0)
 
+    def clear(self):
+        self.id.delete(0,'end')
+        self.raca.delete(0,'end')
+        self.nome.delete(0,'end')
+        self.idade.delete(0,'end')
+        
 raiz=Tk()
 VendedorInterface(raiz)
 raiz.mainloop()
