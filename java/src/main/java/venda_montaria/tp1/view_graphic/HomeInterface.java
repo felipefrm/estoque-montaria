@@ -27,8 +27,6 @@ public class HomeInterface extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static String pathVendedor = "./vend";
-	private static String pathMontaria = "./mont";
 	private JButton btArqVendedor = new JButton("Selecionar arquivo de vendedores");
 	private JButton btArqMontaria = new JButton("Selecionar arquivo de montarias");
 	private JButton btSalvar = new JButton("Salvar");
@@ -50,31 +48,23 @@ public class HomeInterface extends JPanel {
 	 * Create the panel.
 	 * @throws IOException 
 	 */
-	public HomeInterface(ArrayList<Vendedor> vend, ArrayList<Montaria> mont) throws IOException {
+	public HomeInterface() throws IOException {
 		
-		initComponents(vend, mont);
+		initComponents();
 		
 	}
 
-	public void initComponents(ArrayList<Vendedor> vend, ArrayList<Montaria> mont) throws IOException {
+	public void initComponents() throws IOException {
 		
 		BufferedImage myPicture = ImageIO.read(new File("src/main/java/venda_montaria/tp1/view_graphic/Saddle.png"));
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 		picLabel.setBounds(161, 43, 125, 166);
 		
 		btArqVendedor.setBounds(87, 209, 266, 25);
-		btArqVendedor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				bt_selecionarArquivoVendedor(vend, mont)); 
-			}
-		});
+		
 		
 		btArqMontaria.setBounds(87, 243, 266, 25);
-		btArqMontaria.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				bt_selecionarArquivoMontaria(mont);
-			}
-		});
+		
 		
 		JLabel lblSistemaDeEstoque = new JLabel("Sistema de Estoque de Montarias");
 		lblSistemaDeEstoque.setBounds(67, 12, 306, 19);
@@ -87,58 +77,10 @@ public class HomeInterface extends JPanel {
 		
 		btSalvar.setBounds(161, 275, 114, 25);
 		add(btSalvar);
-		btSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				bt_saveActionPerformed(vend, mont);
-			}
-		});
+
 
 	}
 	
 	
-	private boolean bt_selecionarArquivoVendedor(ArrayList<Vendedor> vend, ArrayList<Montaria> mont, JLabel lbl) {
-		JFileChooser chooser = new JFileChooser();
-		chooser.setPreferredSize(new Dimension(800, 600));
-		int result = chooser.showOpenDialog(this);
-		boolean control = false;
-		File f;
-		if (result == JFileChooser.APPROVE_OPTION) {
-			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			f = chooser.getSelectedFile();
-			System.out.println(f.getName());
-			pathVendedor = f.getName();
-			control = true;
-			Arquivo arq = Arquivo.getInstance();	
-			arq.carregaArquivoVendedor(f.getName(), vend, mont);
-			lbl.setVisible(true);
-		} 
-		
-		return control;
-	}
 
-	private boolean bt_selecionarArquivoMontaria(ArrayList<Montaria> mont, JLabel lbl) {
-		JFileChooser chooser = new JFileChooser();
-		chooser.setPreferredSize(new Dimension(800, 600));
-		int result = chooser.showOpenDialog(this);
-		boolean control = false;
-		File f;
-		if (result == JFileChooser.APPROVE_OPTION) {
-			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			f = chooser.getSelectedFile();
-			pathMontaria = f.getName();
-			control = true;
-			Arquivo arq = Arquivo.getInstance();	
-			arq.carregaArquivoMontaria(f.getName(), mont);
-			lbl.setVisible(true);
-		} 
-		
-		return control;
-	}
-
-	
-	private void bt_saveActionPerformed(ArrayList<Vendedor> vend, ArrayList<Montaria> mont) {
-		Arquivo arq = Arquivo.getInstance();
-		arq.salvaArquivo(pathVendedor, vend);
-		arq.salvaArquivo(pathMontaria, mont);
-	}
 }

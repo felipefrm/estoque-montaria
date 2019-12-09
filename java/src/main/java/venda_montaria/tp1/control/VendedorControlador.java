@@ -136,7 +136,6 @@ public class VendedorControlador {
         interf.getTextNome().setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 1)));
         interf.getTextRaca().setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 2)));
         interf.getTextIdade().setText(String.valueOf(tableVendedor.getValueAt(tableVendedor.getSelectedRow(), 3)));
-        atualizaTabela();
     }
 	
 	public void atualizaTabela() {

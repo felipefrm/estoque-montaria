@@ -87,14 +87,14 @@ public class VendedorInterface extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public VendedorInterface(ArrayList<Vendedor> vend, ArrayList<Montaria> mont) {
+	public VendedorInterface() {
 		
 		setRowCount(0);
-		initComponents(vend, mont);
+		initComponents();
 	
 	}
 	
-	private void initComponents(ArrayList<Vendedor> vend, ArrayList<Montaria> mont) {
+	private void initComponents() {
 		
 		JLabel lblId = new JLabel("ID");
 		JLabel lblNome = new JLabel("Nome");
